@@ -1,0 +1,16 @@
+{
+  "name": "try_riot",
+  "authors": [
+    "Francesco 'makevoid' Canessa <makevoid@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [
+    "es6"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "dependencies": {
+    "riot": "~2.3.13"
+  }
+}

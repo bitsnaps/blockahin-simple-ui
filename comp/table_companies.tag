@@ -1,0 +1,20 @@
+<table-companies>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Employees</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Applied Blockchain</td>
+        <td>20</td>
+      </tr>
+      <tr>
+        <td>Tallysticks</td>
+        <td>18</td>
+      </tr>
+    </tbody>
+  </table>
+</table-companies>

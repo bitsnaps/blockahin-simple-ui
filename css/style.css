@@ -1,0 +1,22 @@
+body > .container {
+  padding-top: 7.5rem;
+  padding-bottom: 7.5rem;
+  margin-bottom: 0;
+  max-width: 90.0rem;
+}
+
+.content {
+  min-height: 600px;
+}
+
+.navigation .container {
+  max-width: 90.0rem;
+}
+
+.navigation-title .img {
+  margin-right: 4px;
+}
+
+.logo-svgpath {
+  fill: #4c7cc9;
+}
