@@ -1,6 +1,9 @@
-# Try Riot
+# ProNet UI
 
-Just me playing around with the awesome riot.js: http://riotjs.com
+ProNet - codename for Blockchain based professionals network
+
+## UI
+ 
 
 ### Setup
 
@@ -13,7 +16,6 @@ Just me playing around with the awesome riot.js: http://riotjs.com
     python -m SimpleHTTPServer 3000
 
 Then connect to <http://localhost:3000>
-
 
 ### Develop
 
