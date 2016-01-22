@@ -1,6 +1,6 @@
-# ProNet UI
+# BlockedIn UI
 
-ProNet - codename for Blockchain based professionals network
+BlockedIn - Blockchain based Professionals Network
 
 ## UI
  
