@@ -20,3 +20,8 @@ body > .container {
 .logo-svgpath {
   fill: #4c7cc9;
 }
+
+
+dtable img {
+  width: 65px;
+}

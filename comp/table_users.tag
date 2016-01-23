@@ -1,9 +1,24 @@
 <table-users>
+
+  <p>Search</p>
+  <input name="query" type="text" onkeyup="{ filterUsers }" placeholder="enter a skill or a location">
+
+  Skills
+
   <dtable>
     <user-row each={ users }></user-row>
   </dtable>
 
   <script>
+    var matchString = (user) => {
+      return s(`${user.name}|${user.jobTitle}`).toLowerCase()
+    }
+    filterUsers() {
+      this.users = _(Users).select((user) => {
+        return matchString(user).include(this.query.value)
+      })
+    }
+
     this.on('mount', function() {
       $("dtable").prepend("    \
         <user-row>             \
@@ -14,10 +29,10 @@
       ")
     })
 
-    this.users = [
+    Users = [
       {
         id:       1,
-        name:     "Shepanie Curry",
+        name:     "Stephanie Curry",
         avatar:   "http://api.randomuser.me/portraits/thumb/women/0.jpg",
         jobTitle: "Software Developer",
       },
@@ -46,6 +61,8 @@
         jobTitle: "Biologist",
       },
     ]
+
+    this.users = Users
   </script>
 
   <style>
