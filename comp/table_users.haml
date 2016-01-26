@@ -1,12 +1,11 @@
-<table-users>
-  <p>Search</p>
-  <input name='query' onkeyup='{ filterUsers }' placeholder='enter a skill or a location' type='text'>
+%table-users
+  %p Search
+  %input{:name => "query", :onkeyup => "{ filterUsers }", :placeholder => "enter a skill or a location", :type => "text"}
     Skills
-    <dtable>
-      <user-row each='{ users }'></user-row>
-    </dtable>
-  </input>
-  <script>
+    %dtable
+      %user-row{ each: "{ users }" }
+
+  :javascript
     var matchString = (user) => {
       return s(`${user.name}|${user.jobTitle}`).toLowerCase()
     }
@@ -15,7 +14,7 @@
         return matchString(user).include(this.query.value)
       })
     }
-    
+
     this.on('mount', function() {
       $("dtable").prepend("    \
         <user-row>             \
@@ -25,10 +24,10 @@
         </user-row>            \
       ")
     })
-    
+
     this.users = Users
-  </script>
-  <style>
+
+  :css
     dtable{
       display:table;
       width: 100%;
@@ -50,21 +49,14 @@
     dth:last-child, dtd:last-child {
       padding-right: 0;
     }
-  </style>
-</table-users>
-<user-row>
-  <dtd>
-    <a href='#/users/{ id }'>
-      <img src='{ avatar }'>
-    </a>
-  </dtd>
-  <dtd>
-    <a href='#/users/{ id }'>
+
+%user-row
+  %dtd
+    %a{:href => "#/users/{ id }"}
+      %img{:src => "{ avatar }"}/
+  %dtd
+    %a{:href => "#/users/{ id }"}
       { name }
-    </a>
-  </dtd>
-  <dtd>{ jobTitle }</dtd>
-  <style>
-    
-  </style>
-</user-row>
+  %dtd { jobTitle }
+
+  :css

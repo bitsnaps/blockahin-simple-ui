@@ -1,8 +1,58 @@
 %user
-  %h2 user
-  %p bio2 222
-  %p { test }
+  %h2 { user.name }
+  %h4 { user.jobTitle }
+  .row
+    .column
+      %img{ src: "{ user.avatarLg }" }
+    .column
+    %p
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
+      { user.bio }
 
-:javascript
-  var a = "test"
-  this.a = a
+  .s20
+  %h3 Skills
+  .row
+    .column
+      PHP ★★★★★
+    .column
+      CSS ★★★★
+    .column
+      HTML5 ★★★★
+    .column
+      MYSQL ★★★
+    .column
+      Linux ★★
+  .row
+    .column
+      Apache ★★★
+    .column
+      Nginx ★
+    .column
+      Photoshop ★★★★
+    .column
+      Illustrator ★★★
+    .column
+  .clear
+
+  .s30
+  %h3 Positions
+  %h5 PHP Developer
+  %h5 ACME
+  %p
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis.
+
+
+  .s30
+  %h3 Education
+  %h5 Degree in Astrophysics
+  %h5 UCL
+  %p
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis.
+
+  :coffeescript
+    user_id = s(location.hash).strRightBack("/").value()
+    user_id = Number user_id
+    user = _(Users).find (u) ->
+      user_id == u.id
+
+    this.user = user

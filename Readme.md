@@ -23,7 +23,8 @@ Then connect to <http://localhost:3000>
 
 ### Develop
 
-    gem i haml rerun
+    gem i bundler
 
-    haml index.haml index.html
-    coffee -bcw  .
+    bundle
+
+    foreman start
