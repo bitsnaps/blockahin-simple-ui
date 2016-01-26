@@ -39,6 +39,9 @@ riot.router.routes([
   }), new Route({
     path: '/profile',
     tag: 'profile'
+  }), new Route({
+    path: '/users/:id',
+    tag: 'user'
   }), new NotFoundRoute({
     tag: 'not-found'
   })
@@ -46,4 +49,4 @@ riot.router.routes([
 
 riot.router.start();
 
-console.log("test");
+console.log("Riot started");

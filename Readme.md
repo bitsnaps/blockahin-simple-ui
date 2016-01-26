@@ -3,7 +3,11 @@
 BlockedIn - Blockchain based Professionals Network
 
 ## UI
- 
+
+Main targets:
+
+- build reusable web3 enabled web components, to be dropped-in directly other dapps
+- simple UI, remember it's a POC
 
 ### Setup
 
@@ -19,4 +23,7 @@ Then connect to <http://localhost:3000>
 
 ### Develop
 
-    coffee -cw  .
+    gem i haml rerun
+
+    haml index.haml index.html
+    coffee -bcw  .
