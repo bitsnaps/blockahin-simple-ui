@@ -2874,7 +2874,7 @@ Employment = (function(superClass) {
 
 var BApi, G, api, bappHost, c, contractName, formElem, getParam, host, info, methodPost, postJSON, setLoaded, setLoading, spinner, submit;
 
-bappHost = "bapp.ab.mkvd.net";
+bappHost = "localhost:3001";
 
 contractName = 'contact_form';
 
@@ -2897,13 +2897,15 @@ BApi = (function() {
   };
 
   BApi.prototype.get = function() {
-    var values;
+    var contract, methodName, values;
+    contract = "users";
+    methodName = "get";
     values = {
       values: [1],
       types: ["uint256"]
     };
-    c.log("getLast(" + (values.values.join(", ")) + ") called!");
-    return $.getJSON(methodGet("getLast", values), function(lastName) {
+    c.log(methodName + "(" + (values.values.join(", ")) + ") called!");
+    return $.getJSON(this.methodGet(contract, methodName, values), function(lastName) {
       lastName = lastName.value;
       return c.log("getLast() //=> '" + lastName + "'");
     });
@@ -2913,15 +2915,11 @@ BApi = (function() {
 
 })();
 
-api = new BApi;
-
-api.get;
-
 host = bappHost;
 
 api = new BApi(host);
 
-c.log(User.all());
+c.log(api.get());
 
 methodPost = function(name) {
   host = "http://" + bappHost;
