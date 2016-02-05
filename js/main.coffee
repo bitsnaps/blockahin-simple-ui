@@ -35,3 +35,21 @@ console.log "Riot started"
 #   console.log "PROF test"
 
 # riot.route('#/professionals')
+
+# ---------------------------
+
+User.get(2)
+  .then (user) ->
+    c.log "User:", user
+  .catch (error) ->
+    c.error "Error: #{error}"
+
+
+# Org.get(1)
+#   .then (user) ->
+#     c.log "Org:", user
+#   .catch (error) ->
+#     c.error "Error: #{error}"
+
+
+# ---------------------------

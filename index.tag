@@ -19,6 +19,8 @@
     <script src='bower_components/riot/riot.js'></script>
     <script src='js/vendor/riot-router.js'></script>
     <script src='js/vendor/zepto.js'></script>
+    <script src='js/vendor/zepto-deferred.js'></script>
+    <script src='js/vendor/zepto-callbacks.js'></script>
     <script src='js/vendor/underscore.js'></script>
     <script src='js/vendor/underscore.string.js'></script>
     <script src='js/store.js'></script>
@@ -34,9 +36,10 @@
     <script src='comp/profile.js'></script>
     <script src='comp/user.js'></script>
     <script src='comp/not_found.js'></script>
+    <script src='js/bapp-api/bapi.js'></script>
     <script src='js/bapp-api/model.js'></script>
     <script src='js/bapp-api/models.js'></script>
-    <script src='js/bapp-api/bapi.js'></script>
+    <script src='js/bapp-api/env.js'></script>
     <script src='js/main.js'></script>
   </body>
 </html>

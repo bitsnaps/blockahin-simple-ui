@@ -19,6 +19,8 @@
       dependencies = %w(
         riot-router
         zepto
+        zepto-deferred
+        zepto-callbacks
         underscore
         underscore.string
       )
@@ -44,7 +46,8 @@
     %script{src: "js/store.js"}
     - components.map do |name|
       %script{src: "comp/#{name}.js"}
+    %script{src: "js/bapp-api/bapi.js"}
     %script{src: "js/bapp-api/model.js"}
     %script{src: "js/bapp-api/models.js"}
-    %script{src: "js/bapp-api/bapi.js"}
+    %script{src: "js/bapp-api/env.js"}
     %script{src: "js/main.js"}

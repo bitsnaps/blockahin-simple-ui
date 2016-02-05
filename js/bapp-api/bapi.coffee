@@ -1,8 +1,3 @@
-# configs
-bappHost     = "localhost:3001"
-
-contractName = 'contact_form'
-
 # setup code
 c =  console || { log: -> }
 
@@ -10,32 +5,38 @@ G = window # global namespace
 
 class BApi
   constructor: (@host) ->
-    #
+    @host = "http://#{@host}"
+    @root = "#{@host}/api"
 
   methodGet: (contractName, name, values) ->
-    host = "http://#{@host}"
     query = $.param(values)
-    "#{host}/api/#{contractName}/#{name}?#{query}"
+    "#{@root}/#{contractName}/#{name}?#{query}"
 
-  get: ->
-    contract = "users"
-    methodName = "get"
+  get: (contract, methodName, id) ->
     values = {
-      values: [1]
+      values: [id]
       types:  ["uint256"]
     }
 
     c.log "#{methodName}(#{values.values.join(", ")}) called!"
-    $.getJSON @methodGet(contract, methodName, values), (lastName) ->
-      lastName = lastName.value
-      c.log "getLast() //=> '#{lastName}'"
+    new Promise (resolve, reject) =>
+      $.getJSON @methodGet(contract, methodName, values)
+        .fail reject
+        .then (val) ->
+          resolve val.value
+
+# --------------
+
+
+# api = API
+# api.get("users", "get", 1)
+#   .then (value) ->
+#     c.log value
+#   .fail (error) ->
+#     c.error "Error: #{error}"
 
 
 
-host = bappHost
-API = new BApi host
-
-c.log api.get()
 
 # c.log User.all()
 

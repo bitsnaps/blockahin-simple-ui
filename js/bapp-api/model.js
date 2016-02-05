@@ -5,11 +5,30 @@ BAppModel = (function() {
   function BAppModel() {}
 
   BAppModel.prototype.modelName = function() {
+    this.c = console;
     return this.constructor.name;
   };
 
   BAppModel["new"] = function(args) {
     return new G[this.name](args);
+  };
+
+  BAppModel.get = function(id) {
+    var collection;
+    if (!API) {
+      this.c.error(this.errApiNotFound);
+    }
+    collection = this.pluralize(this.name);
+    return API.get(collection, "get", id).then((function(_this) {
+      return function(value) {
+        return _this["new"]({
+          id: value[0],
+          name: value[1]
+        });
+      };
+    })(this))["catch"](function(error) {
+      return c.error("Error: " + error);
+    });
   };
 
   BAppModel.all = function() {
@@ -20,11 +39,20 @@ BAppModel = (function() {
     return a;
   };
 
-  BAppModel.get = function() {};
-
   BAppModel.create = function() {};
 
   BAppModel.update = function() {};
+
+  BAppModel.pluralize = function(word) {
+    if (s(word).endsWith('y')) {
+      word = word.substring(word.length - 1);
+      return word + "ies";
+    } else {
+      return word + "s";
+    }
+  };
+
+  BAppModel.prototype.errApiNotFound = "API not found, please instantiate it via: 'var API = new BApi(host)'";
 
   return BAppModel;
 
