@@ -3046,18 +3046,37 @@ BApi = (function() {
     return this.root + "/" + contractName + "/" + name + "?" + query;
   };
 
-  BApi.prototype.get = function(contract, methodName, id) {
+  BApi.prototype.getOld = function(contract, methodName, id) {
     var values;
     values = {
       values: [id],
       types: ["uint256"]
     };
     c.log(methodName + "(" + (values.values.join(", ")) + ") called!");
-    return new Promise(function(resolve, reject) {
-      return $.getJSON(this.methodGet(contract, methodName, values)).fail(reject).then(function(val) {
-        return resolve(val.value);
-      });
-    });
+    return new Promise((function(_this) {
+      return function(resolve, reject) {
+        return $.getJSON(_this.methodGet(contract, methodName, values)).fail(reject).then(function(val) {
+          console.log("GET { contract: " + contract + ", methodName: " + methodName + ", values: " + values + " } ( GET /contract/:contractId/:method?:PARAMS(:values)) })");
+          return resolve(val.value);
+        });
+      };
+    })(this));
+  };
+
+  BApi.prototype.get = function(contract, methodName, values) {
+    values = {
+      values: [id],
+      types: ["uint256"]
+    };
+    c.log(methodName + "(" + (values.values.join(", ")) + ") called!");
+    return new Promise((function(_this) {
+      return function(resolve, reject) {
+        return $.getJSON(_this.methodGet(contract, methodName, values)).fail(reject).then(function(val) {
+          console.log("GET { contract: " + contract + ", methodName: " + methodName + ", values: " + values + " } ( GET /contract/:contractId/:method?:PARAMS(:values)) })");
+          return resolve(val.value);
+        });
+      };
+    })(this));
   };
 
   return BApi;
@@ -3079,15 +3098,19 @@ BAppModel = (function() {
   };
 
   BAppModel.get = function(id) {
+    var collection;
     if (!API) {
       this.c.error(this.errApiNotFound);
     }
-    return API.get("users", "get", 1).then(function(value) {
-      return this["new"]({
-        id: value[0],
-        name: value[1]
-      });
-    })["catch"](function(error) {
+    collection = this.pluralize(this.name);
+    return API.get(collection, "get", id).then((function(_this) {
+      return function(value) {
+        return _this["new"]({
+          id: value[0],
+          name: value[1]
+        });
+      };
+    })(this))["catch"](function(error) {
       return c.error("Error: " + error);
     });
   };
@@ -3103,6 +3126,15 @@ BAppModel = (function() {
   BAppModel.create = function() {};
 
   BAppModel.update = function() {};
+
+  BAppModel.pluralize = function(word) {
+    if (s(word).endsWith('y')) {
+      word = word.substring(word.length - 1);
+      return word + "ies";
+    } else {
+      return word + "s";
+    }
+  };
 
   BAppModel.prototype.errApiNotFound = "API not found, please instantiate it via: 'var API = new BApi(host)'";
 
@@ -3213,9 +3245,9 @@ riot.router.start();
 
 console.log("Riot started");
 
-User.get(1).then(function(user) {
+User.get(2).then(function(user) {
   return c.log("User:", user);
-}).fail(function(error) {
+})["catch"](function(error) {
   return c.error("Error: " + error);
 });
 });

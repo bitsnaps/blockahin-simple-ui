@@ -21,15 +21,15 @@ BApi = (function() {
   };
 
   BApi.prototype.get = function(contract, methodName, id) {
-    var values;
-    values = {
-      values: [id],
-      types: ["uint256"]
-    };
-    c.log(methodName + "(" + (values.values.join(", ")) + ") called!");
     return new Promise((function(_this) {
       return function(resolve, reject) {
+        var values;
+        c.log(methodName + "(" + id + ") called!");
+        values = {
+          id: id
+        };
         return $.getJSON(_this.methodGet(contract, methodName, values)).fail(reject).then(function(val) {
+          console.log("GET { contract: " + contract + ", methodName: " + methodName + ", values: " + values + " } ( GET /contract/:contractId/:method?:PARAMS(:values)) })");
           return resolve(val.value);
         });
       };

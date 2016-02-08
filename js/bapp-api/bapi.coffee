@@ -12,36 +12,10 @@ class BApi
     query = $.param(values)
     "#{@root}/#{contractName}/#{name}?#{query}"
 
-  getOld: (contract, methodName, id) ->
-    values = {
-      values: [id]
-      types:  ["uint256"]
-    }
-
-    c.log "#{methodName}(#{values.values.join(", ")}) called!"
+  get: (contract, methodName, id) ->
     new Promise (resolve, reject) =>
-      $.getJSON @methodGet(contract, methodName, values)
-        .fail reject
-        .then (val) ->
-          console.log "GET { contract: #{contract}, methodName: #{methodName}, values: #{values} } ( GET /contract/:contractId/:method?:PARAMS(:values)) })"
-          resolve val.value
-
-  # TODO: change id to values
-  # values: {
-  #   id: "antani",
-  # }
-  #
-  # values: {
-  #   id: 1,
-  # }
-  get: (contract, methodName, values) ->
-    values = {
-      values: [id]
-      types:  ["uint256"]
-    }
-
-    c.log "#{methodName}(#{values.values.join(", ")}) called!"
-    new Promise (resolve, reject) =>
+      c.log "#{methodName}(#{id}) called!"
+      values = { id: id }
       $.getJSON @methodGet(contract, methodName, values)
         .fail reject
         .then (val) ->
