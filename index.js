@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-riot.tag2('html', '<head> <meta charset="utf-8"> <title>Hello world</title> <meta content="width=device-width" name="viewport"> <link charset="utf-8" href="css/vendor/milligram.css" rel="stylesheet"> <link charset="utf-8" href="css/vendor/milligram-nav.css" rel="stylesheet"> <link charset="utf-8" href="css/style.css" rel="stylesheet"> </head> <body> <div class="container"> <main-nav></main-nav> <div class="content"> <route></route> </div> <ab-footer></ab-footer> </div> </body>', '', '', function(opts) {
+riot.tag2('html', '<head> <meta charset="utf-8"> <title>Hello world</title> <meta content="width=device-width" name="viewport"> <link charset="utf-8" href="css/vendor/milligram.css" rel="stylesheet"> <link charset="utf-8" href="css/vendor/milligram-nav.css" rel="stylesheet"> <link charset="utf-8" href="css/style.css" rel="stylesheet"> </head> <body> <div class="container"> <main-nav></main-nav> <div class="content"> <route optz="{opts}"></route> </div> <ab-footer></ab-footer> </div> </body>', '', '', function(opts) {
 
 
 ;(function(window, undefined) {
@@ -3383,77 +3383,6 @@ var Zepto=function(){function L(t){return null==t?String(t):j[S.call(t)]||"objec
     }
 }(this));
 
-var Orgs, Unis, Users, genAvatars, identicon;
-
-Users = [
-  {
-    id: 1,
-    name: "Stephanie Curry",
-    avatar: "http://api.randomuser.me/portraits/thumb/women/0.jpg",
-    avatarLg: "http://api.randomuser.me/portraits/med/women/0.jpg",
-    jobTitle: "Software Developer"
-  }, {
-    id: 2,
-    name: "Klay Thompson",
-    avatar: "http://api.randomuser.me/portraits/thumb/men/3.jpg",
-    avatarLg: "http://api.randomuser.me/portraits/med/men/3.jpg",
-    jobTitle: "Graphic Designer"
-  }, {
-    id: 3,
-    name: "Catherine Thompson",
-    avatar: "http://api.randomuser.me/portraits/thumb/women/2.jpg",
-    avatarLg: "http://api.randomuser.me/portraits/med/women/2.jpg",
-    jobTitle: "Engineer"
-  }, {
-    id: 4,
-    name: "Garret Albert",
-    avatar: "http://api.randomuser.me/portraits/thumb/men/1.jpg",
-    avatarLg: "http://api.randomuser.me/portraits/med/men/1.jpg",
-    jobTitle: "Mathematician"
-  }, {
-    id: 5,
-    name: "Carla Farad",
-    avatar: "http://api.randomuser.me/portraits/thumb/women/4.jpg",
-    avatarLg: "http://api.randomuser.me/portraits/med/women/4.jpg",
-    jobTitle: "Biologist"
-  }
-];
-
-Orgs = [
-  {
-    id: 1,
-    name: "test1",
-    employees: 1
-  }, {
-    id: 2,
-    name: "test2",
-    employees: 3
-  }
-];
-
-identicon = function(entity, size) {
-  var icon, id, sizePx;
-  sizePx = 80;
-  if (size === "large") {
-    sizePx = 150;
-  }
-  id = md5(entity.id.toString());
-  icon = new Identicon(id, sizePx).toString();
-  return "data:image/png;base64," + icon;
-};
-
-genAvatars = function(entities) {
-  return _(entities).map(function(entity) {
-    entity.avatar = identicon(entity);
-    entity.avatarLg = identicon(entity, "large");
-    return entity;
-  });
-};
-
-Orgs = genAvatars(Orgs);
-
-Unis = [];
-
 riot.tag2('main-nav', '<nav class="navigation"> <section class="container"> <a class="navigation-title float-left" href="#/"> <svg class="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewbox="0 0 16 16"> <path class="logo-svgpath" d="M16 6.707c0-3.139-0.919-5.687-2.054-5.707 0.005-0 0.009-0 0.014-0h-1.296c0 0-3.044 2.287-7.425 3.184-0.134 0.708-0.219 1.551-0.219 2.523s0.085 1.816 0.219 2.523c4.382 0.897 7.425 3.184 7.425 3.184h1.296c-0.005 0-0.009-0-0.014-0.001 1.136-0.020 2.054-2.567 2.054-5.707zM13.513 11.551c-0.147 0-0.305-0.152-0.387-0.243-0.197-0.22-0.387-0.562-0.55-0.989-0.363-0.957-0.564-2.239-0.564-3.611s0.2-2.655 0.564-3.611c0.162-0.428 0.353-0.77 0.55-0.99 0.081-0.091 0.24-0.243 0.387-0.243s0.305 0.152 0.387 0.243c0.197 0.22 0.387 0.562 0.55 0.99 0.363 0.957 0.564 2.239 0.564 3.611s-0.2 2.655-0.564 3.611c-0.162 0.428-0.353 0.77-0.55 0.989-0.081 0.091-0.24 0.243-0.387 0.243zM3.935 6.707c0-0.812 0.060-1.6 0.173-2.33-0.74 0.102-1.39 0.161-2.193 0.161-1.048 0-1.048 0-1.048 0l-0.867 1.479v1.378l0.867 1.479c0 0 0 0 1.048 0 0.803 0 1.453 0.059 2.193 0.161-0.113-0.729-0.173-1.518-0.173-2.33zM5.752 10.034l-2-0.383 1.279 5.024c0.066 0.26 0.324 0.391 0.573 0.291l1.852-0.741c0.249-0.1 0.349-0.374 0.222-0.611l-1.926-3.581zM13.513 8.574c-0.057 0-0.118-0.059-0.149-0.094-0.076-0.085-0.149-0.217-0.212-0.381-0.14-0.369-0.217-0.863-0.217-1.392s0.077-1.023 0.217-1.392c0.063-0.165 0.136-0.297 0.212-0.381 0.031-0.035 0.092-0.094 0.149-0.094s0.118 0.059 0.149 0.094c0.076 0.085 0.149 0.217 0.212 0.381 0.14 0.369 0.217 0.863 0.217 1.392s-0.077 1.023-0.217 1.392c-0.063 0.165-0.136 0.297-0.212 0.381-0.031 0.035-0.092 0.094-0.149 0.094z"></path> </svg> <h1 class="title">BlockedIn</h1> </a> <ul class="navigation-list float-left"> <li class="navigation-item"> <a class="navigation-link" href="#/professionals">Professionals</a> </li> <li class="navigation-item"> <a class="navigation-link" href="#/organizations">Organizations</a> </li> <li class="navigation-item"> <a class="navigation-link" href="#/universities">Universities</a> </li> </ul> <ul class="navigation-list float-right"> <li class="navigation-item"> <a class="navigation-link" href="#/profile">User</a> </li> </ul> </section> </nav>', '', '', function(opts) {
 });
 
@@ -3501,6 +3430,8 @@ riot.tag2('table-orgs', '<p>Search</p> <input name="query" onkeyup="{filterOrgs}
       })
     }.bind(this)
 
+    var self = this
+
     this.on('mount', function() {
       $("dtable").prepend("    \
         <org-row>             \
@@ -3511,7 +3442,14 @@ riot.tag2('table-orgs', '<p>Search</p> <input name="query" onkeyup="{filterOrgs}
       ")
     })
 
-    this.orgs = Orgs
+    this.orgs = StoreData.orgs
+
+    var self = this
+    this.store = opts.store
+    this.store.on('update', function(data) {
+     self.orgs = data.orgs
+     self.update()
+    })
 }, '{ }');
 riot.tag2('org-row', '<dtd> <a href="#/orgs/{id}"> <img riot-src="{avatar}"> </a> </dtd> <dtd> <a href="#/orgs/{id}"> {name} </a> </dtd> <dtd>{employees}</dtd>', '', '', function(opts) {
 }, '{ }');
@@ -3735,20 +3673,111 @@ host = bappHost;
 
 API = new BApi(host);
 
-var Actions, DefaultRoute, NotFoundRoute, RedirectRoute, Route, Store;
+var Orgs, Store, StoreData, Unis, Users, genAvatars, identicon;
 
-Store = {
-  count: 0
-};
-
-Actions = {
-  tick: function() {
-    Store.count += 1;
-    return this.update({
-      count: Store.count
-    });
+Users = [
+  {
+    id: 1,
+    name: "Stephanie Curry",
+    avatar: "http://api.randomuser.me/portraits/thumb/women/0.jpg",
+    avatarLg: "http://api.randomuser.me/portraits/med/women/0.jpg",
+    jobTitle: "Software Developer"
+  }, {
+    id: 2,
+    name: "Klay Thompson",
+    avatar: "http://api.randomuser.me/portraits/thumb/men/3.jpg",
+    avatarLg: "http://api.randomuser.me/portraits/med/men/3.jpg",
+    jobTitle: "Graphic Designer"
+  }, {
+    id: 3,
+    name: "Catherine Thompson",
+    avatar: "http://api.randomuser.me/portraits/thumb/women/2.jpg",
+    avatarLg: "http://api.randomuser.me/portraits/med/women/2.jpg",
+    jobTitle: "Engineer"
+  }, {
+    id: 4,
+    name: "Garret Albert",
+    avatar: "http://api.randomuser.me/portraits/thumb/men/1.jpg",
+    avatarLg: "http://api.randomuser.me/portraits/med/men/1.jpg",
+    jobTitle: "Mathematician"
+  }, {
+    id: 5,
+    name: "Carla Farad",
+    avatar: "http://api.randomuser.me/portraits/thumb/women/4.jpg",
+    avatarLg: "http://api.randomuser.me/portraits/med/women/4.jpg",
+    jobTitle: "Biologist"
   }
+];
+
+Orgs = [
+  {
+    id: 1,
+    name: "test11111",
+    employees: 1
+  }, {
+    id: 2,
+    name: "test2",
+    employees: 3
+  }
+];
+
+Orgs = _(Orgs).map((function(_this) {
+  return function(entity) {
+    return new Org(entity);
+  };
+})(this));
+
+identicon = function(entity, size) {
+  var icon, id, sizePx;
+  sizePx = 80;
+  if (size === "large") {
+    sizePx = 150;
+  }
+  id = md5(entity.id.toString());
+  icon = new Identicon(id, sizePx).toString();
+  return "data:image/png;base64," + icon;
 };
+
+genAvatars = function(entities) {
+  return _(entities).map(function(entity) {
+    entity.avatar = identicon(entity);
+    entity.avatarLg = identicon(entity, "large");
+    return entity;
+  });
+};
+
+Orgs = genAvatars(Orgs);
+
+Unis = [];
+
+StoreData = {
+  users: Users,
+  orgs: Orgs,
+  unis: Unis
+};
+
+Store = function() {
+  this.update = function(StoreData) {
+    return this.trigger('update', StoreData);
+  };
+  riot.observable(this);
+  setTimeout((function(_this) {
+    return function() {
+      return _this.update(StoreData);
+    };
+  })(this), 0);
+  Org.all().then((function(_this) {
+    return function(orgs) {
+      StoreData.orgs = orgs;
+      return _this.update(StoreData);
+    };
+  })(this))["catch"](function(error) {
+    return c.error("Error: " + error);
+  });
+  return this;
+};
+
+var DefaultRoute, NotFoundRoute, RedirectRoute, Route, api, store;
 
 Route = riot.router.Route;
 
@@ -3758,26 +3787,38 @@ NotFoundRoute = riot.router.NotFoundRoute;
 
 RedirectRoute = riot.router.RedirectRoute;
 
+store = new Store();
+
 riot.mount('*');
+
+api = {
+  store: store
+};
 
 riot.router.routes([
   new DefaultRoute({
-    tag: 'example-cont'
+    tag: 'example-cont',
+    api: api
   }), new Route({
     path: '/professionals',
-    tag: 'table-users'
+    tag: 'table-users',
+    api: api
   }), new Route({
     path: '/organizations',
-    tag: 'table-orgs'
+    tag: 'table-orgs',
+    api: api
   }), new Route({
     path: '/universities',
-    tag: 'table-unis'
+    tag: 'table-unis',
+    api: api
   }), new Route({
     path: '/profile',
-    tag: 'profile'
+    tag: 'profile',
+    api: api
   }), new Route({
     path: '/users/:id',
-    tag: 'user'
+    tag: 'user',
+    api: api
   }), new NotFoundRoute({
     tag: 'not-found'
   })
@@ -3786,10 +3827,4 @@ riot.router.routes([
 riot.router.start();
 
 console.log("Riot started");
-
-Org.all().then(function(orgs) {
-  return c.log("Orgs:", orgs);
-})["catch"](function(error) {
-  return c.error("Error: " + error);
-});
-});
+}, '{ }');

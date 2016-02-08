@@ -15,6 +15,8 @@
       })
     }
     
+    var self = this
+    
     this.on('mount', function() {
       $("dtable").prepend("    \
         <org-row>             \
@@ -25,7 +27,14 @@
       ")
     })
     
-    this.orgs = Orgs
+    this.orgs = StoreData.orgs
+    
+    var self = this
+    this.store = opts.store
+    this.store.on('update', function(data) {
+     self.orgs = data.orgs
+     self.update()
+    })
   </script>
 </table-orgs>
 <org-row>

@@ -36,7 +36,7 @@ Users = [
 
 Orgs = [
     id:        1
-    name:      "test1"
+    name:      "test11111"
     employees: 1
   ,
     id:        2
@@ -44,6 +44,9 @@ Orgs = [
     employees: 3
   ,
 ]
+
+Orgs = _(Orgs).map (entity) =>
+  new Org(entity)
 
 identicon = (entity, size) ->
   sizePx = 80
@@ -63,3 +66,30 @@ Orgs = genAvatars Orgs
 Unis = [
 
 ]
+
+StoreData =
+  users: Users
+  orgs:  Orgs
+  unis:  Unis
+
+Store = ->
+  @update = (StoreData) ->
+    this.trigger 'update', StoreData
+
+  riot.observable this
+  setTimeout =>
+    @update StoreData
+  , 0
+
+
+  # initialState
+
+  Org.all()
+    .then (orgs) =>
+      StoreData.orgs = orgs
+      @update StoreData
+    .catch (error) ->
+      c.error "Error: #{error}"
+
+
+  return this

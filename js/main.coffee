@@ -1,26 +1,19 @@
-Store =
-  count: 0
-
-Actions =
-  tick: () ->
-    Store.count += 1
-    @update
-      count: Store.count
-
-
 Route         = riot.router.Route
 DefaultRoute  = riot.router.DefaultRoute
 NotFoundRoute = riot.router.NotFoundRoute
 RedirectRoute = riot.router.RedirectRoute
-riot.mount '*'
+store = new Store()
+#riot.mount 'main-nav'#, store: store
+riot.mount '*'#, store: store
 
+api = { store: store }
 riot.router.routes([
-  new DefaultRoute({tag: 'example-cont'}),
-  new Route({path: '/professionals', tag: 'table-users'}),
-  new Route({path: '/organizations', tag: 'table-orgs'}),
-  new Route({path: '/universities',  tag: 'table-unis'}),
-  new Route({path: '/profile',       tag: 'profile'}),
-  new Route({path: '/users/:id', tag: 'user'}),
+  new DefaultRoute({tag: 'example-cont', api: api}),
+  new Route({path: '/professionals', tag: 'table-users', api: api}),
+  new Route({path: '/organizations', tag: 'table-orgs', api: api}),
+  new Route({path: '/universities',  tag: 'table-unis', api: api}),
+  new Route({path: '/profile',       tag: 'profile', api: api}),
+  new Route({path: '/users/:id',     tag: 'user', api: api}),
   new NotFoundRoute({tag: 'not-found'}),
 ])
 
@@ -39,11 +32,15 @@ console.log "Riot started"
 # ---------------------------
 
 
-Org.all()
-  .then (orgs) ->
-    c.log "Orgs:", orgs
-  .catch (error) ->
-    c.error "Error: #{error}"
+
+
+# Org.all()
+#   .then (orgs) =>
+#     window.Orgs = orgs
+#     instances = riot.update()
+#     c.log "instances:", instances
+#   .catch (error) ->
+#     c.error "Error: #{error}"
 
 # ------------
 

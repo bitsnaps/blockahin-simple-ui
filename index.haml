@@ -12,7 +12,7 @@
     .container
       %main-nav
       .content
-        %route
+        %route{ optz: "{ opts }" }
       %ab-footer
 
     :ruby
@@ -46,11 +46,11 @@
     %script{src: "bower_components/riot/riot.js"}
     - dependencies.map do |name|
       %script{src: "js/vendor/#{name}.js"}
-    %script{src: "js/store.js"}
     - components.map do |name|
       %script{src: "comp/#{name}.js"}
     %script{src: "js/bapp-api/bapi.js"}
     %script{src: "js/bapp-api/model.js"}
     %script{src: "js/bapp-api/models.js"}
     %script{src: "js/bapp-api/env.js"}
+    %script{src: "js/store.js"}
     %script{src: "js/main.js"}

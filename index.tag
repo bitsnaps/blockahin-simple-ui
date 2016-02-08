@@ -12,7 +12,7 @@
     <div class='container'>
       <main-nav></main-nav>
       <div class='content'>
-        <route></route>
+        <route optz='{ opts }'></route>
       </div>
       <ab-footer></ab-footer>
     </div>
@@ -26,7 +26,6 @@
     <script src='js/vendor/underscore.js'></script>
     <script src='js/vendor/underscore.string.js'></script>
     <script src='js/vendor/md5.js'></script>
-    <script src='js/store.js'></script>
     <script src='comp/main_nav.js'></script>
     <script src='comp/example_cont.js'></script>
     <script src='comp/form_cont.js'></script>
@@ -43,6 +42,7 @@
     <script src='js/bapp-api/model.js'></script>
     <script src='js/bapp-api/models.js'></script>
     <script src='js/bapp-api/env.js'></script>
+    <script src='js/store.js'></script>
     <script src='js/main.js'></script>
   </body>
 </html>
