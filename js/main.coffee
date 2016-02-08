@@ -17,7 +17,7 @@ riot.mount '*'
 riot.router.routes([
   new DefaultRoute({tag: 'example-cont'}),
   new Route({path: '/professionals', tag: 'table-users'}),
-  new Route({path: '/companies',     tag: 'table-companies'}),
+  new Route({path: '/organizations', tag: 'table-orgs'}),
   new Route({path: '/universities',  tag: 'table-unis'}),
   new Route({path: '/profile',       tag: 'profile'}),
   new Route({path: '/users/:id', tag: 'user'}),
@@ -44,7 +44,7 @@ Org.all()
     c.log "Orgs:", orgs
   .catch (error) ->
     c.error "Error: #{error}"
-    
+
 # ------------
 
 # Org.get(1)

@@ -31,8 +31,8 @@ riot.router.routes([
     path: '/professionals',
     tag: 'table-users'
   }), new Route({
-    path: '/companies',
-    tag: 'table-companies'
+    path: '/organizations',
+    tag: 'table-orgs'
   }), new Route({
     path: '/universities',
     tag: 'table-unis'

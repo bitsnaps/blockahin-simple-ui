@@ -1,7 +1,6 @@
 <table-users>
   <p>Search</p>
   <input name='query' onkeyup='{ filterUsers }' placeholder='enter a skill or a location' type='text'>
-    Skills
     <dtable>
       <user-row each='{ users }'></user-row>
     </dtable>
@@ -28,29 +27,6 @@
     
     this.users = Users
   </script>
-  <style>
-    dtable{
-      display:table;
-      width: 100%;
-      margin-bottom: 2.5rem;
-    }
-    ddtr, user-row{
-      display:table-row;
-    }
-    dtd, dth {
-      display:table-cell;
-      border-bottom: 0.1rem solid #e1e1e1;
-      padding: 1.2rem 1.5rem;
-      text-align: left;
-      vertical-align: middle;
-    }
-    dth:first-child, dtd:first-child {
-      padding-left: 0;
-    }
-    dth:last-child, dtd:last-child {
-      padding-right: 0;
-    }
-  </style>
 </table-users>
 <user-row>
   <dtd>
@@ -64,7 +40,4 @@
     </a>
   </dtd>
   <dtd>{ jobTitle }</dtd>
-  <style>
-    
-  </style>
 </user-row>

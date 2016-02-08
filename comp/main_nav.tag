@@ -15,7 +15,7 @@
   				<a class="navigation-link" href="#/professionals"}}>Professionals</a>
   			</li>
   			<li class="navigation-item">
-  				<a class="navigation-link" href="#/companies"}>Companies</a>
+  				<a class="navigation-link" href="#/organizations"}>Organizations</a>
   			</li>
   			<li class="navigation-item">
   				<a class="navigation-link" href="#/universities">Universities</a>

@@ -1,7 +1,6 @@
 %table-users
   %p Search
   %input{:name => "query", :onkeyup => "{ filterUsers }", :placeholder => "enter a skill or a location", :type => "text"}
-    Skills
     %dtable
       %user-row{ each: "{ users }" }
 
@@ -27,29 +26,6 @@
 
     this.users = Users
 
-  :css
-    dtable{
-      display:table;
-      width: 100%;
-      margin-bottom: 2.5rem;
-    }
-    ddtr, user-row{
-      display:table-row;
-    }
-    dtd, dth {
-      display:table-cell;
-      border-bottom: 0.1rem solid #e1e1e1;
-      padding: 1.2rem 1.5rem;
-      text-align: left;
-      vertical-align: middle;
-    }
-    dth:first-child, dtd:first-child {
-      padding-left: 0;
-    }
-    dth:last-child, dtd:last-child {
-      padding-right: 0;
-    }
-
 %user-row
   %dtd
     %a{:href => "#/users/{ id }"}
@@ -58,5 +34,3 @@
     %a{:href => "#/users/{ id }"}
       { name }
   %dtd { jobTitle }
-
-  :css

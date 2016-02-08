@@ -31,9 +31,34 @@ Users = [
   ,
 ]
 
-Companies = [
 
+# Org.all()
+
+Orgs = [
+    id:        1
+    name:      "test1"
+    employees: 1
+  ,
+    id:        2
+    name:      "test2"
+    employees: 3
+  ,
 ]
+
+identicon = (entity, size) ->
+  sizePx = 80
+  sizePx = 150 if size == "large"
+  id = md5 entity.id.toString()
+  icon = new Identicon(id, sizePx).toString()
+  "data:image/png;base64,#{icon}"
+
+genAvatars = (entities) ->
+  _(entities).map (entity) ->
+    entity.avatar   = identicon entity
+    entity.avatarLg = identicon entity, "large"
+    entity
+
+Orgs = genAvatars Orgs
 
 Unis = [
 

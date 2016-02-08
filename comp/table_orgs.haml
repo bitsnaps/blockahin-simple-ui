@@ -1,0 +1,36 @@
+%table-orgs
+  %p Search
+  %input{:name => "query", :onkeyup => "{ filterOrgs }", :placeholder => "enter a skill or a location", :type => "text"}
+    %dtable
+      %org-row{ each: "{ orgs }" }
+
+  :javascript
+    var matchString = (org) => {
+      return s(`${org.name}|${org.jobTitle}`).toLowerCase()
+    }
+    filterOrgs() {
+      this.orgs = _(Orgs).select((org) => {
+        return matchString(org).include(this.query.value)
+      })
+    }
+
+    this.on('mount', function() {
+      $("dtable").prepend("    \
+        <org-row>             \
+          <dtd></dtd>          \
+          <dtd>Name</dtd>      \
+          <dtd>Employees</dtd> \
+        </org-row>            \
+      ")
+    })
+
+    this.orgs = Orgs
+
+%org-row
+  %dtd
+    %a{:href => "#/orgs/{ id }"}
+      %img{:src => "{ avatar }"}/
+  %dtd
+    %a{:href => "#/orgs/{ id }"}
+      { name }
+  %dtd { employees }
