@@ -9,18 +9,23 @@ class BAppModel
   @new: (args) ->
     new G[@name](args)
 
+  @collection = -> @pluralize @name
+
   @get: (id) ->
     @c.error @errApiNotFound unless API
-    collection = @pluralize @name
-    API.get(collection, "get", id)
-      .then (value) =>
-        @new({ id: value[0], name: value[1] })
+    API.get(@collection(), "get", { id: id })
+      .then (values) =>
+        @new(values)
       .catch (error) ->
         c.error "Error: #{error}"
 
   @all: ->
-    a = @new({ id: 1 })
-    a
+    new Promise (resolve, reject) =>
+      API.get(@collection(), "getOrgsCount")
+        .catch reject
+        .then (count) =>
+          promises = @allGet count
+          @allResolve promises, resolve, reject
 
   @create: ->
 
@@ -35,6 +40,22 @@ class BAppModel
     else
       "#{word}s"
 
+  # internal
+
+  @allGet: (count) ->
+    promises = []
+    for id in [1..count]
+      promises.push API.get(@collection(), "get", { id: id })
+    promises
+
+  @allResolve: (promises, resolve, reject) ->
+    Promise.all(promises)
+      .catch reject
+      .then (collectionResp) =>
+        collection = []
+        for values in collectionResp
+          collection.push @new(values)
+        resolve collection
 
   # errors
 

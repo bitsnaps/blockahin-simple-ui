@@ -51,8 +51,8 @@ riot.router.start();
 
 console.log("Riot started");
 
-User.get(2).then(function(user) {
-  return c.log("User:", user);
+Org.all().then(function(orgs) {
+  return c.log("Orgs:", orgs);
 })["catch"](function(error) {
   return c.error("Error: " + error);
 });

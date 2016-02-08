@@ -13,18 +13,19 @@ BAppModel = (function() {
     return new G[this.name](args);
   };
 
+  BAppModel.collection = function() {
+    return this.pluralize(this.name);
+  };
+
   BAppModel.get = function(id) {
-    var collection;
     if (!API) {
       this.c.error(this.errApiNotFound);
     }
-    collection = this.pluralize(this.name);
-    return API.get(collection, "get", id).then((function(_this) {
-      return function(value) {
-        return _this["new"]({
-          id: value[0],
-          name: value[1]
-        });
+    return API.get(this.collection(), "get", {
+      id: id
+    }).then((function(_this) {
+      return function(values) {
+        return _this["new"](values);
       };
     })(this))["catch"](function(error) {
       return c.error("Error: " + error);
@@ -32,11 +33,15 @@ BAppModel = (function() {
   };
 
   BAppModel.all = function() {
-    var a;
-    a = this["new"]({
-      id: 1
-    });
-    return a;
+    return new Promise((function(_this) {
+      return function(resolve, reject) {
+        return API.get(_this.collection(), "getOrgsCount")["catch"](reject).then(function(count) {
+          var promises;
+          promises = _this.allGet(count);
+          return _this.allResolve(promises, resolve, reject);
+        });
+      };
+    })(this));
   };
 
   BAppModel.create = function() {};
@@ -50,6 +55,31 @@ BAppModel = (function() {
     } else {
       return word + "s";
     }
+  };
+
+  BAppModel.allGet = function(count) {
+    var i, id, promises, ref;
+    promises = [];
+    for (id = i = 1, ref = count; 1 <= ref ? i <= ref : i >= ref; id = 1 <= ref ? ++i : --i) {
+      promises.push(API.get(this.collection(), "get", {
+        id: id
+      }));
+    }
+    return promises;
+  };
+
+  BAppModel.allResolve = function(promises, resolve, reject) {
+    return Promise.all(promises)["catch"](reject).then((function(_this) {
+      return function(collectionResp) {
+        var collection, i, len, values;
+        collection = [];
+        for (i = 0, len = collectionResp.length; i < len; i++) {
+          values = collectionResp[i];
+          collection.push(_this["new"](values));
+        }
+        return resolve(collection);
+      };
+    })(this));
   };
 
   BAppModel.prototype.errApiNotFound = "API not found, please instantiate it via: 'var API = new BApi(host)'";

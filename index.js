@@ -3042,35 +3042,17 @@ BApi = (function() {
 
   BApi.prototype.methodGet = function(contractName, name, values) {
     var query;
-    query = $.param(values);
+    query = "";
+    if (values != null) {
+      query = $.param(values);
+    }
     return this.root + "/" + contractName + "/" + name + "?" + query;
   };
 
-  BApi.prototype.getOld = function(contract, methodName, id) {
-    var values;
-    values = {
-      values: [id],
-      types: ["uint256"]
-    };
-    c.log(methodName + "(" + (values.values.join(", ")) + ") called!");
-    return new Promise((function(_this) {
-      return function(resolve, reject) {
-        return $.getJSON(_this.methodGet(contract, methodName, values)).fail(reject).then(function(val) {
-          console.log("GET { contract: " + contract + ", methodName: " + methodName + ", values: " + values + " } ( GET /contract/:contractId/:method?:PARAMS(:values)) })");
-          return resolve(val.value);
-        });
-      };
-    })(this));
-  };
-
   BApi.prototype.get = function(contract, methodName, values) {
-    values = {
-      values: [id],
-      types: ["uint256"]
-    };
-    c.log(methodName + "(" + (values.values.join(", ")) + ") called!");
     return new Promise((function(_this) {
       return function(resolve, reject) {
+        c.log(methodName + "(" + (JSON.stringify(values)) + ") called!");
         return $.getJSON(_this.methodGet(contract, methodName, values)).fail(reject).then(function(val) {
           console.log("GET { contract: " + contract + ", methodName: " + methodName + ", values: " + values + " } ( GET /contract/:contractId/:method?:PARAMS(:values)) })");
           return resolve(val.value);
@@ -3097,18 +3079,21 @@ BAppModel = (function() {
     return new G[this.name](args);
   };
 
+  BAppModel.collection = function() {
+    return this.pluralize(this.name);
+  };
+
   BAppModel.get = function(id) {
-    var collection;
+    var values;
     if (!API) {
       this.c.error(this.errApiNotFound);
     }
-    collection = this.pluralize(this.name);
-    return API.get(collection, "get", id).then((function(_this) {
-      return function(value) {
-        return _this["new"]({
-          id: value[0],
-          name: value[1]
-        });
+    values = {
+      id: id
+    };
+    return API.get(this.collection(), "get", values).then((function(_this) {
+      return function(values) {
+        return _this["new"](values);
       };
     })(this))["catch"](function(error) {
       return c.error("Error: " + error);
@@ -3117,6 +3102,13 @@ BAppModel = (function() {
 
   BAppModel.all = function() {
     var a;
+    API.get(this.collection(), "getOrgsCount").then((function(_this) {
+      return function(values) {
+        return c.log("VALS:", values);
+      };
+    })(this))["catch"](function(error) {
+      return c.error("Error: " + error);
+    });
     a = this["new"]({
       id: 1
     });
@@ -3245,9 +3237,5 @@ riot.router.start();
 
 console.log("Riot started");
 
-User.get(2).then(function(user) {
-  return c.log("User:", user);
-})["catch"](function(error) {
-  return c.error("Error: " + error);
-});
+Org.all();
 });

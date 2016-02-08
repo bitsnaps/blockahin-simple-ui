@@ -38,11 +38,30 @@ console.log "Riot started"
 
 # ---------------------------
 
-User.get(2)
-  .then (user) ->
-    c.log "User:", user
+
+Org.all()
+  .then (orgs) ->
+    c.log "Orgs:", orgs
   .catch (error) ->
     c.error "Error: #{error}"
+    
+# ------------
+
+# Org.get(1)
+#   .then (user) ->
+#     c.log "User:", user
+#   .catch (error) ->
+#     c.error "Error: #{error}"
+
+# ------------
+
+# TODO: handle not-found
+#
+# User.get(1)
+#   .then (user) ->
+#     c.log "User:", user
+#   .catch (error) ->
+#     c.error "Error: #{error}"
 
 
 # Org.get(1)

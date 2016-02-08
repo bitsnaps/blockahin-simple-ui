@@ -9,13 +9,13 @@ class BApi
     @root = "#{@host}/api"
 
   methodGet: (contractName, name, values) ->
-    query = $.param(values)
+    query = ""
+    query = $.param(values) if values?
     "#{@root}/#{contractName}/#{name}?#{query}"
 
-  get: (contract, methodName, id) ->
+  get: (contract, methodName, values) ->
     new Promise (resolve, reject) =>
-      c.log "#{methodName}(#{id}) called!"
-      values = { id: id }
+      c.log "#{methodName}(#{JSON.stringify values}) called!"
       $.getJSON @methodGet(contract, methodName, values)
         .fail reject
         .then (val) ->

@@ -16,18 +16,17 @@ BApi = (function() {
 
   BApi.prototype.methodGet = function(contractName, name, values) {
     var query;
-    query = $.param(values);
+    query = "";
+    if (values != null) {
+      query = $.param(values);
+    }
     return this.root + "/" + contractName + "/" + name + "?" + query;
   };
 
-  BApi.prototype.get = function(contract, methodName, id) {
+  BApi.prototype.get = function(contract, methodName, values) {
     return new Promise((function(_this) {
       return function(resolve, reject) {
-        var values;
-        c.log(methodName + "(" + id + ") called!");
-        values = {
-          id: id
-        };
+        c.log(methodName + "(" + (JSON.stringify(values)) + ") called!");
         return $.getJSON(_this.methodGet(contract, methodName, values)).fail(reject).then(function(val) {
           console.log("GET { contract: " + contract + ", methodName: " + methodName + ", values: " + values + " } ( GET /contract/:contractId/:method?:PARAMS(:values)) })");
           return resolve(val.value);
