@@ -11,9 +11,10 @@ Main targets:
 
 ### Setup
 
-   npm i -g bower
+    npm i -g bower
+    
+    bower install
 
-   bower install
 
 ### View
 
