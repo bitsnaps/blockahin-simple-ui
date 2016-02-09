@@ -40,7 +40,7 @@ fetchUserAvatars = function(users) {
   });
 };
 
-TMP_JOB_TITLES = ["Graphic Designer", "Software Developer"];
+TMP_JOB_TITLES = ["Graphic Designer", "Software Developer", "Mathematician", "Biologist", "Engineer"];
 
 addTmpJobTitle = function(users) {
   return _(users).map(function(user) {

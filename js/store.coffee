@@ -30,6 +30,9 @@ fetchUserAvatars = (users) ->
 TMP_JOB_TITLES = [
   "Graphic Designer",
   "Software Developer",
+  "Mathematician",
+  "Biologist",
+  "Engineer"
 ]
 
 addTmpJobTitle  = (users) ->
