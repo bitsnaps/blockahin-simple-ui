@@ -24,18 +24,12 @@ class BApi
 
 # --------------
 
-
 # api = API
 # api.get("users", "get", 1)
 #   .then (value) ->
 #     c.log value
 #   .fail (error) ->
 #     c.error "Error: #{error}"
-
-
-
-
-# c.log User.all()
 
 
 # TODO: post

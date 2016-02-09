@@ -3,8 +3,7 @@ DefaultRoute  = riot.router.DefaultRoute
 NotFoundRoute = riot.router.NotFoundRoute
 RedirectRoute = riot.router.RedirectRoute
 store = new Store()
-#riot.mount 'main-nav'#, store: store
-riot.mount '*'#, store: store
+riot.mount '*'
 
 api = { store: store }
 riot.router.routes([
@@ -21,37 +20,6 @@ riot.router.start()
 
 console.log "Riot started"
 
-# riot.route (collection, id, action) ->
-#   console.log "test"
-#
-# riot.route "/professionals", ->
-#   console.log "PROF test"
-
-# riot.route('#/professionals')
-
-# ---------------------------
-
-
-
-
-# Org.all()
-#   .then (orgs) =>
-#     window.Orgs = orgs
-#     instances = riot.update()
-#     c.log "instances:", instances
-#   .catch (error) ->
-#     c.error "Error: #{error}"
-
-# ------------
-
-# Org.get(1)
-#   .then (user) ->
-#     c.log "User:", user
-#   .catch (error) ->
-#     c.error "Error: #{error}"
-
-# ------------
-
 # TODO: handle not-found
 #
 # User.get(1)
@@ -59,13 +27,3 @@ console.log "Riot started"
 #     c.log "User:", user
 #   .catch (error) ->
 #     c.error "Error: #{error}"
-
-
-# Org.get(1)
-#   .then (user) ->
-#     c.log "Org:", user
-#   .catch (error) ->
-#     c.error "Error: #{error}"
-
-
-# ---------------------------
