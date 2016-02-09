@@ -13,8 +13,12 @@ BAppModel = (function() {
     return new G[this.name](args);
   };
 
-  BAppModel.collection = function() {
+  BAppModel.collectionUp = function() {
     return this.pluralize(this.name);
+  };
+
+  BAppModel.collection = function() {
+    return this.collectionUp().toLowerCase();
   };
 
   BAppModel.get = function(id) {
@@ -35,7 +39,7 @@ BAppModel = (function() {
   BAppModel.all = function() {
     return new Promise((function(_this) {
       return function(resolve, reject) {
-        return API.get(_this.collection(), "getOrgsCount")["catch"](reject).then(function(count) {
+        return API.get(_this.collection(), "get" + (_this.collectionUp()) + "Count")["catch"](reject).then(function(count) {
           var promises;
           promises = _this.allGet(count);
           return _this.allResolve(promises, resolve, reject);
@@ -60,10 +64,12 @@ BAppModel = (function() {
   BAppModel.allGet = function(count) {
     var i, id, promises, ref;
     promises = [];
-    for (id = i = 1, ref = count; 1 <= ref ? i <= ref : i >= ref; id = 1 <= ref ? ++i : --i) {
-      promises.push(API.get(this.collection(), "get", {
-        id: id
-      }));
+    if (count > 0) {
+      for (id = i = 1, ref = count; 1 <= ref ? i <= ref : i >= ref; id = 1 <= ref ? ++i : --i) {
+        promises.push(API.get(this.collection(), "get", {
+          id: id
+        }));
+      }
     }
     return promises;
   };

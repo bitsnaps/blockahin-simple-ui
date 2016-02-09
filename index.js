@@ -3400,7 +3400,7 @@ riot.tag2('table-users', '<p>Search</p> <input name="query" onkeyup="{filterUser
       return s(`${user.name}|${user.jobTitle}`).toLowerCase()
     }
     this.filterUsers = function() {
-      this.users = _(Users).select((user) => {
+      this.users = _(StoreData.users).select((user) => {
         return matchString(user).include(this.query.value)
       })
     }.bind(this)
@@ -3415,7 +3415,14 @@ riot.tag2('table-users', '<p>Search</p> <input name="query" onkeyup="{filterUser
       ")
     })
 
-    this.users = Users
+    this.users = StoreData.users
+
+    var self = this
+    this.store = opts.store
+    this.store.on('update', function(data) {
+     self.users = data.users
+     self.update()
+    })
 }, '{ }');
 riot.tag2('user-row', '<dtd> <a href="#/users/{id}"> <img riot-src="{avatar}"> </a> </dtd> <dtd> <a href="#/users/{id}"> {name} </a> </dtd> <dtd>{jobTitle}</dtd>', '', '', function(opts) {
 }, '{ }');
@@ -3475,17 +3482,34 @@ riot.tag2('profile', '<div> test </div>', '', '', function(opts) {
 
 riot.tag2('user', '<h2>{user.name}</h2> <h4>{user.jobTitle}</h4> <div class="row"> <div class="column"> <img riot-src="{user.avatarLg}"> </div> <div class="column"></div> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum. {user.bio} </p> </div> <div class="s20"></div> <h3>Skills</h3> <div class="row"> <div class="column"> PHP ★★★★★ </div> <div class="column"> CSS ★★★★ </div> <div class="column"> HTML5 ★★★★ </div> <div class="column"> MYSQL ★★★ </div> <div class="column"> Linux ★★ </div> </div> <div class="row"> <div class="column"> Apache ★★★ </div> <div class="column"> Nginx ★ </div> <div class="column"> Photoshop ★★★★ </div> <div class="column"> Illustrator ★★★ </div> <div class="column"></div> </div> <div class="clear"></div> <div class="s30"></div> <h3>Positions</h3> <h5>PHP Developer</h5> <h5>ACME</h5> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. </p> <div class="s30"></div> <h3>Education</h3> <h5>Degree in Astrophysics</h5> <h5>UCL</h5> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. </p>', '', '', function(opts) {
     (function() {
-      var user, user_id;
+      var self, user, user_id;
 
       user_id = s(location.hash).strRightBack("/").value();
 
       user_id = Number(user_id);
 
-      user = _(Users).find(function(u) {
+      self = this;
+
+      this.users = StoreData.users;
+
+      user = _(self.users).find(function(u) {
         return user_id === u.id;
       });
 
-      this.user = user;
+      self.user = user;
+
+      self.update();
+
+      this.store = opts.store;
+
+      this.store.on('update', function(data) {
+        self.users = data.users;
+        user = _(self.users).find(function(u) {
+          return user_id === u.id;
+        });
+        self.user = user;
+        return self.update();
+      });
 
     }).call(this);
 }, '{ }');
@@ -3547,8 +3571,12 @@ BAppModel = (function() {
     return new G[this.name](args);
   };
 
-  BAppModel.collection = function() {
+  BAppModel.collectionUp = function() {
     return this.pluralize(this.name);
+  };
+
+  BAppModel.collection = function() {
+    return this.collectionUp().toLowerCase();
   };
 
   BAppModel.get = function(id) {
@@ -3569,7 +3597,7 @@ BAppModel = (function() {
   BAppModel.all = function() {
     return new Promise((function(_this) {
       return function(resolve, reject) {
-        return API.get(_this.collection(), "getOrgsCount")["catch"](reject).then(function(count) {
+        return API.get(_this.collection(), "get" + (_this.collectionUp()) + "Count")["catch"](reject).then(function(count) {
           var promises;
           promises = _this.allGet(count);
           return _this.allResolve(promises, resolve, reject);
@@ -3594,10 +3622,12 @@ BAppModel = (function() {
   BAppModel.allGet = function(count) {
     var i, id, promises, ref;
     promises = [];
-    for (id = i = 1, ref = count; 1 <= ref ? i <= ref : i >= ref; id = 1 <= ref ? ++i : --i) {
-      promises.push(API.get(this.collection(), "get", {
-        id: id
-      }));
+    if (count > 0) {
+      for (id = i = 1, ref = count; 1 <= ref ? i <= ref : i >= ref; id = 1 <= ref ? ++i : --i) {
+        promises.push(API.get(this.collection(), "get", {
+          id: id
+        }));
+      }
     }
     return promises;
   };
@@ -3673,53 +3703,11 @@ host = bappHost;
 
 API = new BApi(host);
 
-var Orgs, Store, StoreData, Unis, Users, genAvatars, identicon;
+var Orgs, Store, StoreData, TMP_JOB_TITLES, Unis, Users, addTmpJobTitle, fetchUserAvatars, genOrgAvatars, identicon;
 
-Users = [
-  {
-    id: 1,
-    name: "Stephanie Curry",
-    avatar: "http://api.randomuser.me/portraits/thumb/women/0.jpg",
-    avatarLg: "http://api.randomuser.me/portraits/med/women/0.jpg",
-    jobTitle: "Software Developer"
-  }, {
-    id: 2,
-    name: "Klay Thompson",
-    avatar: "http://api.randomuser.me/portraits/thumb/men/3.jpg",
-    avatarLg: "http://api.randomuser.me/portraits/med/men/3.jpg",
-    jobTitle: "Graphic Designer"
-  }, {
-    id: 3,
-    name: "Catherine Thompson",
-    avatar: "http://api.randomuser.me/portraits/thumb/women/2.jpg",
-    avatarLg: "http://api.randomuser.me/portraits/med/women/2.jpg",
-    jobTitle: "Engineer"
-  }, {
-    id: 4,
-    name: "Garret Albert",
-    avatar: "http://api.randomuser.me/portraits/thumb/men/1.jpg",
-    avatarLg: "http://api.randomuser.me/portraits/med/men/1.jpg",
-    jobTitle: "Mathematician"
-  }, {
-    id: 5,
-    name: "Carla Farad",
-    avatar: "http://api.randomuser.me/portraits/thumb/women/4.jpg",
-    avatarLg: "http://api.randomuser.me/portraits/med/women/4.jpg",
-    jobTitle: "Biologist"
-  }
-];
+Users = [];
 
-Orgs = [
-  {
-    id: 1,
-    name: "test11111",
-    employees: 1
-  }, {
-    id: 2,
-    name: "test2",
-    employees: 3
-  }
-];
+Orgs = [];
 
 Orgs = _(Orgs).map((function(_this) {
   return function(entity) {
@@ -3738,7 +3726,7 @@ identicon = function(entity, size) {
   return "data:image/png;base64," + icon;
 };
 
-genAvatars = function(entities) {
+genOrgAvatars = function(entities) {
   return _(entities).map(function(entity) {
     entity.avatar = identicon(entity);
     entity.avatarLg = identicon(entity, "large");
@@ -3746,7 +3734,24 @@ genAvatars = function(entities) {
   });
 };
 
-Orgs = genAvatars(Orgs);
+fetchUserAvatars = function(users) {
+  return _(users).map(function(user) {
+    var gender;
+    gender = user.gender.toLowerCase() === "f" ? "women" : "men";
+    user.avatar = "http://api.randomuser.me/portraits/thumb/" + gender + "/" + user.id + ".jpg";
+    user.avatarLg = "http://api.randomuser.me/portraits/med/" + gender + "/" + user.id + ".jpg";
+    return user;
+  });
+};
+
+TMP_JOB_TITLES = ["Graphic Designer", "Software Developer"];
+
+addTmpJobTitle = function(users) {
+  return _(users).map(function(user) {
+    user.jobTitle = _.sample(TMP_JOB_TITLES);
+    return user;
+  });
+};
 
 Unis = [];
 
@@ -3768,7 +3773,17 @@ Store = function() {
   })(this), 0);
   Org.all().then((function(_this) {
     return function(orgs) {
+      orgs = genOrgAvatars(orgs);
       StoreData.orgs = orgs;
+      return _this.update(StoreData);
+    };
+  })(this))["catch"](function(error) {
+    return c.error("Error: " + error);
+  });
+  User.all().then((function(_this) {
+    return function(users) {
+      users = fetchUserAvatars(users);
+      StoreData.users = users;
       return _this.update(StoreData);
     };
   })(this))["catch"](function(error) {

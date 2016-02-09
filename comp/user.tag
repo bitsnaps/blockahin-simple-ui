@@ -62,17 +62,34 @@
   </p>
   <script>
     (function() {
-      var user, user_id;
+      var self, user, user_id;
     
       user_id = s(location.hash).strRightBack("/").value();
     
       user_id = Number(user_id);
     
-      user = _(Users).find(function(u) {
+      self = this;
+    
+      this.users = StoreData.users;
+    
+      user = _(self.users).find(function(u) {
         return user_id === u.id;
       });
     
-      this.user = user;
+      self.user = user;
+    
+      self.update();
+    
+      this.store = opts.store;
+    
+      this.store.on('update', function(data) {
+        self.users = data.users;
+        user = _(self.users).find(function(u) {
+          return user_id === u.id;
+        });
+        self.user = user;
+        return self.update();
+      });
     
     }).call(this);
   </script>

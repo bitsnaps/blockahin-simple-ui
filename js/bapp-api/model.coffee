@@ -9,7 +9,8 @@ class BAppModel
   @new: (args) ->
     new G[@name](args)
 
-  @collection = -> @pluralize @name
+  @collectionUp = -> @pluralize @name
+  @collection   = -> @collectionUp().toLowerCase()
 
   @get: (id) ->
     @c.error @errApiNotFound unless API
@@ -21,7 +22,7 @@ class BAppModel
 
   @all: ->
     new Promise (resolve, reject) =>
-      API.get(@collection(), "getOrgsCount")
+      API.get(@collection(), "get#{@collectionUp()}Count")
         .catch reject
         .then (count) =>
           promises = @allGet count
@@ -44,8 +45,9 @@ class BAppModel
 
   @allGet: (count) ->
     promises = []
-    for id in [1..count]
-      promises.push API.get(@collection(), "get", { id: id })
+    if count > 0
+      for id in [1..count]
+        promises.push API.get(@collection(), "get", { id: id })
     promises
 
   @allResolve: (promises, resolve, reject) ->

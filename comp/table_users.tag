@@ -10,7 +10,7 @@
       return s(`${user.name}|${user.jobTitle}`).toLowerCase()
     }
     filterUsers() {
-      this.users = _(Users).select((user) => {
+      this.users = _(StoreData.users).select((user) => {
         return matchString(user).include(this.query.value)
       })
     }
@@ -25,7 +25,14 @@
       ")
     })
     
-    this.users = Users
+    this.users = StoreData.users
+    
+    var self = this
+    this.store = opts.store
+    this.store.on('update', function(data) {
+     self.users = data.users
+     self.update()
+    })
   </script>
 </table-users>
 <user-row>

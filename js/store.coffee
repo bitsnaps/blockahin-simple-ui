@@ -1,49 +1,8 @@
-Users = [
-    id:       1
-    name:     "Stephanie Curry"
-    avatar:   "http://api.randomuser.me/portraits/thumb/women/0.jpg"
-    avatarLg: "http://api.randomuser.me/portraits/med/women/0.jpg"
-    jobTitle: "Software Developer"
-  ,
-    id:       2
-    name:     "Klay Thompson"
-    avatar:   "http://api.randomuser.me/portraits/thumb/men/3.jpg"
-    avatarLg: "http://api.randomuser.me/portraits/med/men/3.jpg"
-    jobTitle: "Graphic Designer"
-  ,
-    id:       3
-    name:     "Catherine Thompson"
-    avatar:   "http://api.randomuser.me/portraits/thumb/women/2.jpg"
-    avatarLg: "http://api.randomuser.me/portraits/med/women/2.jpg"
-    jobTitle: "Engineer"
-  ,
-    id:       4
-    name:     "Garret Albert"
-    avatar:   "http://api.randomuser.me/portraits/thumb/men/1.jpg"
-    avatarLg: "http://api.randomuser.me/portraits/med/men/1.jpg"
-    jobTitle: "Mathematician"
-  ,
-    id:       5
-    name:     "Carla Farad"
-    avatar:   "http://api.randomuser.me/portraits/thumb/women/4.jpg"
-    avatarLg: "http://api.randomuser.me/portraits/med/women/4.jpg"
-    jobTitle: "Biologist"
-  ,
-]
-
+Users = []
 
 # Org.all()
 
-Orgs = [
-    id:        1
-    name:      "test11111"
-    employees: 1
-  ,
-    id:        2
-    name:      "test2"
-    employees: 3
-  ,
-]
+Orgs = []
 
 Orgs = _(Orgs).map (entity) =>
   new Org(entity)
@@ -55,17 +14,32 @@ identicon = (entity, size) ->
   icon = new Identicon(id, sizePx).toString()
   "data:image/png;base64,#{icon}"
 
-genAvatars = (entities) ->
+genOrgAvatars = (entities) ->
   _(entities).map (entity) ->
     entity.avatar   = identicon entity
     entity.avatarLg = identicon entity, "large"
     entity
 
-Orgs = genAvatars Orgs
+fetchUserAvatars = (users) ->
+  _(users).map (user) ->
+    gender = if user.gender.toLowerCase() == "f" then "women" else "men"
+    user.avatar   = "http://api.randomuser.me/portraits/thumb/#{gender}/#{user.id}.jpg"
+    user.avatarLg = "http://api.randomuser.me/portraits/med/#{gender}/#{user.id}.jpg"
+    user
 
-Unis = [
-
+TMP_JOB_TITLES = [
+  "Graphic Designer",
+  "Software Developer",
 ]
+
+addTmpJobTitle  = (users) ->
+  _(users).map (user) ->
+    user.jobTitle = _.sample TMP_JOB_TITLES
+    user
+
+# Orgs = genAvatars Orgs
+
+Unis = []
 
 StoreData =
   users: Users
@@ -82,14 +56,24 @@ Store = ->
   , 0
 
 
-  # initialState
+  # initialState ----------------------------
 
   Org.all()
     .then (orgs) =>
+      orgs = genOrgAvatars orgs
       StoreData.orgs = orgs
       @update StoreData
     .catch (error) ->
       c.error "Error: #{error}"
 
+  User.all()
+    .then (users) =>
+      users = fetchUserAvatars users
+      StoreData.users = users
+      @update StoreData
+    .catch (error) ->
+      c.error "Error: #{error}"
+
+  # -----------------------------------------
 
   return this
