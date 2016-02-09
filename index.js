@@ -3386,7 +3386,7 @@ var Zepto=function(){function L(t){return null==t?String(t):j[S.call(t)]||"objec
 riot.tag2('main-nav', '<nav class="navigation"> <section class="container"> <a class="navigation-title float-left" href="#/"> <svg class="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewbox="0 0 16 16"> <path class="logo-svgpath" d="M16 6.707c0-3.139-0.919-5.687-2.054-5.707 0.005-0 0.009-0 0.014-0h-1.296c0 0-3.044 2.287-7.425 3.184-0.134 0.708-0.219 1.551-0.219 2.523s0.085 1.816 0.219 2.523c4.382 0.897 7.425 3.184 7.425 3.184h1.296c-0.005 0-0.009-0-0.014-0.001 1.136-0.020 2.054-2.567 2.054-5.707zM13.513 11.551c-0.147 0-0.305-0.152-0.387-0.243-0.197-0.22-0.387-0.562-0.55-0.989-0.363-0.957-0.564-2.239-0.564-3.611s0.2-2.655 0.564-3.611c0.162-0.428 0.353-0.77 0.55-0.99 0.081-0.091 0.24-0.243 0.387-0.243s0.305 0.152 0.387 0.243c0.197 0.22 0.387 0.562 0.55 0.99 0.363 0.957 0.564 2.239 0.564 3.611s-0.2 2.655-0.564 3.611c-0.162 0.428-0.353 0.77-0.55 0.989-0.081 0.091-0.24 0.243-0.387 0.243zM3.935 6.707c0-0.812 0.060-1.6 0.173-2.33-0.74 0.102-1.39 0.161-2.193 0.161-1.048 0-1.048 0-1.048 0l-0.867 1.479v1.378l0.867 1.479c0 0 0 0 1.048 0 0.803 0 1.453 0.059 2.193 0.161-0.113-0.729-0.173-1.518-0.173-2.33zM5.752 10.034l-2-0.383 1.279 5.024c0.066 0.26 0.324 0.391 0.573 0.291l1.852-0.741c0.249-0.1 0.349-0.374 0.222-0.611l-1.926-3.581zM13.513 8.574c-0.057 0-0.118-0.059-0.149-0.094-0.076-0.085-0.149-0.217-0.212-0.381-0.14-0.369-0.217-0.863-0.217-1.392s0.077-1.023 0.217-1.392c0.063-0.165 0.136-0.297 0.212-0.381 0.031-0.035 0.092-0.094 0.149-0.094s0.118 0.059 0.149 0.094c0.076 0.085 0.149 0.217 0.212 0.381 0.14 0.369 0.217 0.863 0.217 1.392s-0.077 1.023-0.217 1.392c-0.063 0.165-0.136 0.297-0.212 0.381-0.031 0.035-0.092 0.094-0.149 0.094z"></path> </svg> <h1 class="title">BlockedIn</h1> </a> <ul class="navigation-list float-left"> <li class="navigation-item"> <a class="navigation-link" href="#/professionals">Professionals</a> </li> <li class="navigation-item"> <a class="navigation-link" href="#/organizations">Organizations</a> </li> <li class="navigation-item"> <a class="navigation-link" href="#/universities">Universities</a> </li> </ul> <ul class="navigation-list float-right"> <li class="navigation-item"> <a class="navigation-link" href="#/profile">User</a> </li> </ul> </section> </nav>', '', '', function(opts) {
 });
 
-riot.tag2('example-cont', '<div class="row"> <div class="column"><h2>BlockedIn</h2></div> </div>', '', '', function(opts) {
+riot.tag2('example-cont', '<div class="row"> <div class="column"><h2>BlockedIn</h2></div> </div> <div class="row"> <div class="column"> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies..... </p> </div> </div>', '', '', function(opts) {
 });
 
 riot.tag2('form-cont', '<h2>Register</h2> <form> <fieldset> <label> First name <input type="text" placeholder=""> </label> <label> Last name <input type="text" placeholder=""> </label> <label> Email <input placeholder="you@email.com" type="email"> </label> <label> Bio <textarea placeholder=""></textarea> </label> <input class="button-primary" type="submit" value="Sign up"> </fieldset> </form>', '', '', function(opts) {
@@ -3477,7 +3477,7 @@ riot.tag2('ab-footer', '<footer class="footer"> <section class="container"> <p>�
     this.time = new Date().getFullYear()
 }, '{ }');
 
-riot.tag2('profile', '<div> test </div>', '', '', function(opts) {
+riot.tag2('profile', '<div> Edit profile... </div>', '', '', function(opts) {
 });
 
 riot.tag2('user', '<h2>{user.name}</h2> <h4>{user.jobTitle}</h4> <div class="row"> <div class="column"> <img riot-src="{user.avatarLg}"> </div> <div class="column"></div> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum. {user.bio} </p> </div> <div class="s20"></div> <h3>Skills</h3> <div class="row"> <div class="column"> PHP ★★★★★ </div> <div class="column"> CSS ★★★★ </div> <div class="column"> HTML5 ★★★★ </div> <div class="column"> MYSQL ★★★ </div> <div class="column"> Linux ★★ </div> </div> <div class="row"> <div class="column"> Apache ★★★ </div> <div class="column"> Nginx ★ </div> <div class="column"> Photoshop ★★★★ </div> <div class="column"> Illustrator ★★★ </div> <div class="column"></div> </div> <div class="clear"></div> <div class="s30"></div> <h3>Positions</h3> <h5>PHP Developer</h5> <h5>ACME</h5> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. </p> <div class="s30"></div> <h3>Education</h3> <h5>Degree in Astrophysics</h5> <h5>UCL</h5> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. </p>', '', '', function(opts) {
@@ -3508,6 +3508,40 @@ riot.tag2('user', '<h2>{user.name}</h2> <h4>{user.jobTitle}</h4> <div class="row
           return user_id === u.id;
         });
         self.user = user;
+        return self.update();
+      });
+
+    }).call(this);
+}, '{ }');
+
+riot.tag2('org', '<h2>{org.name}</h2> <div class="row"> <div class="column"> <img riot-src="{org.avatarLg}"> </div> <div class="column"></div> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum. </p> </div>', '', '', function(opts) {
+    (function() {
+      var org, org_id, self;
+
+      org_id = s(location.hash).strRightBack("/").value();
+
+      org_id = Number(org_id);
+
+      self = this;
+
+      this.orgs = StoreData.orgs;
+
+      org = _(self.orgs).find(function(o) {
+        return org_id === o.id;
+      });
+
+      self.org = org;
+
+      self.update();
+
+      this.store = opts.store;
+
+      this.store.on('update', function(data) {
+        self.orgs = data.orgs;
+        org = _(self.orgs).find(function(o) {
+          return org_id === o.id;
+        });
+        self.org = org;
         return self.update();
       });
 
@@ -3697,7 +3731,9 @@ Employment = (function(superClass) {
 
 var API, bappHost, host;
 
-bappHost = "localhost:3001";
+host = document.location.hostname;
+
+bappHost = host === "localhost" ? "localhost:3001" : "api." + host;
 
 host = bappHost;
 
@@ -3833,6 +3869,10 @@ riot.router.routes([
   }), new Route({
     path: '/users/:id',
     tag: 'user',
+    api: api
+  }), new Route({
+    path: '/orgs/:id',
+    tag: 'org',
     api: api
   }), new NotFoundRoute({
     tag: 'not-found'

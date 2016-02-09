@@ -41,6 +41,10 @@ riot.router.routes([
     path: '/users/:id',
     tag: 'user',
     api: api
+  }), new Route({
+    path: '/orgs/:id',
+    tag: 'org',
+    api: api
   }), new NotFoundRoute({
     tag: 'not-found'
   })

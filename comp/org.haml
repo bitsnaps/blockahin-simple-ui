@@ -1,0 +1,28 @@
+%org
+  %h2 { org.name }
+  .row
+    .column
+      %img{ src: "{ org.avatarLg }" }
+    .column
+    %p
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
+
+  :coffeescript
+    org_id = s(location.hash).strRightBack("/").value()
+    org_id = Number org_id
+
+    self = this
+
+    this.orgs = StoreData.orgs
+    org = _(self.orgs).find (o) ->
+      org_id == o.id
+    self.org = org
+    self.update()
+
+    this.store = opts.store
+    this.store.on 'update', (data) ->
+      self.orgs = data.orgs
+      org = _(self.orgs).find (o) ->
+        org_id == o.id
+      self.org = org
+      self.update()

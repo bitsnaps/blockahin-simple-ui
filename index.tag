@@ -37,6 +37,7 @@
     <script src='comp/ab_footer.js'></script>
     <script src='comp/profile.js'></script>
     <script src='comp/user.js'></script>
+    <script src='comp/org.js'></script>
     <script src='comp/not_found.js'></script>
     <script src='js/bapp-api/bapi.js'></script>
     <script src='js/bapp-api/model.js'></script>

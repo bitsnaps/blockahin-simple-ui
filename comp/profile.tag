@@ -1,5 +1,5 @@
 <profile>
   <div>
-    test
+    Edit profile...
   </div>
 </profile>
