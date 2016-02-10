@@ -1,44 +1,53 @@
 %profile
-  %h2 Edit your profile: { user.name }
-  %h4 { user.jobTitle }
-  .row
-    .column.overlay_cont
-      %label.normal
-        %img.avatar{ src: "{ user.avatarLg }" }
-        .icon.overlay.white 📷
-        %input{ type: "file" }
-    .column.column-80
-      %p.border{ contentEditable: true }
-        Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
-        { user.bio }
-      .row
-        .column.column-20
-          %label
-            Location:
-        .column.column-80
-          %div.border{ contentEditable: true }
-            { user.location }
-      .row
-        .column.column-20
-          %label
-            Nationality:
-        .column.column-80
-          %div.border{ contentEditable: true }
-            { user.nationality }
+  %h4 Edit your profile:
+  %h2 { user.name }
+  %form{ onsubmit: "{ update }" }
+    %h4
+      %input.big-text{placeholder: "Your current Job Title", name: "jobTitle", type: "text", value: "{ user.jobTitle }"}/
+    .row
+      .column.overlay_cont
+        %label.normal
+          %img.avatar{ src: "{ user.avatarLg }" }
+          .icon.overlay.white 📷
+          %input{ type: "file" }
+      .column.column-80
+        %p.border{ contentEditable: true }
+          Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
+          { user.bio }
+        .row
+          .column.column-20
+            %label
+              %strong Location:
+          .column.column-80
+            %input{placeholder: "Your City, Planet Earth", name: "location", type: "text", value: "{ user.location }"}/
+        .row
+          .column.column-20
+            %label
+              %strong Nationality:
+          .column.column-80
+            %input{placeholder: "Your country of Origin", name: "nationality", type: "text", value: "{ user.nationality }"}/
 
-  %form
     %fieldset
       %label
         Email
-        %input{placeholder: "you@email.com", type: "email"}/
+        %input{placeholder: "you@email.com", name: "email", type: "email"}/
       %label
         Gender
-        %input{placeholder: "M / F", type: "text", value: "{ user.gender }"}
+        %input{placeholder: "M / F", name: "gender", type: "text", value: "{ user.gender }"}
       %label
         Cover letter
         %textarea{placeholder: "A generic cover letter you want to send to your ideal employer, why you are suited for the job."}
 
-      %input.button-primary{type: "submit", value: "Save"}/
+      %input.left.button-primary{onclick: "{ update }", type: "submit", value: "Save"}/
+
+      .spinner
+        .rect1
+        .rect2
+        .rect3
+        .rect4
+        .rect5
+
+      .message { message }
 
 
   %style{scoped: true}
@@ -58,18 +67,53 @@
   :coffeescript
     user_id = 2
 
-    self = this
-
-    this.users = StoreData.users
-    user = _(self.users).find (u) ->
+    @users = StoreData.users
+    user = _(@users).find (u) ->
       user_id == u.id
-    self.user = user
-    self.update()
+    @user = user
+    @update()
 
-    this.store = opts.store
-    this.store.on 'update', (data) ->
-      self.users = data.users
-      user = _(self.users).find (u) ->
+    @store = opts.store
+    @store.on 'update', (data) =>
+      @users = data.users
+      user = _(@users).find (u) ->
         user_id == u.id
-      self.user = user
-      self.update()
+      @user = user
+      @update()
+
+
+    @update = ->
+      c.log "UPDATE"
+
+
+    @message = ""
+
+    @.on 'mount', (data) =>
+      spinner = $ ".spinner"
+
+      $("input[type=submit]").on "click", (evt) =>
+        spinner.css
+          visibility: "visible"
+
+        values = $("profile form").serializeArray()
+        newValues = {}
+        _(values).each (entry) ->
+          newValues[entry.name] = entry.value
+
+        _(newValues).each (value, key) =>
+          @user[key] = value if @user.hasAttribute key
+
+        # TODO: fix this - avatar and avatarLg must be stored in the blockchain
+        userValues = {}
+        _(@user).each (value, key) =>
+          userValues[key] = value if @user.hasAttribute key
+
+        c.log "Updating user:", @user
+        User.update(userValues)
+          .then (resp) =>
+            c.log "User updated:", resp
+            spinner.css
+              visibility: "hidden"
+            $(".message").html "saved!"
+          .catch (error) ->
+            c.log "Error updating current User:", error

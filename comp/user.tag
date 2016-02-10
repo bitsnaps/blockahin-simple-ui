@@ -11,11 +11,11 @@
         { user.bio }
       </p>
       <p>
-        Location:
+        <strong>Location:</strong>
         { user.location }
       </p>
       <p>
-        Nationality:
+        <strong>Nationality:</strong>
         { user.nationality }
       </p>
     </div>

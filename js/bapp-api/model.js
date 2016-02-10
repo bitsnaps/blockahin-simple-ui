@@ -9,6 +9,10 @@ BAppModel = (function() {
     return this.constructor.name;
   };
 
+  BAppModel.prototype.hasAttribute = function(attr) {
+    return _(this.attrs).include(attr);
+  };
+
   BAppModel["new"] = function(args) {
     return new G[this.name](args);
   };

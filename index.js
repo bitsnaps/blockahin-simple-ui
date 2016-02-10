@@ -3457,13 +3457,20 @@ riot.tag2('user-row', '<dtd> <a href="#/users/{id}"> <img class="avatar" riot-sr
 
 riot.tag2('table-orgs', '<p>Search</p> <input name="query" onkeyup="{filterOrgs}" placeholder="enter a skill or a location" type="text"> <dtable> <org-row each="{orgs}"></org-row> </dtable> </input>', '', '', function(opts) {
     var matchString = (org) => {
-      return s(`${org.name}|${org.jobTitle}`).toLowerCase()
+      return s(`${org.name}`).toLowerCase()
     }
     this.filterOrgs = function() {
       this.orgs = _(Orgs).select((org) => {
         return matchString(org).include(this.query.value)
       })
     }.bind(this)
+
+    var present = (orgs) => {
+      return _(orgs).map((org) => {
+        org.employees = org.employees || Math.round(Math.random()*20+1)
+        return org
+      })
+    }
 
     var self = this
 
@@ -3472,21 +3479,23 @@ riot.tag2('table-orgs', '<p>Search</p> <input name="query" onkeyup="{filterOrgs}
         <org-row>             \
           <dtd></dtd>          \
           <dtd>Name</dtd>      \
+          <dtd>Industry</dtd> \
+          <dtd>Location</dtd> \
           <dtd>Employees</dtd> \
         </org-row>            \
       ")
     })
 
-    this.orgs = StoreData.orgs
+    this.orgs = present(StoreData.orgs)
 
     var self = this
     this.store = opts.store
     this.store.on('update', function(data) {
-     self.orgs = data.orgs
+     self.orgs = present(data.orgs)
      self.update()
     })
 }, '{ }');
-riot.tag2('org-row', '<dtd> <a href="#/orgs/{id}"> <img class="avatar" riot-src="{avatar}"> </a> </dtd> <dtd> <a href="#/orgs/{id}"> {name} </a> </dtd> <dtd>{employees}</dtd>', '', '', function(opts) {
+riot.tag2('org-row', '<dtd> <a href="#/orgs/{id}"> <img class="avatar" riot-src="{avatar}"> </a> </dtd> <dtd> <a href="#/orgs/{id}"> {name} </a> </dtd> <dtd>{industry}</dtd> <dtd>{location}</dtd> <dtd>{employees}</dtd>', '', '', function(opts) {
 }, '{ }');
 
 riot.tag2('table-unis', '<table> <thead> <tr> <th>Name</th> </tr> </thead> <tbody> <tr> <td>UCL</td> </tr> <tr> <td>Oxford University</td> </tr> </tbody> </table>', '', '', function(opts) {
@@ -3501,43 +3510,88 @@ riot.tag2('sample', 'Timer: <h4>{count}</h4>', 'sample,[riot-tag="sample"] { fon
 
 }, '{ }');
 
-riot.tag2('ab-footer', '<footer class="footer"> <section class="container"> <p>© {time} - Applied Blockchain ltd.</p> </section> </footer>', '', '', function(opts) {
+riot.tag2('ab-footer', '<div class="s80"></div> <footer class="footer"> <section class="container"> <p>© {time} - Applied Blockchain ltd.</p> </section> </footer>', '', '', function(opts) {
     this.time = new Date().getFullYear()
 }, '{ }');
 
-riot.tag2('profile', '<h2>Edit your profile: {user.name}</h2> <h4>{user.jobTitle}</h4> <div class="row"> <div class="column overlay_cont"> <label class="normal"> <img class="avatar" riot-src="{user.avatarLg}"> <div class="icon overlay white">📷</div> <input type="file"> </label> </div> <div class="column column-80"> <p class="border" contenteditable> Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum. {user.bio} </p> <div class="row"> <div class="column column-20"> <label> Location: </label> </div> <div class="column column-80"> <div class="border" contenteditable> {user.location} </div> </div> </div> <div class="row"> <div class="column column-20"> <label> Nationality: </label> </div> <div class="column column-80"> <div class="border" contenteditable> {user.nationality} </div> </div> </div> </div> </div> <form> <fieldset> <label> Email <input placeholder="you@email.com" type="email"> </label> <label> Gender <input placeholder="M / F" type="text" value="{user.gender}"> </label> <label> Cover letter <textarea placeholder="A generic cover letter you want to send to your ideal employer, why you are suited for the job."></textarea> </label> <input class="button-primary" type="submit" value="Save"> </fieldset> </form>', 'profile *[contentEditable],[riot-tag="profile"] *[contentEditable] { display: block; margin-bottom: 12px; } profile label,[riot-tag="profile"] label { margin-top: 10px; } profile input[type=file],[riot-tag="profile"] input[type=file] { display: none; }', '', function(opts) {
+riot.tag2('profile', '<h4>Edit your profile:</h4> <h2>{user.name}</h2> <form onsubmit="{update}"> <h4> <input class="big-text" name="jobTitle" placeholder="Your current Job Title" type="text" value="{user.jobTitle}"> </h4> <div class="row"> <div class="column overlay_cont"> <label class="normal"> <img class="avatar" riot-src="{user.avatarLg}"> <div class="icon overlay white">📷</div> <input type="file"> </label> </div> <div class="column column-80"> <p class="border" contenteditable> Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum. {user.bio} </p> <div class="row"> <div class="column column-20"> <label> <strong>Location:</strong> </label> </div> <div class="column column-80"> <input name="location" placeholder="Your City, Planet Earth" type="text" value="{user.location}"> </div> </div> <div class="row"> <div class="column column-20"> <label> <strong>Nationality:</strong> </label> </div> <div class="column column-80"> <input name="nationality" placeholder="Your country of Origin" type="text" value="{user.nationality}"> </div> </div> </div> </div> <fieldset> <label> Email <input name="email" placeholder="you@email.com" type="email"> </label> <label> Gender <input name="gender" placeholder="M / F" type="text" value="{user.gender}"> </label> <label> Cover letter <textarea placeholder="A generic cover letter you want to send to your ideal employer, why you are suited for the job."></textarea> </label> <input class="left button-primary" onclick="{update}" type="submit" value="Save"> <div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> <div class="message">{message}</div> </fieldset> </form>', 'profile *[contentEditable],[riot-tag="profile"] *[contentEditable] { display: block; margin-bottom: 12px; } profile label,[riot-tag="profile"] label { margin-top: 10px; } profile input[type=file],[riot-tag="profile"] input[type=file] { display: none; }', '', function(opts) {
     (function() {
-      var self, user, user_id;
+      var user, user_id;
 
       user_id = 2;
 
-      self = this;
-
       this.users = StoreData.users;
 
-      user = _(self.users).find(function(u) {
+      user = _(this.users).find(function(u) {
         return user_id === u.id;
       });
 
-      self.user = user;
+      this.user = user;
 
-      self.update();
+      this.update();
 
       this.store = opts.store;
 
-      this.store.on('update', function(data) {
-        self.users = data.users;
-        user = _(self.users).find(function(u) {
-          return user_id === u.id;
-        });
-        self.user = user;
-        return self.update();
-      });
+      this.store.on('update', (function(_this) {
+        return function(data) {
+          _this.users = data.users;
+          user = _(_this.users).find(function(u) {
+            return user_id === u.id;
+          });
+          _this.user = user;
+          return _this.update();
+        };
+      })(this));
+
+      this.update = function() {
+        return c.log("UPDATE");
+      };
+
+      this.message = "";
+
+      this.on('mount', (function(_this) {
+        return function(data) {
+          var spinner;
+          spinner = $(".spinner");
+          return $("input[type=submit]").on("click", function(evt) {
+            var newValues, userValues, values;
+            spinner.css({
+              visibility: "visible"
+            });
+            values = $("profile form").serializeArray();
+            newValues = {};
+            _(values).each(function(entry) {
+              return newValues[entry.name] = entry.value;
+            });
+            _(newValues).each(function(value, key) {
+              if (_this.user.hasAttribute(key)) {
+                return _this.user[key] = value;
+              }
+            });
+            userValues = {};
+            _(_this.user).each(function(value, key) {
+              if (_this.user.hasAttribute(key)) {
+                return userValues[key] = value;
+              }
+            });
+            c.log("Updating user:", _this.user);
+            return User.update(userValues).then(function(resp) {
+              c.log("User updated:", resp);
+              spinner.css({
+                visibility: "hidden"
+              });
+              return $(".message").html("saved!");
+            })["catch"](function(error) {
+              return c.log("Error updating current User:", error);
+            });
+          });
+        };
+      })(this));
 
     }).call(this);
 }, '{ }');
 
-riot.tag2('user', '<h2>{user.name}</h2> <h4>{user.jobTitle}</h4> <div class="row"> <div class="column"> <img class="avatar" riot-src="{user.avatarLg}"> </div> <div class="column column-80"> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum. {user.bio} </p> <p> Location: {user.location} </p> <p> Nationality: {user.nationality} </p> </div> </div> <div class="s20"></div> <h3>Skills</h3> <div class="row"> <div class="column"> PHP ★★★★★ </div> <div class="column"> CSS ★★★★ </div> <div class="column"> HTML5 ★★★★ </div> <div class="column"> MYSQL ★★★ </div> <div class="column"> Linux ★★ </div> </div> <div class="row"> <div class="column"> Apache ★★★ </div> <div class="column"> Nginx ★ </div> <div class="column"> Photoshop ★★★★ </div> <div class="column"> Illustrator ★★★ </div> <div class="column"></div> </div> <div class="clear"></div> <div class="s30"></div> <h3>Positions</h3> <h5>PHP Developer</h5> <h5>ACME</h5> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. </p> <div class="s30"></div> <h3>Education</h3> <h5>Degree in Astrophysics</h5> <h5>UCL</h5> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. </p>', '', '', function(opts) {
+riot.tag2('user', '<h2>{user.name}</h2> <h4>{user.jobTitle}</h4> <div class="row"> <div class="column"> <img class="avatar" riot-src="{user.avatarLg}"> </div> <div class="column column-80"> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum. {user.bio} </p> <p> <strong>Location:</strong> {user.location} </p> <p> <strong>Nationality:</strong> {user.nationality} </p> </div> </div> <div class="s20"></div> <h3>Skills</h3> <div class="row"> <div class="column"> PHP ★★★★★ </div> <div class="column"> CSS ★★★★ </div> <div class="column"> HTML5 ★★★★ </div> <div class="column"> MYSQL ★★★ </div> <div class="column"> Linux ★★ </div> </div> <div class="row"> <div class="column"> Apache ★★★ </div> <div class="column"> Nginx ★ </div> <div class="column"> Photoshop ★★★★ </div> <div class="column"> Illustrator ★★★ </div> <div class="column"></div> </div> <div class="clear"></div> <div class="s30"></div> <h3>Positions</h3> <h5>PHP Developer</h5> <h5>ACME</h5> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. </p> <div class="s30"></div> <h3>Education</h3> <h5>Degree in Astrophysics</h5> <h5>UCL</h5> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. </p>', '', '', function(opts) {
     (function() {
       var self, user, user_id;
 
@@ -3571,36 +3625,48 @@ riot.tag2('user', '<h2>{user.name}</h2> <h4>{user.jobTitle}</h4> <div class="row
     }).call(this);
 }, '{ }');
 
-riot.tag2('org', '<h2>{org.name}</h2> <div class="row"> <div class="column"> <img class="avatar" riot-src="{org.avatarLg}"> </div> <div class="column"></div> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum. </p> </div>', '', '', function(opts) {
+riot.tag2('org', '<h2>{org.name}</h2> <div class="row"> <div class="column"> <img class="avatar" riot-src="{org.avatarLg}"> </div> <div class="column"></div> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum. </p> </div> <div class="s20"></div> <div class="row"> <div class="column"> <p> <strong>Industry:</strong> {org.industry} </p> </div> </div> <div class="row"> <div class="column"> <p> <strong>Location:</strong> {org.location} </p> </div> </div> <div class="row"> <div class="column"> <p> <strong>Extra:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum. </p> </div> </div> <div class="row"> <div class="column right"> <p> organization type <br> {org.orgType} </p> <p> publicKey <br> <span class="hint--bottom-left hint--rounded" data-hint="{org.publicKey}">{org.publicKeyShort}</span> </p> </div> </div>', '', '', function(opts) {
     (function() {
-      var org, org_id, self;
+      var org, org_id, present;
+
+      present = function(org) {
+        if (org) {
+          org.publicKeyShort = org.publicKey.slice(0, 9) + "..." + org.publicKey.slice(-6);
+        }
+        return org;
+      };
 
       org_id = s(location.hash).strRightBack("/").value();
 
       org_id = Number(org_id);
 
-      self = this;
-
       this.orgs = StoreData.orgs;
 
-      org = _(self.orgs).find(function(o) {
-        return org_id === o.id;
-      });
+      org = _(this.orgs).find((function(_this) {
+        return function(o) {
+          return org_id === o.id;
+        };
+      })(this));
 
-      self.org = org;
+      org = present(org);
 
-      self.update();
+      this.org = org;
+
+      this.update();
 
       this.store = opts.store;
 
-      this.store.on('update', function(data) {
-        self.orgs = data.orgs;
-        org = _(self.orgs).find(function(o) {
-          return org_id === o.id;
-        });
-        self.org = org;
-        return self.update();
-      });
+      this.store.on('update', (function(_this) {
+        return function(data) {
+          _this.orgs = data.orgs;
+          org = _(_this.orgs).find(function(o) {
+            return org_id === o.id;
+          });
+          org = present(org);
+          _this.org = org;
+          return _this.update();
+        };
+      })(this));
 
     }).call(this);
 }, '{ }');
@@ -3632,12 +3698,29 @@ BApi = (function() {
     return this.root + "/" + contractName + "/" + name + "?" + query;
   };
 
+  BApi.prototype.methodPost = function(contractName, name) {
+    return this.root + "/" + contractName + "/" + name;
+  };
+
   BApi.prototype.get = function(contract, methodName, values) {
     return new Promise((function(_this) {
       return function(resolve, reject) {
         c.log(methodName + "(" + (JSON.stringify(values)) + ") called!");
         return $.getJSON(_this.methodGet(contract, methodName, values)).fail(reject).then(function(val) {
           console.log("GET { contract: " + contract + ", methodName: " + methodName + ", values: " + values + " } ( GET /contract/:contractId/:method?:PARAMS(:values)) })");
+          return resolve(val.value);
+        });
+      };
+    })(this));
+  };
+
+  BApi.prototype.post = function(contract, methodName, values) {
+    return new Promise((function(_this) {
+      return function(resolve, reject) {
+        c.log(methodName + "(" + (JSON.stringify(values)) + ") called!");
+        return $.post(_this.methodPost(contract, methodName), values).fail(reject).then(function(val) {
+          c.log("VAL POST: " + val);
+          console.log("POST { contract: " + contract + ", methodName: " + methodName + ", values: " + values + " } ( POST /contract/:contractId/:method ) })");
           return resolve(val.value);
         });
       };
@@ -3656,6 +3739,10 @@ BAppModel = (function() {
   BAppModel.prototype.modelName = function() {
     this.c = console;
     return this.constructor.name;
+  };
+
+  BAppModel.prototype.hasAttribute = function(attr) {
+    return _(this.attrs).include(attr);
   };
 
   BAppModel["new"] = function(args) {
@@ -3699,7 +3786,32 @@ BAppModel = (function() {
 
   BAppModel.create = function() {};
 
-  BAppModel.update = function() {};
+  BAppModel.update = function(values) {
+    values = this.convertValuesForSave(values);
+    if (!API) {
+      this.c.error(this.errApiNotFound);
+    }
+    return API.post(this.collection(), "update", values).then((function(_this) {
+      return function(resp) {
+        return c.log("resp: " + resp);
+      };
+    })(this))["catch"](function(error) {
+      return c.error("Error: " + error);
+    });
+  };
+
+  BAppModel.convertValuesForSave = function(values) {
+    var newVals;
+    newVals = {};
+    _(values).map(function(value, key) {
+      if (key === "id") {
+        return newVals[key] = value;
+      } else {
+        return newVals["_" + key] = value;
+      }
+    });
+    return newVals;
+  };
 
   BAppModel.pluralize = function(word) {
     if (s(word).endsWith('y')) {
@@ -3754,7 +3866,7 @@ User = (function(superClass) {
     this.id = arg.id, this.name = arg.name, this.publicKey = arg.publicKey, this.location = arg.location, this.achievements = arg.achievements, this.birthDate = arg.birthDate, this.gender = arg.gender, this.nationality = arg.nationality;
   }
 
-  User.prototype.args = ["id", "name", "publicKey", "location", "achievements", "birthDate", "gender", "nationality"];
+  User.prototype.attrs = ["id", "name", "publicKey", "location", "achievements", "birthDate", "gender", "nationality"];
 
   return User;
 
@@ -3767,7 +3879,7 @@ Org = (function(superClass) {
     this.id = arg.id, this.name = arg.name, this.publicKey = arg.publicKey, this.orgType = arg.orgType, this.location = arg.location, this.industry = arg.industry;
   }
 
-  Org.prototype.args = ["id", "name", "publicKey", "orgType", "location", "industry"];
+  Org.prototype.attrs = ["id", "name", "publicKey", "orgType", "location", "industry"];
 
   return Org;
 
@@ -3780,7 +3892,7 @@ Employment = (function(superClass) {
     this.id = arg.id, this.userId = arg.userId, this.orgId = arg.orgId, this.role = arg.role, this.dateStart = arg.dateStart, this.dateEnd = arg.dateEnd, this.reportsTo = arg.reportsTo, this.budget = arg.budget, this.skills = arg.skills;
   }
 
-  Employment.prototype.args = ["id", "userId", "orgId", "role", "dateStart", "dateEnd", "reportsTo", "budget", "skills"];
+  Employment.prototype.attrs = ["id", "userId", "orgId", "role", "dateStart", "dateEnd", "reportsTo", "budget", "skills"];
 
   return Employment;
 

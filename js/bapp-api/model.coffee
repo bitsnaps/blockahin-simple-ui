@@ -6,6 +6,9 @@ class BAppModel
     @c = console
     @constructor.name
 
+  hasAttribute: (attr) ->
+    _(@attrs).include attr
+
   @new: (args) ->
     new G[@name](args)
 

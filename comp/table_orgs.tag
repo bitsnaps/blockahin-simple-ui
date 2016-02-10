@@ -7,11 +7,18 @@
   </input>
   <script>
     var matchString = (org) => {
-      return s(`${org.name}|${org.jobTitle}`).toLowerCase()
+      return s(`${org.name}`).toLowerCase()
     }
     filterOrgs() {
       this.orgs = _(Orgs).select((org) => {
         return matchString(org).include(this.query.value)
+      })
+    }
+    
+    var present = (orgs) => {
+      return _(orgs).map((org) => {
+        org.employees = org.employees || Math.round(Math.random()*20+1)
+        return org
       })
     }
     
@@ -22,17 +29,19 @@
         <org-row>             \
           <dtd></dtd>          \
           <dtd>Name</dtd>      \
+          <dtd>Industry</dtd> \
+          <dtd>Location</dtd> \
           <dtd>Employees</dtd> \
         </org-row>            \
       ")
     })
     
-    this.orgs = StoreData.orgs
+    this.orgs = present(StoreData.orgs)
     
     var self = this
     this.store = opts.store
     this.store.on('update', function(data) {
-     self.orgs = data.orgs
+     self.orgs = present(data.orgs)
      self.update()
     })
   </script>
@@ -48,5 +57,7 @@
       { name }
     </a>
   </dtd>
+  <dtd>{ industry }</dtd>
+  <dtd>{ location }</dtd>
   <dtd>{ employees }</dtd>
 </org-row>
