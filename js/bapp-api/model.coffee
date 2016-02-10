@@ -30,7 +30,26 @@ class BAppModel
 
   @create: ->
 
-  @update: ->
+  @update: (values) ->
+    values = @convertValuesForSave values
+    @c.error @errApiNotFound unless API
+    API.post(@collection(), "update", values)
+      .then (resp) =>
+        c.log "resp: #{resp}"
+      .catch (error) ->
+        c.error "Error: #{error}"
+
+  # tools
+
+  @convertValuesForSave: (values) ->
+    newVals = {}
+    _(values).map (value, key) ->
+      if key == "id"
+        newVals[key] = value
+      else
+        newVals["_#{key}"] = value
+    newVals
+
 
   # utils
 

@@ -50,7 +50,32 @@ BAppModel = (function() {
 
   BAppModel.create = function() {};
 
-  BAppModel.update = function() {};
+  BAppModel.update = function(values) {
+    values = this.convertValuesForSave(values);
+    if (!API) {
+      this.c.error(this.errApiNotFound);
+    }
+    return API.post(this.collection(), "update", values).then((function(_this) {
+      return function(resp) {
+        return c.log("resp: " + resp);
+      };
+    })(this))["catch"](function(error) {
+      return c.error("Error: " + error);
+    });
+  };
+
+  BAppModel.convertValuesForSave = function(values) {
+    var newVals;
+    newVals = {};
+    _(values).map(function(value, key) {
+      if (key === "id") {
+        return newVals[key] = value;
+      } else {
+        return newVals["_" + key] = value;
+      }
+    });
+    return newVals;
+  };
 
   BAppModel.pluralize = function(word) {
     if (s(word).endsWith('y')) {
