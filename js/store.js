@@ -79,6 +79,7 @@ Store = function() {
   User.all().then((function(_this) {
     return function(users) {
       users = fetchUserAvatars(users);
+      users = addTmpJobTitle(users);
       StoreData.users = users;
       return _this.update(StoreData);
     };

@@ -1,0 +1,75 @@
+%profile
+  %h2 Edit your profile: { user.name }
+  %h4 { user.jobTitle }
+  .row
+    .column.overlay_cont
+      %label.normal
+        %img{ src: "{ user.avatarLg }" }
+        .icon.overlay.white 📷
+        %input{ type: "file" }
+    .column.column-80
+      %p.border{ contentEditable: true }
+        Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
+        { user.bio }
+      .row
+        .column.column-20
+          %label
+            Location:
+        .column.column-80
+          %div.border{ contentEditable: true }
+            { user.location }
+      .row
+        .column.column-20
+          %label
+            Nationality:
+        .column.column-80
+          %div.border{ contentEditable: true }
+            { user.nationality }
+
+  %form
+    %fieldset
+      %label
+        Email
+        %input{placeholder: "you@email.com", type: "email"}/
+      %label
+        Gender
+        %input{placeholder: "M / F", type: "text", value: "{ user.gender }"}
+      %label
+        Cover letter
+        %textarea{placeholder: "A generic cover letter you want to send to your ideal employer, why you are suited for the job."}
+
+      %input.button-primary{type: "submit", value: "Save"}/
+
+
+  %style{scoped: true}
+    :plain
+      :scope *[contentEditable]  {
+        display: block;
+        margin-bottom: 12px;
+      }
+      :scope label {
+        margin-top: 10px;
+      }
+      :scope input[type=file] {
+        display: none;
+      }
+
+
+  :coffeescript
+    user_id = 2
+
+    self = this
+
+    this.users = StoreData.users
+    user = _(self.users).find (u) ->
+      user_id == u.id
+    self.user = user
+    self.update()
+
+    this.store = opts.store
+    this.store.on 'update', (data) ->
+      self.users = data.users
+      user = _(self.users).find (u) ->
+        user_id == u.id
+      self.user = user
+      self.update()

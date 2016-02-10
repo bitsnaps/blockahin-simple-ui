@@ -7,7 +7,7 @@ riot.mount '*'
 
 api = { store: store }
 riot.router.routes([
-  new DefaultRoute({tag: 'example-cont',                 api: api}),
+  new DefaultRoute({tag: 'home',                 api: api}),
   new Route({path: '/professionals', tag: 'table-users', api: api}),
   new Route({path: '/organizations', tag: 'table-orgs',  api: api}),
   new Route({path: '/universities',  tag: 'table-unis',  api: api}),

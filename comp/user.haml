@@ -4,10 +4,16 @@
   .row
     .column
       %img{ src: "{ user.avatarLg }" }
-    .column
-    %p
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
-      { user.bio }
+    .column.column-80
+      %p
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
+        { user.bio }
+      %p
+        Location:
+        { user.location }
+      %p
+        Nationality:
+        { user.nationality }
 
   .s20
   %h3 Skills
@@ -52,7 +58,7 @@
   :coffeescript
     user_id = s(location.hash).strRightBack("/").value()
     user_id = Number user_id
-    
+
     self = this
 
     this.users = StoreData.users

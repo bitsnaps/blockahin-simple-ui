@@ -19,7 +19,7 @@ api = {
 
 riot.router.routes([
   new DefaultRoute({
-    tag: 'example-cont',
+    tag: 'home',
     api: api
   }), new Route({
     path: '/professionals',

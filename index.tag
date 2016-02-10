@@ -6,6 +6,7 @@
     <meta content='width=device-width' name='viewport'>
     <link charset='utf-8' href='css/vendor/milligram.css' rel='stylesheet'>
     <link charset='utf-8' href='css/vendor/milligram-nav.css' rel='stylesheet'>
+    <link charset='utf-8' href='bower_components/hint.css/hint.min.css' rel='stylesheet'>
     <link charset='utf-8' href='css/style.css' rel='stylesheet'>
   </head>
   <body>
@@ -27,7 +28,7 @@
     <script src='js/vendor/underscore.string.js'></script>
     <script src='js/vendor/md5.js'></script>
     <script src='comp/main_nav.js'></script>
-    <script src='comp/example_cont.js'></script>
+    <script src='comp/home.js'></script>
     <script src='comp/form_cont.js'></script>
     <script src='comp/ab_table.js'></script>
     <script src='comp/table_users.js'></script>

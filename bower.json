@@ -11,6 +11,7 @@
   "license": "MIT",
   "homepage": "",
   "dependencies": {
-    "riot": "~2.3.13"
+    "riot": "~2.3.13",
+    "hint.css": "~2.0.0"
   }
 }

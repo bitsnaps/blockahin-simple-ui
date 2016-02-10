@@ -1,0 +1,54 @@
+%home
+  .row
+    .column
+      %h2 BlockedIn
+  .row
+    .column
+      %p
+        BlockedIn is the right place to find your next position. If you are a Company looking to hire a new talent, that's the right place.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies.
+        %br
+        ctetur adipiscing elit. In consequat mauris et  elit. In consequat mauris et ante pretium ultricies.....
+  .s20
+
+  .row
+    .column
+      %h5 For Companies:
+      %h3 Find a Professional
+  .row
+    .column
+      %user-face{ each: "{ users }" }
+  .s50
+
+  .row
+    .column
+      %h5 For You:
+      %h3 Find a Position
+  .row
+    .column
+      %org-face{ each: "{ orgs }" }
+
+  :coffee
+    # users
+    @users = StoreData.users
+    #
+    @store = opts.store
+    @store.on 'update', (data) =>
+     @users = data.users
+     @update()
+
+    # orgs
+    @orgs = StoreData.orgs
+    #
+    @store = opts.store
+    @store.on 'update', (data) =>
+      @orgs = data.orgs
+      @update()
+
+%user-face
+  %a{:href => "#/users/{ id }", class: "hint--bottom hint--rounded", :"data-hint" => "{ jobTitle }"}
+    %img{:src => "{ avatar }" }/
+
+%org-face
+  %a{:href => "#/orgs/{ id }", class: "hint--bottom hint--rounded", :"data-hint" => "{ name }"}
+    %img{:src => "{ avatar }" }/

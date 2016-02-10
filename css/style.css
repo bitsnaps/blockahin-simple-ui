@@ -64,3 +64,50 @@ dth:first-child, dtd:first-child {
 dth:last-child, dtd:last-child {
   padding-right: 0;
 }
+
+.border {
+  padding: 1.5%;
+  border: 1px solid #CCC;
+  border-radius: 5px;
+}
+
+.icon {
+  font-size: 80px
+}
+
+.overlay {
+  display: none;
+  position: absolute;
+  top: 15px;
+  left: 25%;
+}
+
+.relative {
+  position: relative;
+}
+
+.overlay_cont {
+  position: relative;
+}
+.overlay_cont, .overlay_cont img, .overlay_cont .overlay {
+  cursor: pointer;
+}
+.overlay_cont:hover img {
+  opacity: 0.9;
+}
+.overlay_cont:hover .overlay {
+  display: block;
+}
+
+.white {
+  color: white;
+}
+
+.normal {
+  font-weight: normal;
+}
+
+user-face, org-face {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}

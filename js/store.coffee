@@ -72,6 +72,7 @@ Store = ->
   User.all()
     .then (users) =>
       users = fetchUserAvatars users
+      users = addTmpJobTitle users
       StoreData.users = users
       @update StoreData
     .catch (error) ->

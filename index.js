@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-riot.tag2('html', '<head> <meta charset="utf-8"> <title>Hello world</title> <meta content="width=device-width" name="viewport"> <link charset="utf-8" href="css/vendor/milligram.css" rel="stylesheet"> <link charset="utf-8" href="css/vendor/milligram-nav.css" rel="stylesheet"> <link charset="utf-8" href="css/style.css" rel="stylesheet"> </head> <body> <div class="container"> <main-nav></main-nav> <div class="content"> <route optz="{opts}"></route> </div> <ab-footer></ab-footer> </div> </body>', '', '', function(opts) {
+riot.tag2('html', '<head> <meta charset="utf-8"> <title>Hello world</title> <meta content="width=device-width" name="viewport"> <link charset="utf-8" href="css/vendor/milligram.css" rel="stylesheet"> <link charset="utf-8" href="css/vendor/milligram-nav.css" rel="stylesheet"> <link charset="utf-8" href="bower_components/hint.css/hint.min.css" rel="stylesheet"> <link charset="utf-8" href="css/style.css" rel="stylesheet"> </head> <body> <div class="container"> <main-nav></main-nav> <div class="content"> <route optz="{opts}"></route> </div> <ab-footer></ab-footer> </div> </body>', '', '', function(opts) {
 
 
 ;(function(window, undefined) {
@@ -3383,11 +3383,39 @@ var Zepto=function(){function L(t){return null==t?String(t):j[S.call(t)]||"objec
     }
 }(this));
 
-riot.tag2('main-nav', '<nav class="navigation"> <section class="container"> <a class="navigation-title float-left" href="#/"> <svg class="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewbox="0 0 16 16"> <path class="logo-svgpath" d="M16 6.707c0-3.139-0.919-5.687-2.054-5.707 0.005-0 0.009-0 0.014-0h-1.296c0 0-3.044 2.287-7.425 3.184-0.134 0.708-0.219 1.551-0.219 2.523s0.085 1.816 0.219 2.523c4.382 0.897 7.425 3.184 7.425 3.184h1.296c-0.005 0-0.009-0-0.014-0.001 1.136-0.020 2.054-2.567 2.054-5.707zM13.513 11.551c-0.147 0-0.305-0.152-0.387-0.243-0.197-0.22-0.387-0.562-0.55-0.989-0.363-0.957-0.564-2.239-0.564-3.611s0.2-2.655 0.564-3.611c0.162-0.428 0.353-0.77 0.55-0.99 0.081-0.091 0.24-0.243 0.387-0.243s0.305 0.152 0.387 0.243c0.197 0.22 0.387 0.562 0.55 0.99 0.363 0.957 0.564 2.239 0.564 3.611s-0.2 2.655-0.564 3.611c-0.162 0.428-0.353 0.77-0.55 0.989-0.081 0.091-0.24 0.243-0.387 0.243zM3.935 6.707c0-0.812 0.060-1.6 0.173-2.33-0.74 0.102-1.39 0.161-2.193 0.161-1.048 0-1.048 0-1.048 0l-0.867 1.479v1.378l0.867 1.479c0 0 0 0 1.048 0 0.803 0 1.453 0.059 2.193 0.161-0.113-0.729-0.173-1.518-0.173-2.33zM5.752 10.034l-2-0.383 1.279 5.024c0.066 0.26 0.324 0.391 0.573 0.291l1.852-0.741c0.249-0.1 0.349-0.374 0.222-0.611l-1.926-3.581zM13.513 8.574c-0.057 0-0.118-0.059-0.149-0.094-0.076-0.085-0.149-0.217-0.212-0.381-0.14-0.369-0.217-0.863-0.217-1.392s0.077-1.023 0.217-1.392c0.063-0.165 0.136-0.297 0.212-0.381 0.031-0.035 0.092-0.094 0.149-0.094s0.118 0.059 0.149 0.094c0.076 0.085 0.149 0.217 0.212 0.381 0.14 0.369 0.217 0.863 0.217 1.392s-0.077 1.023-0.217 1.392c-0.063 0.165-0.136 0.297-0.212 0.381-0.031 0.035-0.092 0.094-0.149 0.094z"></path> </svg> <h1 class="title">BlockedIn</h1> </a> <ul class="navigation-list float-left"> <li class="navigation-item"> <a class="navigation-link" href="#/professionals">Professionals</a> </li> <li class="navigation-item"> <a class="navigation-link" href="#/organizations">Organizations</a> </li> <li class="navigation-item"> <a class="navigation-link" href="#/universities">Universities</a> </li> </ul> <ul class="navigation-list float-right"> <li class="navigation-item"> <a class="navigation-link" href="#/profile">User</a> </li> </ul> </section> </nav>', '', '', function(opts) {
+riot.tag2('main-nav', '<nav class="navigation"> <section class="container"> <a class="navigation-title float-left" href="#/"> <svg class="img" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewbox="0 0 16 16"> <path class="logo-svgpath" d="M16 6.707c0-3.139-0.919-5.687-2.054-5.707 0.005-0 0.009-0 0.014-0h-1.296c0 0-3.044 2.287-7.425 3.184-0.134 0.708-0.219 1.551-0.219 2.523s0.085 1.816 0.219 2.523c4.382 0.897 7.425 3.184 7.425 3.184h1.296c-0.005 0-0.009-0-0.014-0.001 1.136-0.020 2.054-2.567 2.054-5.707zM13.513 11.551c-0.147 0-0.305-0.152-0.387-0.243-0.197-0.22-0.387-0.562-0.55-0.989-0.363-0.957-0.564-2.239-0.564-3.611s0.2-2.655 0.564-3.611c0.162-0.428 0.353-0.77 0.55-0.99 0.081-0.091 0.24-0.243 0.387-0.243s0.305 0.152 0.387 0.243c0.197 0.22 0.387 0.562 0.55 0.99 0.363 0.957 0.564 2.239 0.564 3.611s-0.2 2.655-0.564 3.611c-0.162 0.428-0.353 0.77-0.55 0.989-0.081 0.091-0.24 0.243-0.387 0.243zM3.935 6.707c0-0.812 0.060-1.6 0.173-2.33-0.74 0.102-1.39 0.161-2.193 0.161-1.048 0-1.048 0-1.048 0l-0.867 1.479v1.378l0.867 1.479c0 0 0 0 1.048 0 0.803 0 1.453 0.059 2.193 0.161-0.113-0.729-0.173-1.518-0.173-2.33zM5.752 10.034l-2-0.383 1.279 5.024c0.066 0.26 0.324 0.391 0.573 0.291l1.852-0.741c0.249-0.1 0.349-0.374 0.222-0.611l-1.926-3.581zM13.513 8.574c-0.057 0-0.118-0.059-0.149-0.094-0.076-0.085-0.149-0.217-0.212-0.381-0.14-0.369-0.217-0.863-0.217-1.392s0.077-1.023 0.217-1.392c0.063-0.165 0.136-0.297 0.212-0.381 0.031-0.035 0.092-0.094 0.149-0.094s0.118 0.059 0.149 0.094c0.076 0.085 0.149 0.217 0.212 0.381 0.14 0.369 0.217 0.863 0.217 1.392s-0.077 1.023-0.217 1.392c-0.063 0.165-0.136 0.297-0.212 0.381-0.031 0.035-0.092 0.094-0.149 0.094z"></path> </svg> <h1 class="title">BlockedIn</h1> </a> <ul class="navigation-list float-left"> <li class="navigation-item"> <a class="navigation-link" href="#/professionals">Professionals</a> </li> <li class="navigation-item"> <a class="navigation-link" href="#/organizations">Organizations</a> </li> <li class="navigation-item"> <a class="navigation-link" href="#/universities">Universities</a> </li> </ul> <ul class="navigation-list float-right"> <li class="navigation-item"> <a class="navigation-link" href="#/profile">Profile</a> </li> </ul> </section> </nav>', '', '', function(opts) {
 });
 
-riot.tag2('example-cont', '<div class="row"> <div class="column"><h2>BlockedIn</h2></div> </div> <div class="row"> <div class="column"> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies..... </p> </div> </div>', '', '', function(opts) {
-});
+riot.tag2('home', '<div class="row"> <div class="column"> <h2>BlockedIn</h2> </div> </div> <div class="row"> <div class="column"> <p> BlockedIn is the right place to find your next position. If you are a Company looking to hire a new talent, that\'s the right place. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. <br> ctetur adipiscing elit. In consequat mauris et elit. In consequat mauris et ante pretium ultricies..... </p> </div> </div> <div class="s20"></div> <div class="row"> <div class="column"> <h5>For Companies:</h5> <h3>Find a Professional</h3> </div> </div> <div class="row"> <div class="column"> <user-face each="{users}"></user-face> </div> </div> <div class="s50"></div> <div class="row"> <div class="column"> <h5>For You:</h5> <h3>Find a Position</h3> </div> </div> <div class="row"> <div class="column"> <org-face each="{orgs}"></org-face> </div> </div>', '', '', function(opts) {
+    (function() {
+      this.users = StoreData.users;
+
+      this.store = opts.store;
+
+      this.store.on('update', (function(_this) {
+        return function(data) {
+          _this.users = data.users;
+          return _this.update();
+        };
+      })(this));
+
+      this.orgs = StoreData.orgs;
+
+      this.store = opts.store;
+
+      this.store.on('update', (function(_this) {
+        return function(data) {
+          _this.orgs = data.orgs;
+          return _this.update();
+        };
+      })(this));
+
+    }).call(this);
+}, '{ }');
+riot.tag2('user-face', '<a class="hint--bottom hint--rounded" data-hint="{jobTitle}" href="#/users/{id}"> <img riot-src="{avatar}"> </a>', '', '', function(opts) {
+}, '{ }');
+riot.tag2('org-face', '<a class="hint--bottom hint--rounded" data-hint="{name}" href="#/orgs/{id}"> <img riot-src="{avatar}"> </a>', '', '', function(opts) {
+}, '{ }');
 
 riot.tag2('form-cont', '<h2>Register</h2> <form> <fieldset> <label> First name <input type="text" placeholder=""> </label> <label> Last name <input type="text" placeholder=""> </label> <label> Email <input placeholder="you@email.com" type="email"> </label> <label> Bio <textarea placeholder=""></textarea> </label> <input class="button-primary" type="submit" value="Sign up"> </fieldset> </form>', '', '', function(opts) {
 });
@@ -3477,10 +3505,39 @@ riot.tag2('ab-footer', '<footer class="footer"> <section class="container"> <p>�
     this.time = new Date().getFullYear()
 }, '{ }');
 
-riot.tag2('profile', '<div> Edit profile... </div>', '', '', function(opts) {
-});
+riot.tag2('profile', '<h2>Edit your profile: {user.name}</h2> <h4>{user.jobTitle}</h4> <div class="row"> <div class="column overlay_cont"> <label class="normal"> <img riot-src="{user.avatarLg}"> <div class="icon overlay white">📷</div> <input type="file"> </label> </div> <div class="column column-80"> <p class="border" contenteditable> Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum. {user.bio} </p> <div class="row"> <div class="column column-20"> <label> Location: </label> </div> <div class="column column-80"> <div class="border" contenteditable> {user.location} </div> </div> </div> <div class="row"> <div class="column column-20"> <label> Nationality: </label> </div> <div class="column column-80"> <div class="border" contenteditable> {user.nationality} </div> </div> </div> </div> </div> <form> <fieldset> <label> Email <input placeholder="you@email.com" type="email"> </label> <label> Gender <input placeholder="M / F" type="text" value="{user.gender}"> </label> <label> Cover letter <textarea placeholder="A generic cover letter you want to send to your ideal employer, why you are suited for the job."></textarea> </label> <input class="button-primary" type="submit" value="Save"> </fieldset> </form>', 'profile *[contentEditable],[riot-tag="profile"] *[contentEditable] { display: block; margin-bottom: 12px; } profile label,[riot-tag="profile"] label { margin-top: 10px; } profile input[type=file],[riot-tag="profile"] input[type=file] { display: none; }', '', function(opts) {
+    (function() {
+      var self, user, user_id;
 
-riot.tag2('user', '<h2>{user.name}</h2> <h4>{user.jobTitle}</h4> <div class="row"> <div class="column"> <img riot-src="{user.avatarLg}"> </div> <div class="column"></div> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum. {user.bio} </p> </div> <div class="s20"></div> <h3>Skills</h3> <div class="row"> <div class="column"> PHP ★★★★★ </div> <div class="column"> CSS ★★★★ </div> <div class="column"> HTML5 ★★★★ </div> <div class="column"> MYSQL ★★★ </div> <div class="column"> Linux ★★ </div> </div> <div class="row"> <div class="column"> Apache ★★★ </div> <div class="column"> Nginx ★ </div> <div class="column"> Photoshop ★★★★ </div> <div class="column"> Illustrator ★★★ </div> <div class="column"></div> </div> <div class="clear"></div> <div class="s30"></div> <h3>Positions</h3> <h5>PHP Developer</h5> <h5>ACME</h5> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. </p> <div class="s30"></div> <h3>Education</h3> <h5>Degree in Astrophysics</h5> <h5>UCL</h5> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. </p>', '', '', function(opts) {
+      user_id = 2;
+
+      self = this;
+
+      this.users = StoreData.users;
+
+      user = _(self.users).find(function(u) {
+        return user_id === u.id;
+      });
+
+      self.user = user;
+
+      self.update();
+
+      this.store = opts.store;
+
+      this.store.on('update', function(data) {
+        self.users = data.users;
+        user = _(self.users).find(function(u) {
+          return user_id === u.id;
+        });
+        self.user = user;
+        return self.update();
+      });
+
+    }).call(this);
+}, '{ }');
+
+riot.tag2('user', '<h2>{user.name}</h2> <h4>{user.jobTitle}</h4> <div class="row"> <div class="column"> <img riot-src="{user.avatarLg}"> </div> <div class="column column-80"> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum. {user.bio} </p> <p> Location: {user.location} </p> <p> Nationality: {user.nationality} </p> </div> </div> <div class="s20"></div> <h3>Skills</h3> <div class="row"> <div class="column"> PHP ★★★★★ </div> <div class="column"> CSS ★★★★ </div> <div class="column"> HTML5 ★★★★ </div> <div class="column"> MYSQL ★★★ </div> <div class="column"> Linux ★★ </div> </div> <div class="row"> <div class="column"> Apache ★★★ </div> <div class="column"> Nginx ★ </div> <div class="column"> Photoshop ★★★★ </div> <div class="column"> Illustrator ★★★ </div> <div class="column"></div> </div> <div class="clear"></div> <div class="s30"></div> <h3>Positions</h3> <h5>PHP Developer</h5> <h5>ACME</h5> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. </p> <div class="s30"></div> <h3>Education</h3> <h5>Degree in Astrophysics</h5> <h5>UCL</h5> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. </p>', '', '', function(opts) {
     (function() {
       var self, user, user_id;
 
@@ -3819,6 +3876,7 @@ Store = function() {
   User.all().then((function(_this) {
     return function(users) {
       users = fetchUserAvatars(users);
+      users = addTmpJobTitle(users);
       StoreData.users = users;
       return _this.update(StoreData);
     };
@@ -3848,7 +3906,7 @@ api = {
 
 riot.router.routes([
   new DefaultRoute({
-    tag: 'example-cont',
+    tag: 'home',
     api: api
   }), new Route({
     path: '/professionals',
