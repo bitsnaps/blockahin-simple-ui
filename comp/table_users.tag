@@ -30,15 +30,15 @@
     var self = this
     this.store = opts.store
     this.store.on('update', function(data) {
-     self.users = data.users
-     self.update()
+      self.users = data.users
+      self.update()
     })
   </script>
 </table-users>
 <user-row>
   <dtd>
     <a href='#/users/{ id }'>
-      <img src='{ avatar }'>
+      <img class='avatar' src='{ avatar }'>
     </a>
   </dtd>
   <dtd>

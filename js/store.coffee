@@ -27,13 +27,9 @@ fetchUserAvatars = (users) ->
     user.avatarLg = "http://api.randomuser.me/portraits/med/#{gender}/#{user.id}.jpg"
     user
 
-TMP_JOB_TITLES = [
-  "Graphic Designer",
-  "Software Developer",
-  "Mathematician",
-  "Biologist",
-  "Engineer"
-]
+TMP_JOB_TITLES = ["Graphic Designer", "Software Developer", "Mathematician", "Biologist", "Engineer", "Trader", "Accountant", "Video Editor", "Cameraman", "Illustrator", "SEO", "Social Media Expert", "Copywriter", "Writer", "Editor"]
+
+
 
 addTmpJobTitle  = (users) ->
   _(users).map (user) ->

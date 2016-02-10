@@ -2,7 +2,7 @@
   <h2>{ org.name }</h2>
   <div class='row'>
     <div class='column'>
-      <img src='{ org.avatarLg }'>
+      <img class='avatar' src='{ org.avatarLg }'>
     </div>
     <div class='column'></div>
     <p>

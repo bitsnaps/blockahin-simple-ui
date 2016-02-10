@@ -4,7 +4,7 @@
   <div class='row'>
     <div class='column overlay_cont'>
       <label class='normal'>
-        <img src='{ user.avatarLg }'>
+        <img class='avatar' src='{ user.avatarLg }'>
         <div class='icon overlay white'>📷</div>
         <input type='file'>
       </label>

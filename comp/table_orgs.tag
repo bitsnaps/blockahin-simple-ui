@@ -40,7 +40,7 @@
 <org-row>
   <dtd>
     <a href='#/orgs/{ id }'>
-      <img src='{ avatar }'>
+      <img class='avatar' src='{ avatar }'>
     </a>
   </dtd>
   <dtd>

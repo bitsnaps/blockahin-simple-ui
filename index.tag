@@ -13,7 +13,7 @@
     <div class='container'>
       <main-nav></main-nav>
       <div class='content'>
-        <route optz='{ opts }'></route>
+        <route></route>
       </div>
       <ab-footer></ab-footer>
     </div>

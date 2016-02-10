@@ -3,7 +3,7 @@
   <h4>{ user.jobTitle }</h4>
   <div class='row'>
     <div class='column'>
-      <img src='{ user.avatarLg }'>
+      <img class='avatar' src='{ user.avatarLg }'>
     </div>
     <div class='column column-80'>
       <p>
