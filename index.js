@@ -3607,7 +3607,9 @@ riot.tag2('org-edit', '<h4>Edit organization:</h4> <h2>{org.name}</h2> <form ons
     (function() {
       var entry_id;
 
-      entry_id = 3;
+      this.prod_host = s(location.hostname).strLeft(".").value();
+
+      entry_id = Number(this.prod_host[2]);
 
       BR.loadFromCollection("org", entry_id, "orgs", this);
 

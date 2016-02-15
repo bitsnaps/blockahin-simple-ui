@@ -22,7 +22,9 @@
     (function() {
       var entry_id;
     
-      entry_id = 3;
+      this.prod_host = s(location.hostname).strLeft(".").value();
+    
+      entry_id = Number(this.prod_host[2]);
     
       BR.loadFromCollection("org", entry_id, "orgs", this);
     
