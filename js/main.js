@@ -34,8 +34,8 @@ riot.router.routes([
     tag: 'table-unis',
     api: api
   }), new Route({
-    path: '/profile',
-    tag: 'profile',
+    path: '/user',
+    tag: 'user-edit',
     api: api
   }), new Route({
     path: '/users/:id',

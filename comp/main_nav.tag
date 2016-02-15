@@ -24,7 +24,8 @@
 
   		<ul class="navigation-list float-right">
   			<li class="navigation-item">
-  				<a class="navigation-link" href="#/profile">Profile</a>
+          <a class="navigation-link" href="#/user">Profile</a>
+          <a class="navigation-link" href="#/organization">Organization</a>
   			</li>
   		</ul>
 

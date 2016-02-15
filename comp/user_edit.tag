@@ -1,4 +1,4 @@
-<profile>
+<user-edit>
   <h4>Edit your profile:</h4>
   <h2>{ user.name }</h2>
   <form onsubmit='{ update }'>
@@ -78,36 +78,11 @@
   </style>
   <script>
     (function() {
-      var user, user_id;
+      var entry_id;
     
-      user_id = 2;
+      -(entry_id = 2);
     
-      this.users = StoreData.users;
-    
-      user = _(this.users).find(function(u) {
-        return user_id === u.id;
-      });
-    
-      this.user = user;
-    
-      this.update();
-    
-      this.store = opts.store;
-    
-      this.store.on('update', (function(_this) {
-        return function(data) {
-          _this.users = data.users;
-          user = _(_this.users).find(function(u) {
-            return user_id === u.id;
-          });
-          _this.user = user;
-          return _this.update();
-        };
-      })(this));
-    
-      this.update = function() {
-        return c.log("UPDATE");
-      };
+      BR.loadFromCollection("user", entry_id, "users", this);
     
       this.message = "";
     
@@ -152,4 +127,4 @@
     
     }).call(this);
   </script>
-</profile>
+</user-edit>

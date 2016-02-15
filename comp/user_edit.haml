@@ -1,4 +1,4 @@
-%profile
+%user-edit
   %h4 Edit your profile:
   %h2 { user.name }
   %form{ onsubmit: "{ update }" }
@@ -65,25 +65,10 @@
 
 
   :coffeescript
-    user_id = 2
+    -# user_id = 2
+    entry_id = 2
 
-    @users = StoreData.users
-    user = _(@users).find (u) ->
-      user_id == u.id
-    @user = user
-    @update()
-
-    @store = opts.store
-    @store.on 'update', (data) =>
-      @users = data.users
-      user = _(@users).find (u) ->
-        user_id == u.id
-      @user = user
-      @update()
-
-
-    @update = ->
-      c.log "UPDATE"
+    BR.loadFromCollection "user", entry_id, "users", this
 
 
     @message = ""

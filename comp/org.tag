@@ -50,7 +50,7 @@
   </div>
   <script>
     (function() {
-      var org, org_id, present;
+      var entry_id, org_id, present;
     
       present = function(org) {
         if (org) {
@@ -59,37 +59,11 @@
         return org;
       };
     
-      org_id = s(location.hash).strRightBack("/").value();
+      entry_id = BR.getEntryId();
     
-      org_id = Number(org_id);
+      org_id = entry_id;
     
-      this.orgs = StoreData.orgs;
-    
-      org = _(this.orgs).find((function(_this) {
-        return function(o) {
-          return org_id === o.id;
-        };
-      })(this));
-    
-      org = present(org);
-    
-      this.org = org;
-    
-      this.update();
-    
-      this.store = opts.store;
-    
-      this.store.on('update', (function(_this) {
-        return function(data) {
-          _this.orgs = data.orgs;
-          org = _(_this.orgs).find(function(o) {
-            return org_id === o.id;
-          });
-          org = present(org);
-          _this.org = org;
-          return _this.update();
-        };
-      })(this));
+      BR.loadFromCollection("org", entry_id, "orgs", this, present);
     
     }).call(this);
   </script>

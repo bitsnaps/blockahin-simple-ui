@@ -36,14 +36,16 @@
     <script src='comp/table_unis.js'></script>
     <script src='comp/sample.js'></script>
     <script src='comp/ab_footer.js'></script>
-    <script src='comp/profile.js'></script>
     <script src='comp/user.js'></script>
     <script src='comp/org.js'></script>
+    <script src='comp/user_edit.js'></script>
+    <script src='comp/org_edit.js'></script>
     <script src='comp/not_found.js'></script>
     <script src='js/bapp-api/bapi.js'></script>
     <script src='js/bapp-api/model.js'></script>
     <script src='js/bapp-api/models.js'></script>
     <script src='js/bapp-api/env.js'></script>
+    <script src='js/mkv-riot.js'></script>
     <script src='js/store.js'></script>
     <script src='js/main.js'></script>
   </body>

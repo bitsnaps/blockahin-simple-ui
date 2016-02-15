@@ -46,22 +46,7 @@
         org.publicKeyShort = "\#{org.publicKey[0..8]}...\#{org.publicKey[-6..-1]}"
       org
 
-    org_id = s(location.hash).strRightBack("/").value()
-    org_id = Number org_id
+    entry_id = BR.getEntryId()
+    org_id = entry_id
 
-
-    @orgs = StoreData.orgs
-    org = _(@orgs).find (o) =>
-      org_id == o.id
-    org = present org
-    @org = org
-    @update()
-
-    @store = opts.store
-    @store.on 'update', (data) =>
-      @orgs = data.orgs
-      org = _(@orgs).find (o) =>
-        org_id == o.id
-      org = present org
-      @org = org
-      @update()
+    BR.loadFromCollection "org", entry_id, "orgs", this, present

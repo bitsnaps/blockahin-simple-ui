@@ -1,0 +1,57 @@
+%profile
+  %h4 Edit:
+  %h2 { org.name }
+  %form{ onsubmit: "{ update }" }
+    %h4
+      bla
+
+  %style{scoped: true}
+    :plain
+      :scope *[contentEditable]  {
+        display: block;
+        margin-bottom: 12px;
+      }
+      :scope label {
+        margin-top: 10px;
+      }
+      :scope input[type=file] {
+        display: none;
+      }
+
+
+  :coffeescript
+    entry_id = 3 
+    BR.loadFromCollection "user", entry_id, "users", this
+
+
+    @message = ""
+
+    @.on 'mount', (data) =>
+      spinner = $ ".spinner"
+
+      $("input[type=submit]").on "click", (evt) =>
+        spinner.css
+          visibility: "visible"
+
+        values = $("profile form").serializeArray()
+        newValues = {}
+        _(values).each (entry) ->
+          newValues[entry.name] = entry.value
+
+        _(newValues).each (value, key) =>
+          @user[key] = value if @user.hasAttribute key
+
+        # TODO: fix this - avatar and avatarLg must be stored in the blockchain
+        userValues = {}
+        _(@user).each (value, key) =>
+          userValues[key] = value if @user.hasAttribute key
+
+        c.log "Updating user:", @user
+        User.update(userValues)
+          .then (resp) =>
+            c.log "User updated:", resp
+            spinner.css
+              visibility: "hidden"
+            $(".message").html "saved!"
+          .catch (error) ->
+            c.log "Error updating current User:", error
