@@ -50,7 +50,7 @@
   </div>
   <script>
     (function() {
-      var entry_id, org_id, present;
+      var entry_id, present;
     
       present = function(org) {
         if (org) {
@@ -60,8 +60,6 @@
       };
     
       entry_id = BR.getEntryId();
-    
-      org_id = entry_id;
     
       BR.loadFromCollection("org", entry_id, "orgs", this, present);
     

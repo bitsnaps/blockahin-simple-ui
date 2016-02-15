@@ -38,8 +38,6 @@
         %span{ class: "hint--bottom-left hint--rounded", :"data-hint" => "{ org.publicKey }"} { org.publicKeyShort }
 
 
-
-
   :coffeescript
     present = (org) ->
       if org
@@ -47,6 +45,4 @@
       org
 
     entry_id = BR.getEntryId()
-    org_id = entry_id
-
     BR.loadFromCollection "org", entry_id, "orgs", this, present

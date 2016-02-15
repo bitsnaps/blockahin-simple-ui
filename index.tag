@@ -47,6 +47,7 @@
     <script src='js/bapp-api/env.js'></script>
     <script src='js/mkv-riot.js'></script>
     <script src='js/store.js'></script>
+    <script src='js/routes.js'></script>
     <script src='js/main.js'></script>
   </body>
 </html>

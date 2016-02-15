@@ -1,9 +1,9 @@
-<profile>
-  <h4>Edit:</h4>
+<org-edit>
+  <h4>Edit organization:</h4>
   <h2>{ org.name }</h2>
   <form onsubmit='{ update }'>
     <h4>
-      bla
+      TODO
     </h4>
   </form>
   <style scoped>
@@ -24,7 +24,7 @@
     
       entry_id = 3;
     
-      BR.loadFromCollection("user", entry_id, "users", this);
+      BR.loadFromCollection("org", entry_id, "orgs", this);
     
       this.message = "";
     
@@ -69,4 +69,4 @@
     
     }).call(this);
   </script>
-</profile>
+</org-edit>

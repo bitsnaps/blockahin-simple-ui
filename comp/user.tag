@@ -71,34 +71,11 @@
   </p>
   <script>
     (function() {
-      var self, user, user_id;
+      var entry_id;
     
-      user_id = s(location.hash).strRightBack("/").value();
+      entry_id = BR.getEntryId();
     
-      user_id = Number(user_id);
-    
-      self = this;
-    
-      this.users = StoreData.users;
-    
-      user = _(self.users).find(function(u) {
-        return user_id === u.id;
-      });
-    
-      self.user = user;
-    
-      self.update();
-    
-      this.store = opts.store;
-    
-      this.store.on('update', function(data) {
-        self.users = data.users;
-        user = _(self.users).find(function(u) {
-          return user_id === u.id;
-        });
-        self.user = user;
-        return self.update();
-      });
+      BR.loadFromCollection("user", entry_id, "users", this);
     
     }).call(this);
   </script>

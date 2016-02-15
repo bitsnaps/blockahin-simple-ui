@@ -58,21 +58,6 @@
     Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis.
 
   :coffeescript
-    user_id = s(location.hash).strRightBack("/").value()
-    user_id = Number user_id
-
-    self = this
-
-    this.users = StoreData.users
-    user = _(self.users).find (u) ->
-      user_id == u.id
-    self.user = user
-    self.update()
-
-    this.store = opts.store
-    this.store.on 'update', (data) ->
-      self.users = data.users
-      user = _(self.users).find (u) ->
-        user_id == u.id
-      self.user = user
-      self.update()
+    entry_id = BR.getEntryId()
+    BR.loadFromCollection "user", entry_id, "users", this
+    
