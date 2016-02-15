@@ -22,7 +22,7 @@
         <li class='navigation-item' if="{ dev || prod_host == 'bi1' }">
           <a class='navigation-link' href='#/user'>Profile</a>
         </li>
-        <li class='navigation-item' if="{ dev || prod_host != 'bi2' }">
+        <li class='navigation-item' if="{ dev || prod_host != 'bi1' }">
           <a class='navigation-link' href='#/org'>Organization</a>
         </li>
       </ul>

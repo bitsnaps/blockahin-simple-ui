@@ -16,7 +16,7 @@
       %ul.navigation-list.float-right
         %li.navigation-item{ if: "{ dev || prod_host == 'bi1' }"}
           %a.navigation-link{href: "#/user"} Profile
-        %li.navigation-item{ if: "{ dev || prod_host != 'bi2' }"}
+        %li.navigation-item{ if: "{ dev || prod_host != 'bi1' }"}
           %a.navigation-link{href: "#/org"} Organization
 
   :coffee
