@@ -1,12 +1,10 @@
 %user-new
-  %h4 Register:
+  %h3 Register:
   %form#user_form{ onsubmit: "{ update }" }
-    %label
-      %h2
-        %input.big-text{placeholder: "Your First and Last Name", name: "jobTitle", type: "text", value: "{ user.name }"}/
+    %h5
+      %input.big-text{placeholder: "Your First and Last Name", name: "name", type: "text", value: "{ user.name }", required: true }/
 
-    %h4
-      %input.big-text{placeholder: "Your current Job Title", name: "jobTitle", type: "text", value: "{ user.jobTitle }"}/
+    %input.big-text{placeholder: "Your current Job Title", name: "jobTitle", type: "text", value: "{ user.jobTitle }"}/
     .row
       .column.overlay_cont
         %label.normal

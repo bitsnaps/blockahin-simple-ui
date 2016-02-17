@@ -5,6 +5,16 @@ backend fields:
 user registration
 org registration
 
+
+validation during registration
+form partial unification??
+
+user creation is async PD! :D
+
+get confirmation data from ethereum
+
+when got confirmation, get length, get non fetched element
+!!!
 ---
 
 caching

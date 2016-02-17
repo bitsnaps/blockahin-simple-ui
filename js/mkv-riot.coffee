@@ -39,15 +39,19 @@ BR =
         _(values).each (entry) ->
           obj[entry.name] = entry.value
 
-        c.log "#{klass}.#{action}() #{name}:", obj
+        c.log "#{name}.#{action}()", obj
         klass[action](obj)
           .then (resp) =>
             c.log "#{name} updated:", resp
             spinner.css
               visibility: "hidden"
             $("#{form} .message").html "saved!"
+            if action == "create"
+              coll = StoreData[coll_name]
+              coll.push obj
           .catch (error) ->
-            c.log "Error updating current #{name}:", error
+            c.error "Error: Cannot #{action} current #{name}:", error
+            c.error error.stack
 
   bindCreateEntityForm: (name, ctx) =>
     BR.bindSaveEntityForm "create", name, null, ctx

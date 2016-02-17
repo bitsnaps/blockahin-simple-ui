@@ -60,15 +60,15 @@ BAppModel = (function() {
     })(this));
   };
 
-  BAppModel.create = function() {
+  BAppModel.create = function(values) {
     return new Promise((function(_this) {
       return function(resolve, reject) {
-        var values;
         if (!API) {
           _this.c.error(_this.errApiNotFound);
         }
         values = _this.filterValues(values, _this);
         values = _this.convertValuesForSave(values);
+        delete values.id;
         return API.post(_this.collection(), "create", values).then(function(resp) {
           return resolve(resp);
         })["catch"](function(error) {

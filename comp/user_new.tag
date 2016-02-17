@@ -1,14 +1,10 @@
 <user-new>
-  <h4>Register:</h4>
+  <h3>Register:</h3>
   <form id='user_form' onsubmit='{ update }'>
-    <label>
-      <h2>
-        <input class='big-text' name='jobTitle' placeholder='Your First and Last Name' type='text' value='{ user.name }'>
-      </h2>
-    </label>
-    <h4>
-      <input class='big-text' name='jobTitle' placeholder='Your current Job Title' type='text' value='{ user.jobTitle }'>
-    </h4>
+    <h5>
+      <input class='big-text' name='name' placeholder='Your First and Last Name' required type='text' value='{ user.name }'>
+    </h5>
+    <input class='big-text' name='jobTitle' placeholder='Your current Job Title' type='text' value='{ user.jobTitle }'>
     <div class='row'>
       <div class='column overlay_cont'>
         <label class='normal'>

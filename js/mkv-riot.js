@@ -54,15 +54,21 @@ BR = {
           _(values).each(function(entry) {
             return obj[entry.name] = entry.value;
           });
-          c.log(klass + "." + action + "() " + name + ":", obj);
+          c.log(name + "." + action + "()", obj);
           return klass[action](obj).then(function(resp) {
+            var coll;
             c.log(name + " updated:", resp);
             spinner.css({
               visibility: "hidden"
             });
-            return $(form + " .message").html("saved!");
+            $(form + " .message").html("saved!");
+            if (action === "create") {
+              coll = StoreData[coll_name];
+              return coll.push(obj);
+            }
           })["catch"](function(error) {
-            return c.log("Error updating current " + name + ":", error);
+            c.error("Error: Cannot " + action + " current " + name + ":", error);
+            return c.error(error.stack);
           });
         });
       });

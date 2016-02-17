@@ -3586,7 +3586,7 @@ riot.tag2('org-edit', '<h4>Edit organization:</h4> <h2>{org.name}</h2> <form id=
     }).call(this);
 }, '{ }');
 
-riot.tag2('user-new', '<h4>Register:</h4> <form id="user_form" onsubmit="{update}"> <label> <h2> <input class="big-text" name="jobTitle" placeholder="Your First and Last Name" type="text" value="{user.name}"> </h2> </label> <h4> <input class="big-text" name="jobTitle" placeholder="Your current Job Title" type="text" value="{user.jobTitle}"> </h4> <div class="row"> <div class="column overlay_cont"> <label class="normal"> <img class="avatar" riot-src="{user.avatarLg}"> <div class="icon overlay white">📷</div> <input type="file"> </label> </div> <div class="column column-80"> <p class="border" contenteditable> Bio: {user.bio} </p> <div class="row"> <div class="column column-20"> <label> <strong>Location:</strong> </label> </div> <div class="column column-80"> <input name="location" placeholder="Your City, Planet Earth" type="text" value="{user.location}"> </div> </div> <div class="row"> <div class="column column-20"> <label> <strong>Nationality:</strong> </label> </div> <div class="column column-80"> <input name="nationality" placeholder="Your country of Origin" type="text" value="{user.nationality}"> </div> </div> </div> </div> <fieldset> <label> Email <input name="email" placeholder="you@email.com" type="email"> </label> <label> Gender <input name="gender" placeholder="M / F" type="text" value="{user.gender}"> </label> <label> Cover letter <textarea placeholder="A generic cover letter you want to send to your ideal employer, why you are suited for the job."></textarea> </label> <input class="left button-primary" onclick="{update}" type="submit" value="Save"> <div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> <div class="message">{message}</div> </fieldset> </form>', 'user-new *[contentEditable],[riot-tag="user-new"] *[contentEditable] { display: block; margin-bottom: 12px; } user-new label,[riot-tag="user-new"] label { margin-top: 10px; } user-new input[type=file],[riot-tag="user-new"] input[type=file] { display: none; }', '', function(opts) {
+riot.tag2('user-new', '<h3>Register:</h3> <form id="user_form" onsubmit="{update}"> <h5> <input class="big-text" name="name" placeholder="Your First and Last Name" required type="text" value="{user.name}"> </h5> <input class="big-text" name="jobTitle" placeholder="Your current Job Title" type="text" value="{user.jobTitle}"> <div class="row"> <div class="column overlay_cont"> <label class="normal"> <img class="avatar" riot-src="{user.avatarLg}"> <div class="icon overlay white">📷</div> <input type="file"> </label> </div> <div class="column column-80"> <p class="border" contenteditable> Bio: {user.bio} </p> <div class="row"> <div class="column column-20"> <label> <strong>Location:</strong> </label> </div> <div class="column column-80"> <input name="location" placeholder="Your City, Planet Earth" type="text" value="{user.location}"> </div> </div> <div class="row"> <div class="column column-20"> <label> <strong>Nationality:</strong> </label> </div> <div class="column column-80"> <input name="nationality" placeholder="Your country of Origin" type="text" value="{user.nationality}"> </div> </div> </div> </div> <fieldset> <label> Email <input name="email" placeholder="you@email.com" type="email"> </label> <label> Gender <input name="gender" placeholder="M / F" type="text" value="{user.gender}"> </label> <label> Cover letter <textarea placeholder="A generic cover letter you want to send to your ideal employer, why you are suited for the job."></textarea> </label> <input class="left button-primary" onclick="{update}" type="submit" value="Save"> <div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> <div class="message">{message}</div> </fieldset> </form>', 'user-new *[contentEditable],[riot-tag="user-new"] *[contentEditable] { display: block; margin-bottom: 12px; } user-new label,[riot-tag="user-new"] label { margin-top: 10px; } user-new input[type=file],[riot-tag="user-new"] input[type=file] { display: none; }', '', function(opts) {
     (function() {
       this.user = new User({});
 
@@ -3735,15 +3735,15 @@ BAppModel = (function() {
     })(this));
   };
 
-  BAppModel.create = function() {
+  BAppModel.create = function(values) {
     return new Promise((function(_this) {
       return function(resolve, reject) {
-        var values;
         if (!API) {
           _this.c.error(_this.errApiNotFound);
         }
         values = _this.filterValues(values, _this);
         values = _this.convertValuesForSave(values);
+        delete values.id;
         return API.post(_this.collection(), "create", values).then(function(resp) {
           return resolve(resp);
         })["catch"](function(error) {
@@ -3954,15 +3954,21 @@ BR = {
           _(values).each(function(entry) {
             return obj[entry.name] = entry.value;
           });
-          c.log(klass + "." + action + "() " + name + ":", obj);
+          c.log(name + "." + action + "()", obj);
           return klass[action](obj).then(function(resp) {
+            var coll;
             c.log(name + " updated:", resp);
             spinner.css({
               visibility: "hidden"
             });
-            return $(form + " .message").html("saved!");
+            $(form + " .message").html("saved!");
+            if (action === "create") {
+              coll = StoreData[coll_name];
+              return coll.push(obj);
+            }
           })["catch"](function(error) {
-            return c.log("Error updating current " + name + ":", error);
+            c.error("Error: Cannot " + action + " current " + name + ":", error);
+            return c.error(error.stack);
           });
         });
       });

@@ -37,11 +37,12 @@ class BAppModel
           c.error "Error: #{error}"
           reject error
 
-  @create: ->
+  @create: (values) ->
     new Promise (resolve, reject) =>
       @c.error @errApiNotFound unless API
       values = @filterValues values, @
       values = @convertValuesForSave values
+      delete values.id
       API.post(@collection(), "create", values)
         .then (resp) =>
           resolve resp
