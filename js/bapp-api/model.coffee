@@ -9,6 +9,9 @@ class BAppModel
   hasAttribute: (attr) ->
     _(@attrs).include attr
 
+  @klass: ->
+    G[@name]
+
   @new: (args) ->
     new G[@name](args)
 
@@ -35,6 +38,7 @@ class BAppModel
 
   @update: (values) ->
     new Promise (resolve, reject) =>
+      values = @filterValues values, @
       values = @convertValuesForSave values
       @c.error @errApiNotFound unless API
       API.post(@collection(), "update", values)
@@ -43,7 +47,14 @@ class BAppModel
         .catch (error) ->
           c.error "Error: #{error}"
 
+
   # tools
+
+  @filterValues = (values, ctx) ->
+    newVals = {}
+    _(values).each (value, key) ->
+      newVals[key] = value if _(ctx.attrs).include key
+    newVals
 
   @convertValuesForSave: (values) ->
     newVals = {}

@@ -10,7 +10,7 @@ User = (function(superClass) {
     this.id = arg.id, this.name = arg.name, this.publicKey = arg.publicKey, this.location = arg.location, this.achievements = arg.achievements, this.birthDate = arg.birthDate, this.gender = arg.gender, this.nationality = arg.nationality;
   }
 
-  User.prototype.attrs = ["id", "name", "publicKey", "location", "achievements", "birthDate", "gender", "nationality"];
+  User.attrs = ["id", "name", "publicKey", "location", "achievements", "birthDate", "gender", "nationality"];
 
   return User;
 
@@ -23,7 +23,7 @@ Org = (function(superClass) {
     this.id = arg.id, this.name = arg.name, this.publicKey = arg.publicKey, this.orgType = arg.orgType, this.location = arg.location, this.industry = arg.industry;
   }
 
-  Org.prototype.attrs = ["id", "name", "publicKey", "orgType", "location", "industry"];
+  Org.attrs = ["id", "name", "publicKey", "orgType", "location", "industry"];
 
   return Org;
 
@@ -36,7 +36,7 @@ Employment = (function(superClass) {
     this.id = arg.id, this.userId = arg.userId, this.orgId = arg.orgId, this.role = arg.role, this.dateStart = arg.dateStart, this.dateEnd = arg.dateEnd, this.reportsTo = arg.reportsTo, this.budget = arg.budget, this.skills = arg.skills;
   }
 
-  Employment.prototype.attrs = ["id", "userId", "orgId", "role", "dateStart", "dateEnd", "reportsTo", "budget", "skills"];
+  Employment.attrs = ["id", "userId", "orgId", "role", "dateStart", "dateEnd", "reportsTo", "budget", "skills"];
 
   return Employment;
 

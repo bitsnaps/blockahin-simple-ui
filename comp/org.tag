@@ -61,7 +61,7 @@
     
       entry_id = BR.getEntryId();
     
-      BR.loadFromCollection("org", entry_id, "orgs", this, present);
+      BR.loadFromCollection("org", entry_id, this, present);
     
     }).call(this);
   </script>

@@ -13,6 +13,10 @@ BAppModel = (function() {
     return _(this.attrs).include(attr);
   };
 
+  BAppModel.klass = function() {
+    return G[this.name];
+  };
+
   BAppModel["new"] = function(args) {
     return new G[this.name](args);
   };
@@ -57,6 +61,7 @@ BAppModel = (function() {
   BAppModel.update = function(values) {
     return new Promise((function(_this) {
       return function(resolve, reject) {
+        values = _this.filterValues(values, _this);
         values = _this.convertValuesForSave(values);
         if (!API) {
           _this.c.error(_this.errApiNotFound);
@@ -68,6 +73,17 @@ BAppModel = (function() {
         });
       };
     })(this));
+  };
+
+  BAppModel.filterValues = function(values, ctx) {
+    var newVals;
+    newVals = {};
+    _(values).each(function(value, key) {
+      if (_(ctx.attrs).include(key)) {
+        return newVals[key] = value;
+      }
+    });
+    return newVals;
   };
 
   BAppModel.convertValuesForSave = function(values) {

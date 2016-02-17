@@ -65,38 +65,7 @@
 
 
   :coffeescript
-    -# user_id = 2
     entry_id = 2
-    BR.loadFromCollection "user", entry_id, "users", this
+    BR.loadFromCollection "user", entry_id, this
 
-    @message = ""
-
-    @.on 'mount', (data) =>
-      spinner = $ ".spinner"
-
-      $("form#user_form input[type=submit]").on "click", (evt) =>
-        spinner.css
-          visibility: "visible"
-
-        values = $("form#user_form").serializeArray()
-        newValues = {}
-        _(values).each (entry) ->
-          newValues[entry.name] = entry.value
-
-        _(newValues).each (value, key) =>
-          @user[key] = value if @user.hasAttribute key
-
-        # TODO: fix this - avatar and avatarLg must be stored in the blockchain
-        userValues = {}
-        _(@user).each (value, key) =>
-          userValues[key] = value if @user.hasAttribute key
-
-        c.log "Updating user:", @user
-        User.update(userValues)
-          .then (resp) =>
-            c.log "User updated:", resp
-            spinner.css
-              visibility: "hidden"
-            $(".message").html "saved!"
-          .catch (error) ->
-            c.log "Error updating current User:", error
+    BR.bindUpdateEntityForm "user", entry_id, this

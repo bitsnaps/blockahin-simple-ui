@@ -75,7 +75,7 @@
     
       entry_id = BR.getEntryId();
     
-      BR.loadFromCollection("user", entry_id, "users", this);
+      BR.loadFromCollection("user", entry_id, this);
     
     }).call(this);
   </script>

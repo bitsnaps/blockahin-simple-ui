@@ -3528,7 +3528,7 @@ riot.tag2('user', '<h2>{user.name}</h2> <h4>{user.jobTitle}</h4> <div class="row
 
       entry_id = BR.getEntryId();
 
-      BR.loadFromCollection("user", entry_id, "users", this);
+      BR.loadFromCollection("user", entry_id, this);
 
     }).call(this);
 }, '{ }');
@@ -3546,7 +3546,7 @@ riot.tag2('org', '<h2>{org.name}</h2> <div class="row"> <div class="column"> <im
 
       entry_id = BR.getEntryId();
 
-      BR.loadFromCollection("org", entry_id, "orgs", this, present);
+      BR.loadFromCollection("org", entry_id, this, present);
 
     }).call(this);
 }, '{ }');
@@ -3555,50 +3555,11 @@ riot.tag2('user-edit', '<h4>Edit your profile:</h4> <h2>{user.name}</h2> <form i
     (function() {
       var entry_id;
 
-      -(entry_id = 2);
+      entry_id = 2;
 
-      BR.loadFromCollection("user", entry_id, "users", this);
+      BR.loadFromCollection("user", entry_id, this);
 
-      this.message = "";
-
-      this.on('mount', (function(_this) {
-        return function(data) {
-          var spinner;
-          spinner = $(".spinner");
-          return $("form#user_form input[type=submit]").on("click", function(evt) {
-            var newValues, userValues, values;
-            spinner.css({
-              visibility: "visible"
-            });
-            values = $("form#user_form").serializeArray();
-            newValues = {};
-            _(values).each(function(entry) {
-              return newValues[entry.name] = entry.value;
-            });
-            _(newValues).each(function(value, key) {
-              if (_this.user.hasAttribute(key)) {
-                return _this.user[key] = value;
-              }
-            });
-            userValues = {};
-            _(_this.user).each(function(value, key) {
-              if (_this.user.hasAttribute(key)) {
-                return userValues[key] = value;
-              }
-            });
-            c.log("Updating user:", _this.user);
-            return User.update(userValues).then(function(resp) {
-              c.log("User updated:", resp);
-              spinner.css({
-                visibility: "hidden"
-              });
-              return $(".message").html("saved!");
-            })["catch"](function(error) {
-              return c.log("Error updating current User:", error);
-            });
-          });
-        };
-      })(this));
+      BR.bindUpdateEntityForm("user", entry_id, this);
 
     }).call(this);
 }, '{ }');
@@ -3611,48 +3572,9 @@ riot.tag2('org-edit', '<h4>Edit organization:</h4> <h2>{org.name}</h2> <form ons
 
       entry_id = Number(this.prod_host[2]);
 
-      BR.loadFromCollection("org", entry_id, "orgs", this);
+      BR.loadFromCollection("org", entry_id, this);
 
-      this.message = "";
-
-      this.on('mount', (function(_this) {
-        return function(data) {
-          var spinner;
-          spinner = $(".spinner");
-          return $("input[type=submit]").on("click", function(evt) {
-            var newValues, userValues, values;
-            spinner.css({
-              visibility: "visible"
-            });
-            values = $("profile form").serializeArray();
-            newValues = {};
-            _(values).each(function(entry) {
-              return newValues[entry.name] = entry.value;
-            });
-            _(newValues).each(function(value, key) {
-              if (_this.user.hasAttribute(key)) {
-                return _this.user[key] = value;
-              }
-            });
-            userValues = {};
-            _(_this.user).each(function(value, key) {
-              if (_this.user.hasAttribute(key)) {
-                return userValues[key] = value;
-              }
-            });
-            c.log("Updating user:", _this.user);
-            return User.update(userValues).then(function(resp) {
-              c.log("User updated:", resp);
-              spinner.css({
-                visibility: "hidden"
-              });
-              return $(".message").html("saved!");
-            })["catch"](function(error) {
-              return c.log("Error updating current User:", error);
-            });
-          });
-        };
-      })(this));
+      BR.bindUpdateEntityForm("org", entry_id, this);
 
     }).call(this);
 }, '{ }');
@@ -3728,6 +3650,10 @@ BAppModel = (function() {
     return _(this.attrs).include(attr);
   };
 
+  BAppModel.klass = function() {
+    return G[this.name];
+  };
+
   BAppModel["new"] = function(args) {
     return new G[this.name](args);
   };
@@ -3772,6 +3698,7 @@ BAppModel = (function() {
   BAppModel.update = function(values) {
     return new Promise((function(_this) {
       return function(resolve, reject) {
+        values = _this.filterValues(values, _this);
         values = _this.convertValuesForSave(values);
         if (!API) {
           _this.c.error(_this.errApiNotFound);
@@ -3783,6 +3710,17 @@ BAppModel = (function() {
         });
       };
     })(this));
+  };
+
+  BAppModel.filterValues = function(values, ctx) {
+    var newVals;
+    newVals = {};
+    _(values).each(function(value, key) {
+      if (_(ctx.attrs).include(key)) {
+        return newVals[key] = value;
+      }
+    });
+    return newVals;
   };
 
   BAppModel.convertValuesForSave = function(values) {
@@ -3851,7 +3789,7 @@ User = (function(superClass) {
     this.id = arg.id, this.name = arg.name, this.publicKey = arg.publicKey, this.location = arg.location, this.achievements = arg.achievements, this.birthDate = arg.birthDate, this.gender = arg.gender, this.nationality = arg.nationality;
   }
 
-  User.prototype.attrs = ["id", "name", "publicKey", "location", "achievements", "birthDate", "gender", "nationality"];
+  User.attrs = ["id", "name", "publicKey", "location", "achievements", "birthDate", "gender", "nationality"];
 
   return User;
 
@@ -3864,7 +3802,7 @@ Org = (function(superClass) {
     this.id = arg.id, this.name = arg.name, this.publicKey = arg.publicKey, this.orgType = arg.orgType, this.location = arg.location, this.industry = arg.industry;
   }
 
-  Org.prototype.attrs = ["id", "name", "publicKey", "orgType", "location", "industry"];
+  Org.attrs = ["id", "name", "publicKey", "orgType", "location", "industry"];
 
   return Org;
 
@@ -3877,7 +3815,7 @@ Employment = (function(superClass) {
     this.id = arg.id, this.userId = arg.userId, this.orgId = arg.orgId, this.role = arg.role, this.dateStart = arg.dateStart, this.dateEnd = arg.dateEnd, this.reportsTo = arg.reportsTo, this.budget = arg.budget, this.skills = arg.skills;
   }
 
-  Employment.prototype.attrs = ["id", "userId", "orgId", "role", "dateStart", "dateEnd", "reportsTo", "budget", "skills"];
+  Employment.attrs = ["id", "userId", "orgId", "role", "dateStart", "dateEnd", "reportsTo", "budget", "skills"];
 
   return Employment;
 
@@ -3902,8 +3840,9 @@ BR = {
     return Number(entry_id);
   },
   loadFromCollection: (function(_this) {
-    return function(name, entry_id, coll_name, ctx, presenter) {
-      var coll, elem;
+    return function(name, entry_id, ctx, presenter) {
+      var coll, coll_name, elem;
+      coll_name = BR.pluralize(name);
       coll = StoreData[coll_name];
       elem = _(coll).find(function(e) {
         return entry_id === e.id;
@@ -3926,7 +3865,48 @@ BR = {
         return ctx.update();
       });
     };
-  })(this)
+  })(this),
+  bindUpdateEntityForm: (function(_this) {
+    return function(name, entry_id, ctx, presenter) {
+      var coll_name, form;
+      coll_name = BR.pluralize(name);
+      form = "form#" + name + "_form";
+      _this.message = "";
+      return ctx.on('mount', function(data) {
+        var spinner;
+        spinner = $(form + " .spinner");
+        return $(form + " input[type=submit]").on("click", function(evt) {
+          var obj, values;
+          spinner.css({
+            visibility: "visible"
+          });
+          obj = ctx[name];
+          values = $("" + form).serializeArray();
+          _(values).each(function(entry) {
+            return obj[entry.name] = entry.value;
+          });
+          c.log("Updating " + name + ":", obj);
+          return User.update(obj).then(function(resp) {
+            c.log(name + " updated:", resp);
+            spinner.css({
+              visibility: "hidden"
+            });
+            return $(form + " .message").html("saved!");
+          })["catch"](function(error) {
+            return c.log("Error updating current " + name + ":", error);
+          });
+        });
+      });
+    };
+  })(this),
+  pluralize: function(word) {
+    if (s(word).endsWith('y')) {
+      word = word.substring(word.length - 1);
+      return word + "ies";
+    } else {
+      return word + "s";
+    }
+  }
 };
 
 var Orgs, Store, StoreData, TMP_JOB_TITLES, Unis, Users, addTmpJobTitle, fetchUserAvatars, genOrgAvatars, identicon;
