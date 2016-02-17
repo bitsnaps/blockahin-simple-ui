@@ -22,6 +22,8 @@ user registration
 
 org registration
 
+spinner element
+
 image upload (disk)
 
 

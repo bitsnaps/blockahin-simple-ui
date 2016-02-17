@@ -78,10 +78,13 @@ BAppModel = (function() {
   BAppModel.filterValues = function(values, ctx) {
     var newVals;
     newVals = {};
-    _(values).each(function(value, key) {
-      if (_(ctx.attrs).include(key)) {
-        return newVals[key] = value;
+    _(ctx.attrs).each(function(attr) {
+      var val;
+      val = "-";
+      if (_(ctx.attrs).include(attr)) {
+        val = values[attr];
       }
+      return newVals[attr] = val;
     });
     return newVals;
   };

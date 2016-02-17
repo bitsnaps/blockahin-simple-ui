@@ -52,8 +52,10 @@ class BAppModel
 
   @filterValues = (values, ctx) ->
     newVals = {}
-    _(values).each (value, key) ->
-      newVals[key] = value if _(ctx.attrs).include key
+    _(ctx.attrs).each (attr) ->
+      val = "-"
+      val = values[attr] if _(ctx.attrs).include attr
+      newVals[attr] = val
     newVals
 
   @convertValuesForSave: (values) ->

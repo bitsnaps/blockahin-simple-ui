@@ -34,12 +34,13 @@ BR =
           visibility: "visible"
 
         obj = ctx[name]
+        klass = G[s.capitalize name]
         values = $("#{form}").serializeArray()
         _(values).each (entry) ->
           obj[entry.name] = entry.value
 
         c.log "Updating #{name}:", obj
-        User.update(obj)
+        klass.update(obj)
           .then (resp) =>
             c.log "#{name} updated:", resp
             spinner.css

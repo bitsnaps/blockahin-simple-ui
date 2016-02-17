@@ -14,11 +14,15 @@ identicon = (entity, size) ->
   icon = new Identicon(id, sizePx).toString()
   "data:image/png;base64,#{icon}"
 
+
+genOrgAvatar = (entity) ->
+  entity.avatar   = identicon entity
+  entity.avatarLg = identicon entity, "large"
+  entity
+
 genOrgAvatars = (entities) ->
   _(entities).map (entity) ->
-    entity.avatar   = identicon entity
-    entity.avatarLg = identicon entity, "large"
-    entity
+    genOrgAvatar entity
 
 fetchUserAvatars = (users) ->
   _(users).map (user) ->
@@ -77,4 +81,3 @@ Store = ->
   # -----------------------------------------
 
   return this
-  

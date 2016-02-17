@@ -44,17 +44,18 @@ BR = {
         var spinner;
         spinner = $(form + " .spinner");
         return $(form + " input[type=submit]").on("click", function(evt) {
-          var obj, values;
+          var klass, obj, values;
           spinner.css({
             visibility: "visible"
           });
           obj = ctx[name];
+          klass = G[s.capitalize(name)];
           values = $("" + form).serializeArray();
           _(values).each(function(entry) {
             return obj[entry.name] = entry.value;
           });
           c.log("Updating " + name + ":", obj);
-          return User.update(obj).then(function(resp) {
+          return klass.update(obj).then(function(resp) {
             c.log(name + " updated:", resp);
             spinner.css({
               visibility: "hidden"

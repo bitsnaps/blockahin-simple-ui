@@ -3564,15 +3564,22 @@ riot.tag2('user-edit', '<h4>Edit your profile:</h4> <h2>{user.name}</h2> <form i
     }).call(this);
 }, '{ }');
 
-riot.tag2('org-edit', '<h4>Edit organization:</h4> <h2>{org.name}</h2> <form onsubmit="{update}"> <h4> TODO </h4> </form>', 'org-edit *[contentEditable],[riot-tag="org-edit"] *[contentEditable] { display: block; margin-bottom: 12px; } org-edit label,[riot-tag="org-edit"] label { margin-top: 10px; } org-edit input[type=file],[riot-tag="org-edit"] input[type=file] { display: none; }', '', function(opts) {
+riot.tag2('org-edit', '<h4>Edit organization:</h4> <h2>{org.name}</h2> <form id="org_form" onsubmit="{update}"> <div class="row"> <div class="column overlay_cont"> <label class="normal"> <img class="avatar" riot-src="{org.avatarLg}"> <div class="icon overlay white">📷</div> <input type="file"> </label> </div> <div class="column column-80"> <div class="row"> <div class="column column-20"> <label> <strong>Location:</strong> </label> </div> <div class="column column-80"> <input name="location" placeholder="Your City, Planet Earth" type="text" value="{org.location}"> </div> </div> </div> </div> <fieldset> <label> Email <input name="email" placeholder="you@email.com" type="email"> </label> <input class="left button-primary" onclick="{update}" type="submit" value="Save"> <div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> <div class="message">{message}</div> </fieldset> </form>', 'org-edit *[contentEditable],[riot-tag="org-edit"] *[contentEditable] { display: block; margin-bottom: 12px; } org-edit label,[riot-tag="org-edit"] label { margin-top: 10px; } org-edit input[type=file],[riot-tag="org-edit"] input[type=file] { display: none; }', '', function(opts) {
     (function() {
-      var entry_id;
+      var entry_id, present;
 
       this.prod_host = s(location.hostname).strLeft(".").value();
 
-      entry_id = Number(this.prod_host[2]);
+      entry_id = Number(this.prod_host[2]) || 1;
 
-      BR.loadFromCollection("org", entry_id, this);
+      present = function(org) {
+        if (org) {
+          org = genOrgAvatar(org);
+        }
+        return org;
+      };
+
+      BR.loadFromCollection("org", entry_id, this, present);
 
       BR.bindUpdateEntityForm("org", entry_id, this);
 
@@ -3909,7 +3916,7 @@ BR = {
   }
 };
 
-var Orgs, Store, StoreData, TMP_JOB_TITLES, Unis, Users, addTmpJobTitle, fetchUserAvatars, genOrgAvatars, identicon;
+var Orgs, Store, StoreData, TMP_JOB_TITLES, Unis, Users, addTmpJobTitle, fetchUserAvatars, genOrgAvatar, genOrgAvatars, identicon;
 
 Users = [];
 
@@ -3932,11 +3939,15 @@ identicon = function(entity, size) {
   return "data:image/png;base64," + icon;
 };
 
+genOrgAvatar = function(entity) {
+  entity.avatar = identicon(entity);
+  entity.avatarLg = identicon(entity, "large");
+  return entity;
+};
+
 genOrgAvatars = function(entities) {
   return _(entities).map(function(entity) {
-    entity.avatar = identicon(entity);
-    entity.avatarLg = identicon(entity, "large");
-    return entity;
+    return genOrgAvatar(entity);
   });
 };
 
