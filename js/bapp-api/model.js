@@ -40,36 +40,58 @@ BAppModel = (function() {
         return _this["new"](values);
       };
     })(this))["catch"](function(error) {
-      return c.error("Error: " + error);
+      c.error("Error: " + error);
+      return reject(error);
     });
   };
 
   BAppModel.all = function() {
     return new Promise((function(_this) {
       return function(resolve, reject) {
-        return API.get(_this.collection(), "get" + (_this.collectionUp()) + "Count")["catch"](reject).then(function(count) {
+        return API.get(_this.collection(), "get" + (_this.collectionUp()) + "Count").then(function(count) {
           var promises;
           promises = _this.allGet(count);
           return _this.allResolve(promises, resolve, reject);
+        })["catch"](function(error) {
+          c.error("Error: " + error);
+          return reject(error);
         });
       };
     })(this));
   };
 
-  BAppModel.create = function() {};
+  BAppModel.create = function() {
+    return new Promise((function(_this) {
+      return function(resolve, reject) {
+        var values;
+        if (!API) {
+          _this.c.error(_this.errApiNotFound);
+        }
+        values = _this.filterValues(values, _this);
+        values = _this.convertValuesForSave(values);
+        return API.post(_this.collection(), "create", values).then(function(resp) {
+          return resolve(resp);
+        })["catch"](function(error) {
+          c.error("Error: " + error);
+          return reject(error);
+        });
+      };
+    })(this));
+  };
 
   BAppModel.update = function(values) {
     return new Promise((function(_this) {
       return function(resolve, reject) {
-        values = _this.filterValues(values, _this);
-        values = _this.convertValuesForSave(values);
         if (!API) {
           _this.c.error(_this.errApiNotFound);
         }
+        values = _this.filterValues(values, _this);
+        values = _this.convertValuesForSave(values);
         return API.post(_this.collection(), "update", values).then(function(resp) {
           return resolve(resp);
         })["catch"](function(error) {
-          return c.error("Error: " + error);
+          c.error("Error: " + error);
+          return reject(error);
         });
       };
     })(this));
@@ -80,9 +102,11 @@ BAppModel = (function() {
     newVals = {};
     _(ctx.attrs).each(function(attr) {
       var val;
-      val = "-";
       if (_(ctx.attrs).include(attr)) {
         val = values[attr];
+      }
+      if (!val) {
+        val = "-";
       }
       return newVals[attr] = val;
     });
@@ -125,7 +149,7 @@ BAppModel = (function() {
   };
 
   BAppModel.allResolve = function(promises, resolve, reject) {
-    return Promise.all(promises)["catch"](reject).then((function(_this) {
+    return Promise.all(promises).then((function(_this) {
       return function(collectionResp) {
         var collection, i, len, values;
         collection = [];
@@ -135,7 +159,10 @@ BAppModel = (function() {
         }
         return resolve(collection);
       };
-    })(this));
+    })(this))["catch"](function(error) {
+      c.error("Error: " + error);
+      return reject(error);
+    });
   };
 
   BAppModel.prototype.errApiNotFound = "API not found, please instantiate it via: 'var API = new BApi(host)'";

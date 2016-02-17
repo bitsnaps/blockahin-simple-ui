@@ -1,0 +1,74 @@
+%user-new
+  %h4 Register:
+  %form#user_form{ onsubmit: "{ update }" }
+    %label
+      %h2
+        %input.big-text{placeholder: "Your First and Last Name", name: "jobTitle", type: "text", value: "{ user.name }"}/
+
+    %h4
+      %input.big-text{placeholder: "Your current Job Title", name: "jobTitle", type: "text", value: "{ user.jobTitle }"}/
+    .row
+      .column.overlay_cont
+        %label.normal
+          %img.avatar{ src: "{ user.avatarLg }" }
+          .icon.overlay.white 📷
+          %input{ type: "file" }
+      .column.column-80
+        %p.border{ contentEditable: true }
+          :plain
+            Bio:
+          { user.bio }
+        .row
+          .column.column-20
+            %label
+              %strong Location:
+          .column.column-80
+            %input{placeholder: "Your City, Planet Earth", name: "location", type: "text", value: "{ user.location }"}/
+        .row
+          .column.column-20
+            %label
+              %strong Nationality:
+          .column.column-80
+            %input{placeholder: "Your country of Origin", name: "nationality", type: "text", value: "{ user.nationality }"}/
+
+    %fieldset
+      %label
+        Email
+        %input{placeholder: "you@email.com", name: "email", type: "email"}/
+      %label
+        Gender
+        %input{placeholder: "M / F", name: "gender", type: "text", value: "{ user.gender }"}
+      %label
+        Cover letter
+        %textarea{placeholder: "A generic cover letter you want to send to your ideal employer, why you are suited for the job."}
+
+      %input.left.button-primary{onclick: "{ update }", type: "submit", value: "Save"}/
+
+      .spinner
+        .rect1
+        .rect2
+        .rect3
+        .rect4
+        .rect5
+
+      .message { message }
+
+
+  %style{scoped: true}
+    :plain
+      :scope *[contentEditable]  {
+        display: block;
+        margin-bottom: 12px;
+      }
+      :scope label {
+        margin-top: 10px;
+      }
+      :scope input[type=file] {
+        display: none;
+      }
+
+
+  :coffeescript
+    @user = new User({})
+
+    BR.bindCreateEntityForm "user", this

@@ -2,8 +2,6 @@ backend fields:
 
 ---
 
-org edit
-
 user registration
 org registration
 
@@ -23,6 +21,9 @@ user registration
 org registration
 
 spinner element
+
+utf8 lol
+漢字;
 
 image upload (disk)
 

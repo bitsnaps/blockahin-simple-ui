@@ -3518,7 +3518,7 @@ riot.tag2('sample', 'Timer: <h4>{count}</h4>', 'sample,[riot-tag="sample"] { fon
 
 }, '{ }');
 
-riot.tag2('ab-footer', '<div class="s80"></div> <footer class="footer"> <section class="container"> <p>© {time} - Applied Blockchain ltd.</p> </section> </footer>', '', '', function(opts) {
+riot.tag2('ab-footer', '<div class="s80"></div> <footer class="footer"> <section class="container"> <p>© {time} - Applied Blockchain ltd. - Register as: <a href="/#/users/new">User</a> / <a href="/#/orgs/new">Organization or University</a> </p> </section> </footer>', '', '', function(opts) {
     this.time = new Date().getFullYear()
 }, '{ }');
 
@@ -3565,6 +3565,37 @@ riot.tag2('user-edit', '<h4>Edit your profile:</h4> <h2>{user.name}</h2> <form i
 }, '{ }');
 
 riot.tag2('org-edit', '<h4>Edit organization:</h4> <h2>{org.name}</h2> <form id="org_form" onsubmit="{update}"> <div class="row"> <div class="column overlay_cont"> <label class="normal"> <img class="avatar" riot-src="{org.avatarLg}"> <div class="icon overlay white">📷</div> <input type="file"> </label> </div> <div class="column column-80"> <div class="row"> <div class="column column-20"> <label> <strong>Location:</strong> </label> </div> <div class="column column-80"> <input name="location" placeholder="Your City, Planet Earth" type="text" value="{org.location}"> </div> </div> <div class="row"> <div class="column column-20"> <label> <strong>Industry:</strong> </label> </div> <div class="column column-80"> <input name="industry" placeholder="Business industry" type="text" value="{org.industry}"> </div> </div> </div> </div> <fieldset> <label> Email <input name="email" placeholder="you@email.com" type="email"> </label> <input class="left button-primary" onclick="{update}" type="submit" value="Save"> <div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> <div class="message">{message}</div> </fieldset> </form>', 'org-edit *[contentEditable],[riot-tag="org-edit"] *[contentEditable] { display: block; margin-bottom: 12px; } org-edit label,[riot-tag="org-edit"] label { margin-top: 10px; } org-edit input[type=file],[riot-tag="org-edit"] input[type=file] { display: none; }', '', function(opts) {
+    (function() {
+      var entry_id, present;
+
+      this.prod_host = s(location.hostname).strLeft(".").value();
+
+      entry_id = Number(this.prod_host[2]) || 1;
+
+      present = function(org) {
+        if (org) {
+          org = genOrgAvatar(org);
+        }
+        return org;
+      };
+
+      BR.loadFromCollection("org", entry_id, this, present);
+
+      BR.bindUpdateEntityForm("org", entry_id, this);
+
+    }).call(this);
+}, '{ }');
+
+riot.tag2('user-new', '<h4>Register:</h4> <form id="user_form" onsubmit="{update}"> <label> <h2> <input class="big-text" name="jobTitle" placeholder="Your First and Last Name" type="text" value="{user.name}"> </h2> </label> <h4> <input class="big-text" name="jobTitle" placeholder="Your current Job Title" type="text" value="{user.jobTitle}"> </h4> <div class="row"> <div class="column overlay_cont"> <label class="normal"> <img class="avatar" riot-src="{user.avatarLg}"> <div class="icon overlay white">📷</div> <input type="file"> </label> </div> <div class="column column-80"> <p class="border" contenteditable> Bio: {user.bio} </p> <div class="row"> <div class="column column-20"> <label> <strong>Location:</strong> </label> </div> <div class="column column-80"> <input name="location" placeholder="Your City, Planet Earth" type="text" value="{user.location}"> </div> </div> <div class="row"> <div class="column column-20"> <label> <strong>Nationality:</strong> </label> </div> <div class="column column-80"> <input name="nationality" placeholder="Your country of Origin" type="text" value="{user.nationality}"> </div> </div> </div> </div> <fieldset> <label> Email <input name="email" placeholder="you@email.com" type="email"> </label> <label> Gender <input name="gender" placeholder="M / F" type="text" value="{user.gender}"> </label> <label> Cover letter <textarea placeholder="A generic cover letter you want to send to your ideal employer, why you are suited for the job."></textarea> </label> <input class="left button-primary" onclick="{update}" type="submit" value="Save"> <div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> <div class="message">{message}</div> </fieldset> </form>', 'user-new *[contentEditable],[riot-tag="user-new"] *[contentEditable] { display: block; margin-bottom: 12px; } user-new label,[riot-tag="user-new"] label { margin-top: 10px; } user-new input[type=file],[riot-tag="user-new"] input[type=file] { display: none; }', '', function(opts) {
+    (function() {
+      this.user = new User({});
+
+      BR.bindCreateEntityForm("user", this);
+
+    }).call(this);
+}, '{ }');
+
+riot.tag2('org-new', '<h4>Edit organization:</h4> <h2>{org.name}</h2> <form id="org_form" onsubmit="{update}"> <div class="row"> <div class="column overlay_cont"> <label class="normal"> <img class="avatar" riot-src="{org.avatarLg}"> <div class="icon overlay white">📷</div> <input type="file"> </label> </div> <div class="column column-80"> <div class="row"> <div class="column column-20"> <label> <strong>Location:</strong> </label> </div> <div class="column column-80"> <input name="location" placeholder="Your City, Planet Earth" type="text" value="{org.location}"> </div> </div> <div class="row"> <div class="column column-20"> <label> <strong>Industry:</strong> </label> </div> <div class="column column-80"> <input name="industry" placeholder="Business industry" type="text" value="{org.industry}"> </div> </div> </div> </div> <fieldset> <label> Email <input name="email" placeholder="you@email.com" type="email"> </label> <input class="left button-primary" onclick="{update}" type="submit" value="Save"> <div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> <div class="message">{message}</div> </fieldset> </form>', 'org-new *[contentEditable],[riot-tag="org-new"] *[contentEditable] { display: block; margin-bottom: 12px; } org-new label,[riot-tag="org-new"] label { margin-top: 10px; } org-new input[type=file],[riot-tag="org-new"] input[type=file] { display: none; }', '', function(opts) {
     (function() {
       var entry_id, present;
 
@@ -3684,36 +3715,58 @@ BAppModel = (function() {
         return _this["new"](values);
       };
     })(this))["catch"](function(error) {
-      return c.error("Error: " + error);
+      c.error("Error: " + error);
+      return reject(error);
     });
   };
 
   BAppModel.all = function() {
     return new Promise((function(_this) {
       return function(resolve, reject) {
-        return API.get(_this.collection(), "get" + (_this.collectionUp()) + "Count")["catch"](reject).then(function(count) {
+        return API.get(_this.collection(), "get" + (_this.collectionUp()) + "Count").then(function(count) {
           var promises;
           promises = _this.allGet(count);
           return _this.allResolve(promises, resolve, reject);
+        })["catch"](function(error) {
+          c.error("Error: " + error);
+          return reject(error);
         });
       };
     })(this));
   };
 
-  BAppModel.create = function() {};
+  BAppModel.create = function() {
+    return new Promise((function(_this) {
+      return function(resolve, reject) {
+        var values;
+        if (!API) {
+          _this.c.error(_this.errApiNotFound);
+        }
+        values = _this.filterValues(values, _this);
+        values = _this.convertValuesForSave(values);
+        return API.post(_this.collection(), "create", values).then(function(resp) {
+          return resolve(resp);
+        })["catch"](function(error) {
+          c.error("Error: " + error);
+          return reject(error);
+        });
+      };
+    })(this));
+  };
 
   BAppModel.update = function(values) {
     return new Promise((function(_this) {
       return function(resolve, reject) {
-        values = _this.filterValues(values, _this);
-        values = _this.convertValuesForSave(values);
         if (!API) {
           _this.c.error(_this.errApiNotFound);
         }
+        values = _this.filterValues(values, _this);
+        values = _this.convertValuesForSave(values);
         return API.post(_this.collection(), "update", values).then(function(resp) {
           return resolve(resp);
         })["catch"](function(error) {
-          return c.error("Error: " + error);
+          c.error("Error: " + error);
+          return reject(error);
         });
       };
     })(this));
@@ -3724,9 +3777,11 @@ BAppModel = (function() {
     newVals = {};
     _(ctx.attrs).each(function(attr) {
       var val;
-      val = "-";
       if (_(ctx.attrs).include(attr)) {
         val = values[attr];
+      }
+      if (!val) {
+        val = "-";
       }
       return newVals[attr] = val;
     });
@@ -3769,7 +3824,7 @@ BAppModel = (function() {
   };
 
   BAppModel.allResolve = function(promises, resolve, reject) {
-    return Promise.all(promises)["catch"](reject).then((function(_this) {
+    return Promise.all(promises).then((function(_this) {
       return function(collectionResp) {
         var collection, i, len, values;
         collection = [];
@@ -3779,7 +3834,10 @@ BAppModel = (function() {
         }
         return resolve(collection);
       };
-    })(this));
+    })(this))["catch"](function(error) {
+      c.error("Error: " + error);
+      return reject(error);
+    });
   };
 
   BAppModel.prototype.errApiNotFound = "API not found, please instantiate it via: 'var API = new BApi(host)'";
@@ -3876,8 +3934,8 @@ BR = {
       });
     };
   })(this),
-  bindUpdateEntityForm: (function(_this) {
-    return function(name, entry_id, ctx, presenter) {
+  bindSaveEntityForm: (function(_this) {
+    return function(action, name, entry_id, ctx) {
       var coll_name, form;
       coll_name = BR.pluralize(name);
       form = "form#" + name + "_form";
@@ -3896,8 +3954,8 @@ BR = {
           _(values).each(function(entry) {
             return obj[entry.name] = entry.value;
           });
-          c.log("Updating " + name + ":", obj);
-          return klass.update(obj).then(function(resp) {
+          c.log(klass + "." + action + "() " + name + ":", obj);
+          return klass[action](obj).then(function(resp) {
             c.log(name + " updated:", resp);
             spinner.css({
               visibility: "hidden"
@@ -3908,6 +3966,16 @@ BR = {
           });
         });
       });
+    };
+  })(this),
+  bindCreateEntityForm: (function(_this) {
+    return function(name, ctx) {
+      return BR.bindSaveEntityForm("create", name, null, ctx);
+    };
+  })(this),
+  bindUpdateEntityForm: (function(_this) {
+    return function(name, entry_id, ctx) {
+      return BR.bindSaveEntityForm("update", name, entry_id, ctx);
     };
   })(this),
   pluralize: function(word) {
@@ -4051,12 +4119,20 @@ ROUTES = [
     tag: 'user-edit',
     api: api
   }), new Route({
+    path: '/users/new',
+    tag: 'user-new',
+    api: api
+  }), new Route({
     path: '/users/:id',
     tag: 'user',
     api: api
   }), new Route({
     path: '/org',
     tag: 'org-edit',
+    api: api
+  }), new Route({
+    path: '/orgs/new',
+    tag: 'org-new',
     api: api
   }), new Route({
     path: '/orgs/:id',

@@ -34,8 +34,8 @@ BR = {
       });
     };
   })(this),
-  bindUpdateEntityForm: (function(_this) {
-    return function(name, entry_id, ctx, presenter) {
+  bindSaveEntityForm: (function(_this) {
+    return function(action, name, entry_id, ctx) {
       var coll_name, form;
       coll_name = BR.pluralize(name);
       form = "form#" + name + "_form";
@@ -54,8 +54,8 @@ BR = {
           _(values).each(function(entry) {
             return obj[entry.name] = entry.value;
           });
-          c.log("Updating " + name + ":", obj);
-          return klass.update(obj).then(function(resp) {
+          c.log(klass + "." + action + "() " + name + ":", obj);
+          return klass[action](obj).then(function(resp) {
             c.log(name + " updated:", resp);
             spinner.css({
               visibility: "hidden"
@@ -66,6 +66,16 @@ BR = {
           });
         });
       });
+    };
+  })(this),
+  bindCreateEntityForm: (function(_this) {
+    return function(name, ctx) {
+      return BR.bindSaveEntityForm("create", name, null, ctx);
+    };
+  })(this),
+  bindUpdateEntityForm: (function(_this) {
+    return function(name, entry_id, ctx) {
+      return BR.bindSaveEntityForm("update", name, entry_id, ctx);
     };
   })(this),
   pluralize: function(word) {

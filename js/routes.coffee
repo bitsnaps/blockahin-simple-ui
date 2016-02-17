@@ -12,8 +12,10 @@ ROUTES = [
   new Route({path: '/organizations', tag: 'table-orgs',  api: api}),
   new Route({path: '/universities',  tag: 'table-unis',  api: api}),
   new Route({path: '/user',          tag: 'user-edit',   api: api}),
+  new Route({path: '/users/new',     tag: 'user-new',    api: api}),
   new Route({path: '/users/:id',     tag: 'user',        api: api}),
   new Route({path: '/org',           tag: 'org-edit',    api: api}),
+  new Route({path: '/orgs/new',      tag: 'org-new',    api: api}),
   new Route({path: '/orgs/:id',      tag: 'org',         api: api}),
   new NotFoundRoute({tag: 'not-found'}),
 ]

@@ -192,3 +192,17 @@ input.big-text {
   margin-top: 11px;
   font-weight: bold;
 }
+
+user-new form#user_form .avatar {
+  border: 1px solid #EEE;
+  width: 150px;
+  height: 150px;
+}
+user-new form#user_form .icon.overlay {
+  display: block;
+  color: #EEE
+}
+
+user-new form#user_form .overlay_cont:hover .icon.overlay {
+  color: #AAA
+}

@@ -25,27 +25,41 @@ class BAppModel
         @new(values)
       .catch (error) ->
         c.error "Error: #{error}"
+        reject error
 
   @all: ->
     new Promise (resolve, reject) =>
       API.get(@collection(), "get#{@collectionUp()}Count")
-        .catch reject
         .then (count) =>
           promises = @allGet count
           @allResolve promises, resolve, reject
+        .catch (error) ->
+          c.error "Error: #{error}"
+          reject error
 
   @create: ->
+    new Promise (resolve, reject) =>
+      @c.error @errApiNotFound unless API
+      values = @filterValues values, @
+      values = @convertValuesForSave values
+      API.post(@collection(), "create", values)
+        .then (resp) =>
+          resolve resp
+        .catch (error) ->
+          c.error "Error: #{error}"
+          reject error
 
   @update: (values) ->
     new Promise (resolve, reject) =>
+      @c.error @errApiNotFound unless API
       values = @filterValues values, @
       values = @convertValuesForSave values
-      @c.error @errApiNotFound unless API
       API.post(@collection(), "update", values)
         .then (resp) =>
           resolve resp
         .catch (error) ->
           c.error "Error: #{error}"
+          reject error
 
 
   # tools
@@ -53,8 +67,8 @@ class BAppModel
   @filterValues = (values, ctx) ->
     newVals = {}
     _(ctx.attrs).each (attr) ->
-      val = "-"
       val = values[attr] if _(ctx.attrs).include attr
+      val = "-" unless val
       newVals[attr] = val
     newVals
 
@@ -88,12 +102,14 @@ class BAppModel
 
   @allResolve: (promises, resolve, reject) ->
     Promise.all(promises)
-      .catch reject
       .then (collectionResp) =>
         collection = []
         for values in collectionResp
           collection.push @new(values)
         resolve collection
+      .catch (error) ->
+        c.error "Error: #{error}"
+        reject error
 
   # errors
 

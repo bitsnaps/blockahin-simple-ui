@@ -21,7 +21,7 @@ BR =
       ctx[name] = elem
       ctx.update()
 
-  bindUpdateEntityForm: (name, entry_id, ctx, presenter) =>
+  bindSaveEntityForm: (action, name, entry_id, ctx) =>
     coll_name = BR.pluralize name
     form = "form##{name}_form"
 
@@ -39,8 +39,8 @@ BR =
         _(values).each (entry) ->
           obj[entry.name] = entry.value
 
-        c.log "Updating #{name}:", obj
-        klass.update(obj)
+        c.log "#{klass}.#{action}() #{name}:", obj
+        klass[action](obj)
           .then (resp) =>
             c.log "#{name} updated:", resp
             spinner.css
@@ -48,6 +48,12 @@ BR =
             $("#{form} .message").html "saved!"
           .catch (error) ->
             c.log "Error updating current #{name}:", error
+
+  bindCreateEntityForm: (name, ctx) =>
+    BR.bindSaveEntityForm "create", name, null, ctx
+
+  bindUpdateEntityForm: (name, entry_id, ctx) =>
+    BR.bindSaveEntityForm "update", name, entry_id, ctx
 
   # utils
   #
