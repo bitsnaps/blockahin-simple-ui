@@ -1,7 +1,7 @@
 <user-edit>
   <h4>Edit your profile:</h4>
   <h2>{ user.name }</h2>
-  <form onsubmit='{ update }'>
+  <form id='user_form' onsubmit='{ update }'>
     <h4>
       <input class='big-text' name='jobTitle' placeholder='Your current Job Title' type='text' value='{ user.jobTitle }'>
     </h4>
@@ -90,12 +90,12 @@
         return function(data) {
           var spinner;
           spinner = $(".spinner");
-          return $("input[type=submit]").on("click", function(evt) {
+          return $("form#user_form input[type=submit]").on("click", function(evt) {
             var newValues, userValues, values;
             spinner.css({
               visibility: "visible"
             });
-            values = $("profile form").serializeArray();
+            values = $("form#user_form").serializeArray();
             newValues = {};
             _(values).each(function(entry) {
               return newValues[entry.name] = entry.value;

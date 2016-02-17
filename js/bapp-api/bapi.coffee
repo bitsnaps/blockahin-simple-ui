@@ -18,21 +18,21 @@ class BApi
 
   get: (contract, methodName, values) ->
     new Promise (resolve, reject) =>
-      c.log "#{methodName}(#{JSON.stringify values}) called!"
+      c.log "BApi##{contract}.#{methodName} #{JSON.stringify values}"
       $.getJSON @methodGet(contract, methodName, values)
         .fail reject
         .then (val) ->
-          console.log "GET { contract: #{contract}, methodName: #{methodName}, values: #{values} } ( GET /contract/:contractId/:method?:PARAMS(:values)) })"
+          # console.log "GET { contract: #{contract}, methodName: #{methodName}, values: #{values} } ( GET /contract/:contractId/:method?:PARAMS(:values)) })"
           resolve val.value
 
   post: (contract, methodName, values) ->
     new Promise (resolve, reject) =>
-      c.log "#{methodName}(#{JSON.stringify values}) called!"
+      c.log "BApi##{contract}.#{methodName} #{JSON.stringify values}"
       $.post @methodPost(contract, methodName), values
         .fail reject
         .then (val) ->
-          c.log "VAL POST: #{val}"
-          console.log "POST { contract: #{contract}, methodName: #{methodName}, values: #{values} } ( POST /contract/:contractId/:method ) })"
+          # c.log "VAL POST: #{val}"
+          # console.log "POST { contract: #{contract}, methodName: #{methodName}, values: #{JSON.stringify values} } ( POST /contract/:contractId/:method ) })"
           resolve val.value
 
 # --------------

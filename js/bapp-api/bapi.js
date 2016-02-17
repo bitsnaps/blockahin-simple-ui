@@ -30,9 +30,8 @@ BApi = (function() {
   BApi.prototype.get = function(contract, methodName, values) {
     return new Promise((function(_this) {
       return function(resolve, reject) {
-        c.log(methodName + "(" + (JSON.stringify(values)) + ") called!");
+        c.log("BApi#" + contract + "." + methodName + " " + (JSON.stringify(values)));
         return $.getJSON(_this.methodGet(contract, methodName, values)).fail(reject).then(function(val) {
-          console.log("GET { contract: " + contract + ", methodName: " + methodName + ", values: " + values + " } ( GET /contract/:contractId/:method?:PARAMS(:values)) })");
           return resolve(val.value);
         });
       };
@@ -42,10 +41,8 @@ BApi = (function() {
   BApi.prototype.post = function(contract, methodName, values) {
     return new Promise((function(_this) {
       return function(resolve, reject) {
-        c.log(methodName + "(" + (JSON.stringify(values)) + ") called!");
+        c.log("BApi#" + contract + "." + methodName + " " + (JSON.stringify(values)));
         return $.post(_this.methodPost(contract, methodName), values).fail(reject).then(function(val) {
-          c.log("VAL POST: " + val);
-          console.log("POST { contract: " + contract + ", methodName: " + methodName + ", values: " + values + " } ( POST /contract/:contractId/:method ) })");
           return resolve(val.value);
         });
       };

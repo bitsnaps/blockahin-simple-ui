@@ -3551,7 +3551,7 @@ riot.tag2('org', '<h2>{org.name}</h2> <div class="row"> <div class="column"> <im
     }).call(this);
 }, '{ }');
 
-riot.tag2('user-edit', '<h4>Edit your profile:</h4> <h2>{user.name}</h2> <form onsubmit="{update}"> <h4> <input class="big-text" name="jobTitle" placeholder="Your current Job Title" type="text" value="{user.jobTitle}"> </h4> <div class="row"> <div class="column overlay_cont"> <label class="normal"> <img class="avatar" riot-src="{user.avatarLg}"> <div class="icon overlay white">📷</div> <input type="file"> </label> </div> <div class="column column-80"> <p class="border" contenteditable> Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum. {user.bio} </p> <div class="row"> <div class="column column-20"> <label> <strong>Location:</strong> </label> </div> <div class="column column-80"> <input name="location" placeholder="Your City, Planet Earth" type="text" value="{user.location}"> </div> </div> <div class="row"> <div class="column column-20"> <label> <strong>Nationality:</strong> </label> </div> <div class="column column-80"> <input name="nationality" placeholder="Your country of Origin" type="text" value="{user.nationality}"> </div> </div> </div> </div> <fieldset> <label> Email <input name="email" placeholder="you@email.com" type="email"> </label> <label> Gender <input name="gender" placeholder="M / F" type="text" value="{user.gender}"> </label> <label> Cover letter <textarea placeholder="A generic cover letter you want to send to your ideal employer, why you are suited for the job."></textarea> </label> <input class="left button-primary" onclick="{update}" type="submit" value="Save"> <div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> <div class="message">{message}</div> </fieldset> </form>', 'user-edit *[contentEditable],[riot-tag="user-edit"] *[contentEditable] { display: block; margin-bottom: 12px; } user-edit label,[riot-tag="user-edit"] label { margin-top: 10px; } user-edit input[type=file],[riot-tag="user-edit"] input[type=file] { display: none; }', '', function(opts) {
+riot.tag2('user-edit', '<h4>Edit your profile:</h4> <h2>{user.name}</h2> <form id="user_form" onsubmit="{update}"> <h4> <input class="big-text" name="jobTitle" placeholder="Your current Job Title" type="text" value="{user.jobTitle}"> </h4> <div class="row"> <div class="column overlay_cont"> <label class="normal"> <img class="avatar" riot-src="{user.avatarLg}"> <div class="icon overlay white">📷</div> <input type="file"> </label> </div> <div class="column column-80"> <p class="border" contenteditable> Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum. {user.bio} </p> <div class="row"> <div class="column column-20"> <label> <strong>Location:</strong> </label> </div> <div class="column column-80"> <input name="location" placeholder="Your City, Planet Earth" type="text" value="{user.location}"> </div> </div> <div class="row"> <div class="column column-20"> <label> <strong>Nationality:</strong> </label> </div> <div class="column column-80"> <input name="nationality" placeholder="Your country of Origin" type="text" value="{user.nationality}"> </div> </div> </div> </div> <fieldset> <label> Email <input name="email" placeholder="you@email.com" type="email"> </label> <label> Gender <input name="gender" placeholder="M / F" type="text" value="{user.gender}"> </label> <label> Cover letter <textarea placeholder="A generic cover letter you want to send to your ideal employer, why you are suited for the job."></textarea> </label> <input class="left button-primary" onclick="{update}" type="submit" value="Save"> <div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> <div class="message">{message}</div> </fieldset> </form>', 'user-edit *[contentEditable],[riot-tag="user-edit"] *[contentEditable] { display: block; margin-bottom: 12px; } user-edit label,[riot-tag="user-edit"] label { margin-top: 10px; } user-edit input[type=file],[riot-tag="user-edit"] input[type=file] { display: none; }', '', function(opts) {
     (function() {
       var entry_id;
 
@@ -3565,12 +3565,12 @@ riot.tag2('user-edit', '<h4>Edit your profile:</h4> <h2>{user.name}</h2> <form o
         return function(data) {
           var spinner;
           spinner = $(".spinner");
-          return $("input[type=submit]").on("click", function(evt) {
+          return $("form#user_form input[type=submit]").on("click", function(evt) {
             var newValues, userValues, values;
             spinner.css({
               visibility: "visible"
             });
-            values = $("profile form").serializeArray();
+            values = $("form#user_form").serializeArray();
             newValues = {};
             _(values).each(function(entry) {
               return newValues[entry.name] = entry.value;
@@ -3691,9 +3691,8 @@ BApi = (function() {
   BApi.prototype.get = function(contract, methodName, values) {
     return new Promise((function(_this) {
       return function(resolve, reject) {
-        c.log(methodName + "(" + (JSON.stringify(values)) + ") called!");
+        c.log("BApi#" + contract + "." + methodName + " " + (JSON.stringify(values)));
         return $.getJSON(_this.methodGet(contract, methodName, values)).fail(reject).then(function(val) {
-          console.log("GET { contract: " + contract + ", methodName: " + methodName + ", values: " + values + " } ( GET /contract/:contractId/:method?:PARAMS(:values)) })");
           return resolve(val.value);
         });
       };
@@ -3703,10 +3702,8 @@ BApi = (function() {
   BApi.prototype.post = function(contract, methodName, values) {
     return new Promise((function(_this) {
       return function(resolve, reject) {
-        c.log(methodName + "(" + (JSON.stringify(values)) + ") called!");
+        c.log("BApi#" + contract + "." + methodName + " " + (JSON.stringify(values)));
         return $.post(_this.methodPost(contract, methodName), values).fail(reject).then(function(val) {
-          c.log("VAL POST: " + val);
-          console.log("POST { contract: " + contract + ", methodName: " + methodName + ", values: " + values + " } ( POST /contract/:contractId/:method ) })");
           return resolve(val.value);
         });
       };
@@ -3773,17 +3770,19 @@ BAppModel = (function() {
   BAppModel.create = function() {};
 
   BAppModel.update = function(values) {
-    values = this.convertValuesForSave(values);
-    if (!API) {
-      this.c.error(this.errApiNotFound);
-    }
-    return API.post(this.collection(), "update", values).then((function(_this) {
-      return function(resp) {
-        return c.log("resp: " + resp);
+    return new Promise((function(_this) {
+      return function(resolve, reject) {
+        values = _this.convertValuesForSave(values);
+        if (!API) {
+          _this.c.error(_this.errApiNotFound);
+        }
+        return API.post(_this.collection(), "update", values).then(function(resp) {
+          return resolve(resp);
+        })["catch"](function(error) {
+          return c.error("Error: " + error);
+        });
       };
-    })(this))["catch"](function(error) {
-      return c.error("Error: " + error);
-    });
+    })(this));
   };
 
   BAppModel.convertValuesForSave = function(values) {
@@ -3903,27 +3902,27 @@ BR = {
     return Number(entry_id);
   },
   loadFromCollection: (function(_this) {
-    return function(name, entry_id, coll, ctx, presenter) {
-      var elem;
-      _this.coll = StoreData[coll];
-      elem = _(_this.coll).find(function(e) {
+    return function(name, entry_id, coll_name, ctx, presenter) {
+      var coll, elem;
+      coll = StoreData[coll_name];
+      elem = _(coll).find(function(e) {
         return entry_id === e.id;
       });
       if (presenter) {
         elem = presenter(elem);
       }
-      _this[name] = elem;
+      ctx[name] = elem;
       ctx.update();
       _this.store = ctx.opts.store;
       return _this.store.on('update', function(data) {
-        _this.coll = data[coll];
-        elem = _(_this.coll).find(function(e) {
+        coll = data[coll_name];
+        elem = _(coll).find(function(e) {
           return entry_id === e.id;
         });
         if (presenter) {
           elem = presenter(elem);
         }
-        _this[name] = elem;
+        ctx[name] = elem;
         return ctx.update();
       });
     };

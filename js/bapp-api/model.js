@@ -55,17 +55,19 @@ BAppModel = (function() {
   BAppModel.create = function() {};
 
   BAppModel.update = function(values) {
-    values = this.convertValuesForSave(values);
-    if (!API) {
-      this.c.error(this.errApiNotFound);
-    }
-    return API.post(this.collection(), "update", values).then((function(_this) {
-      return function(resp) {
-        return c.log("resp: " + resp);
+    return new Promise((function(_this) {
+      return function(resolve, reject) {
+        values = _this.convertValuesForSave(values);
+        if (!API) {
+          _this.c.error(_this.errApiNotFound);
+        }
+        return API.post(_this.collection(), "update", values).then(function(resp) {
+          return resolve(resp);
+        })["catch"](function(error) {
+          return c.error("Error: " + error);
+        });
       };
-    })(this))["catch"](function(error) {
-      return c.error("Error: " + error);
-    });
+    })(this));
   };
 
   BAppModel.convertValuesForSave = function(values) {

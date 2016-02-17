@@ -1,5 +1,31 @@
 backend fields:
 
+---
+
+org edit
+
+caching
+
+employments
+- seed
+- show
+- data
+
+bapi#create
+
+user registration
+
+org registration
+
+image upload (disk)
+
+
+
+
+
+
+
+
 Smart Contracts:
 
 Organization
@@ -13,7 +39,7 @@ Individual
   Address
   DoB
   Gender
-  Nationality (work permit etc.) 
+  Nationality (work permit etc.)
   Academic Achievements
 
   Employments<>

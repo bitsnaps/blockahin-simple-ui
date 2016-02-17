@@ -1,7 +1,7 @@
 %user-edit
   %h4 Edit your profile:
   %h2 { user.name }
-  %form{ onsubmit: "{ update }" }
+  %form#user_form{ onsubmit: "{ update }" }
     %h4
       %input.big-text{placeholder: "Your current Job Title", name: "jobTitle", type: "text", value: "{ user.jobTitle }"}/
     .row
@@ -67,20 +67,18 @@
   :coffeescript
     -# user_id = 2
     entry_id = 2
-
     BR.loadFromCollection "user", entry_id, "users", this
-
 
     @message = ""
 
     @.on 'mount', (data) =>
       spinner = $ ".spinner"
 
-      $("input[type=submit]").on "click", (evt) =>
+      $("form#user_form input[type=submit]").on "click", (evt) =>
         spinner.css
           visibility: "visible"
 
-        values = $("profile form").serializeArray()
+        values = $("form#user_form").serializeArray()
         newValues = {}
         _(values).each (entry) ->
           newValues[entry.name] = entry.value

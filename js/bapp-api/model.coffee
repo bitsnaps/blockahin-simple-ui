@@ -34,13 +34,14 @@ class BAppModel
   @create: ->
 
   @update: (values) ->
-    values = @convertValuesForSave values
-    @c.error @errApiNotFound unless API
-    API.post(@collection(), "update", values)
-      .then (resp) =>
-        c.log "resp: #{resp}"
-      .catch (error) ->
-        c.error "Error: #{error}"
+    new Promise (resolve, reject) =>
+      values = @convertValuesForSave values
+      @c.error @errApiNotFound unless API
+      API.post(@collection(), "update", values)
+        .then (resp) =>
+          resolve resp
+        .catch (error) ->
+          c.error "Error: #{error}"
 
   # tools
 
