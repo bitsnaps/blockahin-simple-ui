@@ -3564,7 +3564,7 @@ riot.tag2('user-edit', '<h4>Edit your profile:</h4> <h2>{user.name}</h2> <form i
     }).call(this);
 }, '{ }');
 
-riot.tag2('org-edit', '<h4>Edit organization:</h4> <h2>{org.name}</h2> <form id="org_form" onsubmit="{update}"> <div class="row"> <div class="column overlay_cont"> <label class="normal"> <img class="avatar" riot-src="{org.avatarLg}"> <div class="icon overlay white">📷</div> <input type="file"> </label> </div> <div class="column column-80"> <div class="row"> <div class="column column-20"> <label> <strong>Location:</strong> </label> </div> <div class="column column-80"> <input name="location" placeholder="Your City, Planet Earth" type="text" value="{org.location}"> </div> </div> </div> </div> <fieldset> <label> Email <input name="email" placeholder="you@email.com" type="email"> </label> <input class="left button-primary" onclick="{update}" type="submit" value="Save"> <div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> <div class="message">{message}</div> </fieldset> </form>', 'org-edit *[contentEditable],[riot-tag="org-edit"] *[contentEditable] { display: block; margin-bottom: 12px; } org-edit label,[riot-tag="org-edit"] label { margin-top: 10px; } org-edit input[type=file],[riot-tag="org-edit"] input[type=file] { display: none; }', '', function(opts) {
+riot.tag2('org-edit', '<h4>Edit organization:</h4> <h2>{org.name}</h2> <form id="org_form" onsubmit="{update}"> <div class="row"> <div class="column overlay_cont"> <label class="normal"> <img class="avatar" riot-src="{org.avatarLg}"> <div class="icon overlay white">📷</div> <input type="file"> </label> </div> <div class="column column-80"> <div class="row"> <div class="column column-20"> <label> <strong>Location:</strong> </label> </div> <div class="column column-80"> <input name="location" placeholder="Your City, Planet Earth" type="text" value="{org.location}"> </div> </div> <div class="row"> <div class="column column-20"> <label> <strong>Industry:</strong> </label> </div> <div class="column column-80"> <input name="industry" placeholder="Business industry" type="text" value="{org.industry}"> </div> </div> </div> </div> <fieldset> <label> Email <input name="email" placeholder="you@email.com" type="email"> </label> <input class="left button-primary" onclick="{update}" type="submit" value="Save"> <div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> <div class="message">{message}</div> </fieldset> </form>', 'org-edit *[contentEditable],[riot-tag="org-edit"] *[contentEditable] { display: block; margin-bottom: 12px; } org-edit label,[riot-tag="org-edit"] label { margin-top: 10px; } org-edit input[type=file],[riot-tag="org-edit"] input[type=file] { display: none; }', '', function(opts) {
     (function() {
       var entry_id, present;
 
@@ -3722,10 +3722,13 @@ BAppModel = (function() {
   BAppModel.filterValues = function(values, ctx) {
     var newVals;
     newVals = {};
-    _(values).each(function(value, key) {
-      if (_(ctx.attrs).include(key)) {
-        return newVals[key] = value;
+    _(ctx.attrs).each(function(attr) {
+      var val;
+      val = "-";
+      if (_(ctx.attrs).include(attr)) {
+        val = values[attr];
       }
+      return newVals[attr] = val;
     });
     return newVals;
   };
@@ -3883,17 +3886,18 @@ BR = {
         var spinner;
         spinner = $(form + " .spinner");
         return $(form + " input[type=submit]").on("click", function(evt) {
-          var obj, values;
+          var klass, obj, values;
           spinner.css({
             visibility: "visible"
           });
           obj = ctx[name];
+          klass = G[s.capitalize(name)];
           values = $("" + form).serializeArray();
           _(values).each(function(entry) {
             return obj[entry.name] = entry.value;
           });
           c.log("Updating " + name + ":", obj);
-          return User.update(obj).then(function(resp) {
+          return klass.update(obj).then(function(resp) {
             c.log(name + " updated:", resp);
             spinner.css({
               visibility: "hidden"

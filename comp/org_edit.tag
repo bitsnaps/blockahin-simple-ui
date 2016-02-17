@@ -21,6 +21,16 @@
             <input name='location' placeholder='Your City, Planet Earth' type='text' value='{ org.location }'>
           </div>
         </div>
+        <div class='row'>
+          <div class='column column-20'>
+            <label>
+              <strong>Industry:</strong>
+            </label>
+          </div>
+          <div class='column column-80'>
+            <input name='industry' placeholder='Business industry' type='text' value='{ org.industry }'>
+          </div>
+        </div>
       </div>
     </div>
     <fieldset>
