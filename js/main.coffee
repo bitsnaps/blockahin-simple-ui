@@ -43,12 +43,12 @@ PENDING_TXST = null # pending tx status
 
 # Socket:
 
-wsHost = "localhost:3333"
-wsHost = "#{bappHost}:3333" if APP_ENV == "prod"
+wsHost = "localhost:3001"
+wsHost = bappHost if APP_ENV == "prod"
 socket = new WebSocket "ws://#{wsHost}"
 
 socket.onopen = (event) ->
-  c.log "PONG"
+  c.log "PING"
 
 socket.onmessage = (event) ->
   status = event.data

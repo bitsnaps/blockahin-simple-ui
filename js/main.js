@@ -20,16 +20,16 @@ updateStatusDebounced = _.debounce(updateStatus);
 
 PENDING_TXST = null;
 
-wsHost = "localhost:3333";
+wsHost = "localhost:3001";
 
 if (APP_ENV === "prod") {
-  wsHost = bappHost + ":3333";
+  wsHost = bappHost;
 }
 
 socket = new WebSocket("ws://" + wsHost);
 
 socket.onopen = function(event) {
-  return c.log("PONG");
+  return c.log("PING");
 };
 
 socket.onmessage = function(event) {
