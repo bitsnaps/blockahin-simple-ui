@@ -5,7 +5,7 @@ host = document.location.hostname;
 
 APP_ENV = host === "localhost" ? "dev" : "prod";
 
-bappHost = APP_ENV ? "localhost:3001" : "api." + host;
+bappHost = APP_ENV === "dev" ? "localhost:3001" : "api." + host;
 
 host = bappHost;
 
