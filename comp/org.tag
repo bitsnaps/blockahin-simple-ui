@@ -53,7 +53,7 @@
       var entry_id, present;
     
       present = function(org) {
-        if (org) {
+        if (org && org.publicKey) {
           org.publicKeyShort = org.publicKey.slice(0, 9) + "..." + org.publicKey.slice(-6);
         }
         return org;

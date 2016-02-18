@@ -1,8 +1,10 @@
 %org-new
-  %h4 Edit organization:
+  %h4 New organization:
   %h2 { org.name }
 
   %form#org_form{ onsubmit: "{ update }" }
+    %h5
+      %input.big-text{placeholder: "Organization Name", name: "name", type: "text", value: "{ user.name }", required: true }/
     .row
       .column.overlay_cont
         %label.normal
@@ -56,13 +58,5 @@
 
 
   :coffeescript
-    @prod_host = s(location.hostname).strLeft(".").value()
-    entry_id = Number(@prod_host[2]) || 1
-
-    present = (org) ->
-      org = genOrgAvatar org if org
-      org
-
-    BR.loadFromCollection "org", entry_id, this, present
-
-    BR.bindUpdateEntityForm "org", entry_id, this
+    @org = new Org({})
+    BR.bindCreateEntityForm "org", this

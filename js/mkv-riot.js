@@ -34,6 +34,15 @@ BR = {
       });
     };
   })(this),
+  appendNewObjToColl: (function(_this) {
+    return function(obj, coll_name) {
+      var coll, last;
+      coll = StoreData[coll_name];
+      last = _(coll).last();
+      coll.push(obj);
+      return obj.id = last.id + 1;
+    };
+  })(this),
   bindSaveEntityForm: (function(_this) {
     return function(action, name, entry_id, ctx) {
       var coll_name, form;
@@ -56,15 +65,13 @@ BR = {
           });
           c.log(name + "." + action + "()", obj);
           return klass[action](obj).then(function(resp) {
-            var coll;
             c.log(name + " updated:", resp);
             spinner.css({
               visibility: "hidden"
             });
             $(form + " .message").html("saved!");
             if (action === "create") {
-              coll = StoreData[coll_name];
-              return coll.push(obj);
+              return BR.appendNewObjToColl(obj, coll_name);
             }
           })["catch"](function(error) {
             c.error("Error: Cannot " + action + " current " + name + ":", error);

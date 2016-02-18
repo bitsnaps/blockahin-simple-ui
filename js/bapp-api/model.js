@@ -126,6 +126,17 @@ BAppModel = (function() {
     return newVals;
   };
 
+  BAppModel.count = function() {
+    return new Promise((function(_this) {
+      return function(resolve, reject) {
+        return API.get(_this.collection(), "get" + (_this.collectionUp()) + "Count").then(resolve)["catch"](function(error) {
+          c.error("Error: " + error);
+          return reject(error);
+        });
+      };
+    })(this));
+  };
+
   BAppModel.pluralize = function(word) {
     if (s(word).endsWith('y')) {
       word = word.substring(word.length - 1);

@@ -21,6 +21,18 @@ BR =
       ctx[name] = elem
       ctx.update()
 
+  appendNewObjToColl: (obj, coll_name) =>
+    coll = StoreData[coll_name]
+    last = _(coll).last()
+    coll.push obj
+    obj.id = last.id + 1
+    # klass.count()
+    #   .then (count) =>
+    #     obj.id = count+1
+    #   .catch (error) ->
+    #     c.error "Error: Cannot #{action} current #{name}:", error
+    #     c.error error.stack
+
   bindSaveEntityForm: (action, name, entry_id, ctx) =>
     coll_name = BR.pluralize name
     form = "form##{name}_form"
@@ -46,9 +58,7 @@ BR =
             spinner.css
               visibility: "hidden"
             $("#{form} .message").html "saved!"
-            if action == "create"
-              coll = StoreData[coll_name]
-              coll.push obj
+            BR.appendNewObjToColl obj, coll_name if action == "create"
           .catch (error) ->
             c.error "Error: Cannot #{action} current #{name}:", error
             c.error error.stack

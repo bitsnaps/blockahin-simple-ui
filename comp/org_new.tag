@@ -1,7 +1,10 @@
 <org-new>
-  <h4>Edit organization:</h4>
+  <h4>New organization:</h4>
   <h2>{ org.name }</h2>
   <form id='org_form' onsubmit='{ update }'>
+    <h5>
+      <input class='big-text' name='name' placeholder='Organization Name' required type='text' value='{ user.name }'>
+    </h5>
     <div class='row'>
       <div class='column overlay_cont'>
         <label class='normal'>
@@ -63,22 +66,9 @@
   </style>
   <script>
     (function() {
-      var entry_id, present;
+      this.org = new Org({});
     
-      this.prod_host = s(location.hostname).strLeft(".").value();
-    
-      entry_id = Number(this.prod_host[2]) || 1;
-    
-      present = function(org) {
-        if (org) {
-          org = genOrgAvatar(org);
-        }
-        return org;
-      };
-    
-      BR.loadFromCollection("org", entry_id, this, present);
-    
-      BR.bindUpdateEntityForm("org", entry_id, this);
+      BR.bindCreateEntityForm("org", this);
     
     }).call(this);
   </script>

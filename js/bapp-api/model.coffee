@@ -82,6 +82,13 @@ class BAppModel
         newVals["_#{key}"] = value
     newVals
 
+  @count: ->
+    new Promise (resolve, reject) =>
+      API.get(@collection(), "get#{@collectionUp()}Count")
+        .then resolve
+        .catch (error) ->
+          c.error "Error: #{error}"
+          reject error
 
   # utils
 

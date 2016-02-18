@@ -193,17 +193,17 @@ input.big-text {
   font-weight: bold;
 }
 
-user-new form#user_form .avatar {
+user-new form#user_form .avatar, org-new form#org_form .avatar {
   border: 1px solid #EEE;
   width: 150px;
   height: 150px;
 }
-user-new form#user_form .icon.overlay {
+user-new form#user_form .icon.overlay, org-new form#org_form .icon.overlay {
   display: block;
   color: #EEE
 }
 
-user-new form#user_form .overlay_cont:hover .icon.overlay {
+user-new form#user_form .overlay_cont:hover .icon.overlay, org-new form#org_form .overlay_cont:hover .icon.overlay {
   color: #777
 }
 
