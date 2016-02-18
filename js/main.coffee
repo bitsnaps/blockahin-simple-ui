@@ -43,7 +43,8 @@ PENDING_TXST = null # pending tx status
 
 # Socket:
 
-wsHost = "localhost:8080"
+wsHost = "localhost:3333"
+wsHost = "#{bappHost}:3333" if APP_ENV == "prod"
 socket = new WebSocket "ws://#{wsHost}"
 
 socket.onopen = (event) ->

@@ -20,7 +20,11 @@ updateStatusDebounced = _.debounce(updateStatus);
 
 PENDING_TXST = null;
 
-wsHost = "localhost:8080";
+wsHost = "localhost:3333";
+
+if (APP_ENV === "prod") {
+  wsHost = bappHost + ":3333";
+}
 
 socket = new WebSocket("ws://" + wsHost);
 
