@@ -58,7 +58,8 @@ Unis = [];
 StoreData = {
   users: Users,
   orgs: Orgs,
-  unis: Unis
+  unis: Unis,
+  evt: null
 };
 
 Store = function() {

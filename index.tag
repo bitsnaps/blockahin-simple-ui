@@ -42,6 +42,7 @@
     <script src='comp/org_edit.js'></script>
     <script src='comp/user_new.js'></script>
     <script src='comp/org_new.js'></script>
+    <script src='comp/notif.js'></script>
     <script src='comp/not_found.js'></script>
     <script src='js/bapp-api/bapi.js'></script>
     <script src='js/bapp-api/model.js'></script>

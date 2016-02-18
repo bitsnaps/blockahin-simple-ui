@@ -210,3 +210,38 @@ user-new form#user_form .overlay_cont:hover .icon.overlay, org-new form#org_form
 .gray, .grey {
   color: #AAA
 }
+
+.hidden {
+  display: none;
+}
+
+#notif {
+  position: absolute;
+  right: 5px;
+  top: 32px;
+  background: #f4f5f6;
+  padding: 5px 16px 5px 10px;
+  border: 1px dashed #AAA;
+  z-index: 3;
+  cursor: pointer;
+}
+
+#notif:hover {
+  border: 1px solid #AAA;
+}
+
+#notif:hover span.close {
+  font-weight: bold;
+  font-size: 110%;
+}
+
+#notif span.close {
+  position: absolute;
+  top: -3px;
+  right: 3px;
+}
+
+#notif span.close {
+  position: absolute;
+  top: -5px;
+}

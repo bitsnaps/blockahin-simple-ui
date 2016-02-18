@@ -1,0 +1,20 @@
+%notif
+  #notif{ class: "{ klass }", onclick: "{ hide }" }
+    %span { label }
+    %span.close x
+
+  :coffee
+    @label = ""
+    @klass = "hidden"
+
+    @hide = ->
+      @klass = "hidden"
+
+    @store = opts.store
+    @store.on 'update', (data) =>
+      @evt = StoreData.evt
+      @klass = if @evt then "" else "hidden"
+      @label = "Confirmed!" if @evt == "tx_latest"
+      @label = "Pending..." if @evt == "tx_pending"
+
+      @update() # updates the ui

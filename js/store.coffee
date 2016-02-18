@@ -48,6 +48,7 @@ StoreData =
   users: Users
   orgs:  Orgs
   unis:  Unis
+  evt:   null
 
 Store = ->
   @update = (StoreData) ->

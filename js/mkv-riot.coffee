@@ -26,6 +26,8 @@ BR =
     last = _(coll).last()
     coll.push obj
     obj.id = last.id + 1
+    # FIXME more desired way: - need to have count-after-confirmation?
+    #
     # klass.count()
     #   .then (count) =>
     #     obj.id = count+1

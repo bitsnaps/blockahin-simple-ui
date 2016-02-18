@@ -1,5 +1,6 @@
 <main-nav>
   <nav class='navigation'>
+    <notif store='{ opts.store }'></notif>
     <section class='container'>
       <a class='navigation-title float-left' href='#/'>
         <svg class='img' height='16' version='1.1' viewBox='0 0 16 16' width='16'>

@@ -1,4 +1,4 @@
-riot.mount '*'
+riot.mount '*', store: store
 
 riot.router.routes(ROUTES)
 
@@ -27,3 +27,46 @@ console.log "Riot started"
 #
 # BApi#all:
 #
+
+
+# Notifier
+
+
+updateStatus = (status) ->
+  StoreData.evt = status
+  store.update StoreData
+
+updateStatusDebounced = _.debounce updateStatus
+
+PENDING_TXST = null # pending tx status
+
+
+# Socket:
+
+wsHost = "localhost:8080"
+socket = new WebSocket "ws://#{wsHost}"
+
+socket.onopen = (event) ->
+  c.log "PONG"
+
+socket.onmessage = (event) ->
+  status = event.data
+  c.log "WS EVENT RECEIVED: #{status}"
+
+  if status
+    updateStatusDebounced status
+
+    if status == "tx_pending"
+      PENDING_TXST = true
+      _.delay ->
+        updateStatusDebounced null if PENDING_TXST
+      , 10000
+
+    if status == "tx_latest"
+      if PENDING_TXST
+        updateStatus status
+      PENDING_TXST = null
+
+      _.delay ->
+        updateStatusDebounced null
+      , 3000

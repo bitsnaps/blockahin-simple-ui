@@ -3383,7 +3383,7 @@ var Zepto=function(){function L(t){return null==t?String(t):j[S.call(t)]||"objec
     }
 }(this));
 
-riot.tag2('main-nav', '<nav class="navigation"> <section class="container"> <a class="navigation-title float-left" href="#/"> <svg class="img" height="16" version="1.1" viewbox="0 0 16 16" width="16"> <path class="logo-svgpath" d="M16 6.707c0-3.139-0.919-5.687-2.054-5.707 0.005-0 0.009-0 0.014-0h-1.296c0 0-3.044 2.287-7.425 3.184-0.134 0.708-0.219 1.551-0.219 2.523s0.085 1.816 0.219 2.523c4.382 0.897 7.425 3.184 7.425 3.184h1.296c-0.005 0-0.009-0-0.014-0.001 1.136-0.020 2.054-2.567 2.054-5.707zM13.513 11.551c-0.147 0-0.305-0.152-0.387-0.243-0.197-0.22-0.387-0.562-0.55-0.989-0.363-0.957-0.564-2.239-0.564-3.611s0.2-2.655 0.564-3.611c0.162-0.428 0.353-0.77 0.55-0.99 0.081-0.091 0.24-0.243 0.387-0.243s0.305 0.152 0.387 0.243c0.197 0.22 0.387 0.562 0.55 0.99 0.363 0.957 0.564 2.239 0.564 3.611s-0.2 2.655-0.564 3.611c-0.162 0.428-0.353 0.77-0.55 0.989-0.081 0.091-0.24 0.243-0.387 0.243zM3.935 6.707c0-0.812 0.060-1.6 0.173-2.33-0.74 0.102-1.39 0.161-2.193 0.161-1.048 0-1.048 0-1.048 0l-0.867 1.479v1.378l0.867 1.479c0 0 0 0 1.048 0 0.803 0 1.453 0.059 2.193 0.161-0.113-0.729-0.173-1.518-0.173-2.33zM5.752 10.034l-2-0.383 1.279 5.024c0.066 0.26 0.324 0.391 0.573 0.291l1.852-0.741c0.249-0.1 0.349-0.374 0.222-0.611l-1.926-3.581zM13.513 8.574c-0.057 0-0.118-0.059-0.149-0.094-0.076-0.085-0.149-0.217-0.212-0.381-0.14-0.369-0.217-0.863-0.217-1.392s0.077-1.023 0.217-1.392c0.063-0.165 0.136-0.297 0.212-0.381 0.031-0.035 0.092-0.094 0.149-0.094s0.118 0.059 0.149 0.094c0.076 0.085 0.149 0.217 0.212 0.381 0.14 0.369 0.217 0.863 0.217 1.392s-0.077 1.023-0.217 1.392c-0.063 0.165-0.136 0.297-0.212 0.381-0.031 0.035-0.092 0.094-0.149 0.094z"></path> </svg> <h1 class="title">BlockedIn</h1> </a> <ul class="navigation-list float-left"> <li class="navigation-item"> <a class="navigation-link" href="#/professionals">Professionals</a> </li> <li class="navigation-item"> <a class="navigation-link" href="#/organizations">Organizations</a> </li> <li class="navigation-item"> <a class="navigation-link" href="#/universities">Universities</a> </li> </ul> <ul class="navigation-list float-right"> <li class="navigation-item" if="{dev || prod_host == \'bi1\'}"> <a class="navigation-link" href="#/user">Profile</a> </li> <li class="navigation-item" if="{dev || prod_host != \'bi1\'}"> <a class="navigation-link" href="#/org">Organization</a> </li> </ul> </section> </nav>', '', '', function(opts) {
+riot.tag2('main-nav', '<nav class="navigation"> <notif store="{opts.store}"></notif> <section class="container"> <a class="navigation-title float-left" href="#/"> <svg class="img" height="16" version="1.1" viewbox="0 0 16 16" width="16"> <path class="logo-svgpath" d="M16 6.707c0-3.139-0.919-5.687-2.054-5.707 0.005-0 0.009-0 0.014-0h-1.296c0 0-3.044 2.287-7.425 3.184-0.134 0.708-0.219 1.551-0.219 2.523s0.085 1.816 0.219 2.523c4.382 0.897 7.425 3.184 7.425 3.184h1.296c-0.005 0-0.009-0-0.014-0.001 1.136-0.020 2.054-2.567 2.054-5.707zM13.513 11.551c-0.147 0-0.305-0.152-0.387-0.243-0.197-0.22-0.387-0.562-0.55-0.989-0.363-0.957-0.564-2.239-0.564-3.611s0.2-2.655 0.564-3.611c0.162-0.428 0.353-0.77 0.55-0.99 0.081-0.091 0.24-0.243 0.387-0.243s0.305 0.152 0.387 0.243c0.197 0.22 0.387 0.562 0.55 0.99 0.363 0.957 0.564 2.239 0.564 3.611s-0.2 2.655-0.564 3.611c-0.162 0.428-0.353 0.77-0.55 0.989-0.081 0.091-0.24 0.243-0.387 0.243zM3.935 6.707c0-0.812 0.060-1.6 0.173-2.33-0.74 0.102-1.39 0.161-2.193 0.161-1.048 0-1.048 0-1.048 0l-0.867 1.479v1.378l0.867 1.479c0 0 0 0 1.048 0 0.803 0 1.453 0.059 2.193 0.161-0.113-0.729-0.173-1.518-0.173-2.33zM5.752 10.034l-2-0.383 1.279 5.024c0.066 0.26 0.324 0.391 0.573 0.291l1.852-0.741c0.249-0.1 0.349-0.374 0.222-0.611l-1.926-3.581zM13.513 8.574c-0.057 0-0.118-0.059-0.149-0.094-0.076-0.085-0.149-0.217-0.212-0.381-0.14-0.369-0.217-0.863-0.217-1.392s0.077-1.023 0.217-1.392c0.063-0.165 0.136-0.297 0.212-0.381 0.031-0.035 0.092-0.094 0.149-0.094s0.118 0.059 0.149 0.094c0.076 0.085 0.149 0.217 0.212 0.381 0.14 0.369 0.217 0.863 0.217 1.392s-0.077 1.023-0.217 1.392c-0.063 0.165-0.136 0.297-0.212 0.381-0.031 0.035-0.092 0.094-0.149 0.094z"></path> </svg> <h1 class="title">BlockedIn</h1> </a> <ul class="navigation-list float-left"> <li class="navigation-item"> <a class="navigation-link" href="#/professionals">Professionals</a> </li> <li class="navigation-item"> <a class="navigation-link" href="#/organizations">Organizations</a> </li> <li class="navigation-item"> <a class="navigation-link" href="#/universities">Universities</a> </li> </ul> <ul class="navigation-list float-right"> <li class="navigation-item" if="{dev || prod_host == \'bi1\'}"> <a class="navigation-link" href="#/user">Profile</a> </li> <li class="navigation-item" if="{dev || prod_host != \'bi1\'}"> <a class="navigation-link" href="#/org">Organization</a> </li> </ul> </section> </nav>', '', '', function(opts) {
     (function() {
       this.dev = location.hostname === "localhost";
 
@@ -3604,6 +3604,35 @@ riot.tag2('org-new', '<h4>New organization:</h4> <h2>{org.name}</h2> <form id="o
     }).call(this);
 }, '{ }');
 
+riot.tag2('notif', '<div class="{klass}" id="notif" onclick="{hide}"> <span>{label}</span> <span class="close">x</span> </div>', '', '', function(opts) {
+    (function() {
+      this.label = "";
+
+      this.klass = "hidden";
+
+      this.hide = function() {
+        return this.klass = "hidden";
+      };
+
+      this.store = opts.store;
+
+      this.store.on('update', (function(_this) {
+        return function(data) {
+          _this.evt = StoreData.evt;
+          _this.klass = _this.evt ? "" : "hidden";
+          if (_this.evt === "tx_latest") {
+            _this.label = "Confirmed!";
+          }
+          if (_this.evt === "tx_pending") {
+            _this.label = "Pending...";
+          }
+          return _this.update();
+        };
+      })(this));
+
+    }).call(this);
+}, '{ }');
+
 riot.tag2('not-found', '<h2>404</h2> <p>Not found</p>', '', '', function(opts) {
 });
 
@@ -3788,6 +3817,17 @@ BAppModel = (function() {
     return newVals;
   };
 
+  BAppModel.count = function() {
+    return new Promise((function(_this) {
+      return function(resolve, reject) {
+        return API.get(_this.collection(), "get" + (_this.collectionUp()) + "Count").then(resolve)["catch"](function(error) {
+          c.error("Error: " + error);
+          return reject(error);
+        });
+      };
+    })(this));
+  };
+
   BAppModel.pluralize = function(word) {
     if (s(word).endsWith('y')) {
       word = word.substring(word.length - 1);
@@ -3921,6 +3961,15 @@ BR = {
       });
     };
   })(this),
+  appendNewObjToColl: (function(_this) {
+    return function(obj, coll_name) {
+      var coll, last;
+      coll = StoreData[coll_name];
+      last = _(coll).last();
+      coll.push(obj);
+      return obj.id = last.id + 1;
+    };
+  })(this),
   bindSaveEntityForm: (function(_this) {
     return function(action, name, entry_id, ctx) {
       var coll_name, form;
@@ -3943,18 +3992,13 @@ BR = {
           });
           c.log(name + "." + action + "()", obj);
           return klass[action](obj).then(function(resp) {
-            var coll;
             c.log(name + " updated:", resp);
             spinner.css({
               visibility: "hidden"
             });
             $(form + " .message").html("saved!");
             if (action === "create") {
-              coll = StoreData[coll_name];
-              coll.push(obj);
-              return setTimeout(function() {
-                return obj.id = 18;
-              }, 1000);
+              return BR.appendNewObjToColl(obj, coll_name);
             }
           })["catch"](function(error) {
             c.error("Error: Cannot " + action + " current " + name + ":", error);
@@ -4043,7 +4087,8 @@ Unis = [];
 StoreData = {
   users: Users,
   orgs: Orgs,
-  unis: Unis
+  unis: Unis,
+  evt: null
 };
 
 Store = function() {
@@ -4139,11 +4184,58 @@ ROUTES = [
   })
 ];
 
-riot.mount('*');
+var PENDING_TXST, socket, updateStatus, updateStatusDebounced, wsHost;
+
+riot.mount('*', {
+  store: store
+});
 
 riot.router.routes(ROUTES);
 
 riot.router.start();
 
 console.log("Riot started");
+
+updateStatus = function(status) {
+  StoreData.evt = status;
+  return store.update(StoreData);
+};
+
+updateStatusDebounced = _.debounce(updateStatus);
+
+PENDING_TXST = null;
+
+wsHost = "localhost:8080";
+
+socket = new WebSocket("ws://" + wsHost);
+
+socket.onopen = function(event) {
+  return c.log("PONG");
+};
+
+socket.onmessage = function(event) {
+  var status;
+  status = event.data;
+  c.log("WS EVENT RECEIVED: " + status);
+  if (status) {
+    updateStatusDebounced(status);
+    if (status === "tx_pending") {
+      PENDING_TXST = true;
+      _.delay(function() {
+        if (PENDING_TXST) {
+          return updateStatusDebounced(null);
+        }
+      }, 10000);
+    }
+    if (status === "tx_latest") {
+      if (PENDING_TXST) {
+        updateStatus(status);
+      }
+      PENDING_TXST = null;
+      return _.delay(function() {
+        return updateStatusDebounced(null);
+      }, 3000);
+    }
+  }
+};
 });
