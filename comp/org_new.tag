@@ -38,7 +38,7 @@
         Email
         <input name='email' placeholder='you@email.com' type='email'>
       </label>
-      <input class='left button-primary' onclick='{ update }' type='submit' value='Save'>
+      <input class='left button-primary' onclick='{ update }' type='submit' value='Register'>
       <div class='spinner'>
         <div class='rect1'></div>
         <div class='rect2'></div>

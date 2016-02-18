@@ -53,7 +53,7 @@
         Cover letter
         <textarea placeholder='A generic cover letter you want to send to your ideal employer, why you are suited for the job.'></textarea>
       </label>
-      <input class='left button-primary' onclick='{ update }' type='submit' value='Save'>
+      <input class='left button-primary' onclick='{ update }' type='submit' value='Register'>
       <div class='spinner'>
         <div class='rect1'></div>
         <div class='rect2'></div>

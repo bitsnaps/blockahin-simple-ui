@@ -5,7 +5,7 @@
       <img class='avatar' src='{ org.avatarLg }'>
     </div>
     <div class='column'></div>
-    <p>
+    <p class='gray'>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
     </p>
   </div>
@@ -28,7 +28,7 @@
   </div>
   <div class='row'>
     <div class='column'>
-      <p>
+      <p class='gray'>
         <strong>Extra:</strong>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
       </p>

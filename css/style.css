@@ -204,5 +204,9 @@ user-new form#user_form .icon.overlay {
 }
 
 user-new form#user_form .overlay_cont:hover .icon.overlay {
+  color: #777
+}
+
+.gray, .grey {
   color: #AAA
 }

@@ -5,7 +5,7 @@
     .column
       %img.avatar{ src: "{ user.avatarLg }" }
     .column.column-80
-      %p
+      %p.gray
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
         { user.bio }
       %p
@@ -17,45 +17,45 @@
 
   .s20
 
+  .gray
+    %h3 Skills
+    .row
+      .column
+        PHP ★★★★★
+      .column
+        CSS ★★★★
+      .column
+        HTML5 ★★★★
+      .column
+        MYSQL ★★★
+      .column
+        Linux ★★
+    .row
+      .column
+        Apache ★★★
+      .column
+        Nginx ★
+      .column
+        Photoshop ★★★★
+      .column
+        Illustrator ★★★
+      .column
+    .clear
 
-  %h3 Skills
-  .row
-    .column
-      PHP ★★★★★
-    .column
-      CSS ★★★★
-    .column
-      HTML5 ★★★★
-    .column
-      MYSQL ★★★
-    .column
-      Linux ★★
-  .row
-    .column
-      Apache ★★★
-    .column
-      Nginx ★
-    .column
-      Photoshop ★★★★
-    .column
-      Illustrator ★★★
-    .column
-  .clear
-
-  .s30
-  %h3 Positions
-  %h5 PHP Developer
-  %h5 ACME
-  %p
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis.
+    .s30
+    %h3 Positions
+    %h5 PHP Developer
+    %h5 ACME
+    %p
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis.
 
 
-  .s30
-  %h3 Education
-  %h5 Degree in Astrophysics
-  %h5 UCL
-  %p
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis.
+    .s30
+    %h3 Education
+    %h5 Degree in Astrophysics
+    %h5 UCL
+    %p
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis.
 
   :coffeescript
     entry_id = BR.getEntryId()
