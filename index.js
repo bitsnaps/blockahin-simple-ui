@@ -3383,7 +3383,7 @@ var Zepto=function(){function L(t){return null==t?String(t):j[S.call(t)]||"objec
     }
 }(this));
 
-riot.tag2('main-nav', '<nav class="navigation"> <notif store="{opts.store}"></notif> <section class="container"> <a class="navigation-title float-left" href="#/"> <svg class="img" height="16" version="1.1" viewbox="0 0 16 16" width="16"> <path class="logo-svgpath" d="M16 6.707c0-3.139-0.919-5.687-2.054-5.707 0.005-0 0.009-0 0.014-0h-1.296c0 0-3.044 2.287-7.425 3.184-0.134 0.708-0.219 1.551-0.219 2.523s0.085 1.816 0.219 2.523c4.382 0.897 7.425 3.184 7.425 3.184h1.296c-0.005 0-0.009-0-0.014-0.001 1.136-0.020 2.054-2.567 2.054-5.707zM13.513 11.551c-0.147 0-0.305-0.152-0.387-0.243-0.197-0.22-0.387-0.562-0.55-0.989-0.363-0.957-0.564-2.239-0.564-3.611s0.2-2.655 0.564-3.611c0.162-0.428 0.353-0.77 0.55-0.99 0.081-0.091 0.24-0.243 0.387-0.243s0.305 0.152 0.387 0.243c0.197 0.22 0.387 0.562 0.55 0.99 0.363 0.957 0.564 2.239 0.564 3.611s-0.2 2.655-0.564 3.611c-0.162 0.428-0.353 0.77-0.55 0.989-0.081 0.091-0.24 0.243-0.387 0.243zM3.935 6.707c0-0.812 0.060-1.6 0.173-2.33-0.74 0.102-1.39 0.161-2.193 0.161-1.048 0-1.048 0-1.048 0l-0.867 1.479v1.378l0.867 1.479c0 0 0 0 1.048 0 0.803 0 1.453 0.059 2.193 0.161-0.113-0.729-0.173-1.518-0.173-2.33zM5.752 10.034l-2-0.383 1.279 5.024c0.066 0.26 0.324 0.391 0.573 0.291l1.852-0.741c0.249-0.1 0.349-0.374 0.222-0.611l-1.926-3.581zM13.513 8.574c-0.057 0-0.118-0.059-0.149-0.094-0.076-0.085-0.149-0.217-0.212-0.381-0.14-0.369-0.217-0.863-0.217-1.392s0.077-1.023 0.217-1.392c0.063-0.165 0.136-0.297 0.212-0.381 0.031-0.035 0.092-0.094 0.149-0.094s0.118 0.059 0.149 0.094c0.076 0.085 0.149 0.217 0.212 0.381 0.14 0.369 0.217 0.863 0.217 1.392s-0.077 1.023-0.217 1.392c-0.063 0.165-0.136 0.297-0.212 0.381-0.031 0.035-0.092 0.094-0.149 0.094z"></path> </svg> <h1 class="title">BlockedIn</h1> </a> <ul class="navigation-list float-left"> <li class="navigation-item"> <a class="navigation-link" href="#/professionals">Professionals</a> </li> <li class="navigation-item"> <a class="navigation-link" href="#/organizations">Organizations</a> </li> <li class="navigation-item"> <a class="navigation-link" href="#/universities">Universities</a> </li> </ul> <ul class="navigation-list float-right"> <li class="navigation-item" if="{dev || prod_host == \'bi1\'}"> <a class="navigation-link" href="#/user">Profile</a> </li> <li class="navigation-item" if="{dev || prod_host != \'bi1\'}"> <a class="navigation-link" href="#/org">Organization</a> </li> </ul> </section> </nav>', '', '', function(opts) {
+riot.tag2('main-nav', '<nav class="navigation"> <notif store="{opts.store}"></notif> <section class="container"> <a class="navigation-title float-left" href="#/"> <svg class="img" height="16" version="1.1" viewbox="0 0 16 16" width="16"> <path class="logo-svgpath" d="M16 6.707c0-3.139-0.919-5.687-2.054-5.707 0.005-0 0.009-0 0.014-0h-1.296c0 0-3.044 2.287-7.425 3.184-0.134 0.708-0.219 1.551-0.219 2.523s0.085 1.816 0.219 2.523c4.382 0.897 7.425 3.184 7.425 3.184h1.296c-0.005 0-0.009-0-0.014-0.001 1.136-0.020 2.054-2.567 2.054-5.707zM13.513 11.551c-0.147 0-0.305-0.152-0.387-0.243-0.197-0.22-0.387-0.562-0.55-0.989-0.363-0.957-0.564-2.239-0.564-3.611s0.2-2.655 0.564-3.611c0.162-0.428 0.353-0.77 0.55-0.99 0.081-0.091 0.24-0.243 0.387-0.243s0.305 0.152 0.387 0.243c0.197 0.22 0.387 0.562 0.55 0.99 0.363 0.957 0.564 2.239 0.564 3.611s-0.2 2.655-0.564 3.611c-0.162 0.428-0.353 0.77-0.55 0.989-0.081 0.091-0.24 0.243-0.387 0.243zM3.935 6.707c0-0.812 0.060-1.6 0.173-2.33-0.74 0.102-1.39 0.161-2.193 0.161-1.048 0-1.048 0-1.048 0l-0.867 1.479v1.378l0.867 1.479c0 0 0 0 1.048 0 0.803 0 1.453 0.059 2.193 0.161-0.113-0.729-0.173-1.518-0.173-2.33zM5.752 10.034l-2-0.383 1.279 5.024c0.066 0.26 0.324 0.391 0.573 0.291l1.852-0.741c0.249-0.1 0.349-0.374 0.222-0.611l-1.926-3.581zM13.513 8.574c-0.057 0-0.118-0.059-0.149-0.094-0.076-0.085-0.149-0.217-0.212-0.381-0.14-0.369-0.217-0.863-0.217-1.392s0.077-1.023 0.217-1.392c0.063-0.165 0.136-0.297 0.212-0.381 0.031-0.035 0.092-0.094 0.149-0.094s0.118 0.059 0.149 0.094c0.076 0.085 0.149 0.217 0.212 0.381 0.14 0.369 0.217 0.863 0.217 1.392s-0.077 1.023-0.217 1.392c-0.063 0.165-0.136 0.297-0.212 0.381-0.031 0.035-0.092 0.094-0.149 0.094z"></path> </svg> <h1 class="title">BlockedIn</h1> </a> <ul class="navigation-list float-left"> <li class="navigation-item"> <a class="navigation-link" href="#/professionals">Professionals</a> </li> <li class="navigation-item"> <a class="navigation-link" href="#/organizations">Companies</a> </li> <li class="navigation-item"> <a class="navigation-link" href="#/universities">Universities</a> </li> </ul> <ul class="navigation-list float-right"> <li class="navigation-item" if="{dev || prod_host == \'bi1\'}"> <a class="navigation-link" href="#/user">Profile</a> </li> <li class="navigation-item" if="{dev || prod_host != \'bi1\'}"> <a class="navigation-link" href="#/org">Organization</a> </li> </ul> </section> </nav>', '', '', function(opts) {
     (function() {
       this.dev = location.hostname === "localhost";
 
@@ -3402,7 +3402,7 @@ riot.tag2('home', '<div class="row"> <div class="column"> <h2>BlockedIn</h2> </d
 
       this.store.on('update', (function(_this) {
         return function(data) {
-          _this.users = data.users;
+          _this.users = data.users.slice(0, 18);
           return _this.update();
         };
       })(this));
@@ -3413,7 +3413,7 @@ riot.tag2('home', '<div class="row"> <div class="column"> <h2>BlockedIn</h2> </d
 
       this.store.on('update', (function(_this) {
         return function(data) {
-          _this.orgs = data.orgs;
+          _this.orgs = data.orgs.slice(0, 18);
           return _this.update();
         };
       })(this));
@@ -3437,7 +3437,7 @@ riot.tag2('table-users', '<p>Search</p> <input name="query" onkeyup="{filterUser
     }
     this.filterUsers = function() {
       this.users = _(StoreData.users).select((user) => {
-        return matchString(user).include(this.query.value)
+        return matchString(user).include(this.query.value.toLowerCase())
       })
     }.bind(this)
 
@@ -3463,14 +3463,14 @@ riot.tag2('table-users', '<p>Search</p> <input name="query" onkeyup="{filterUser
 riot.tag2('user-row', '<dtd> <a href="#/users/{id}"> <img class="avatar" riot-src="{avatar}"> </a> </dtd> <dtd> <a href="#/users/{id}"> {name} </a> </dtd> <dtd>{jobTitle}</dtd>', '', '', function(opts) {
 }, '{ }');
 
-riot.tag2('table-orgs', '<p>Search</p> <input name="query" onkeyup="{filterOrgs}" placeholder="enter a skill or a location" type="text"> <dtable> <org-row each="{orgs}"></org-row> </dtable> </input>', '', '', function(opts) {
+riot.tag2('table-orgs', '<p>Search</p> <input name="query" onkeyup="{filterOrgs}" placeholder="enter a company name, an industry or a location" type="text"> <dtable> <org-row each="{orgs}"></org-row> </dtable> </input>', '', '', function(opts) {
     var matchString = (org) => {
-      return s(`${org.name}`).toLowerCase()
+      return s(`${org.name}|${org.industry}|${org.location}`).toLowerCase()
     }
     this.filterOrgs = function() {
-      this.orgs = _(Orgs).select((org) => {
-        return matchString(org).include(this.query.value)
-      })
+      this.orgs = present(_(StoreData.orgs).select((org) => {
+        return matchString(org).include(this.query.value.toLowerCase())
+      }))
     }.bind(this)
 
     var present = (orgs) => {
@@ -3522,7 +3522,7 @@ riot.tag2('ab-footer', '<div class="s80"></div> <footer class="footer"> <section
     this.time = new Date().getFullYear()
 }, '{ }');
 
-riot.tag2('user', '<h2>{user.name}</h2> <h4>{user.jobTitle}</h4> <div class="row"> <div class="column"> <img class="avatar" riot-src="{user.avatarLg}"> </div> <div class="column column-80"> <p class="gray"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum. {user.bio} </p> <p> <strong>Location:</strong> {user.location} </p> <p> <strong>Nationality:</strong> {user.nationality} </p> </div> </div> <div class="s20"></div> <div class="gray"> <h3>Skills</h3> <div class="row"> <div class="column"> PHP ★★★★★ </div> <div class="column"> CSS ★★★★ </div> <div class="column"> HTML5 ★★★★ </div> <div class="column"> MYSQL ★★★ </div> <div class="column"> Linux ★★ </div> </div> <div class="row"> <div class="column"> Apache ★★★ </div> <div class="column"> Nginx ★ </div> <div class="column"> Photoshop ★★★★ </div> <div class="column"> Illustrator ★★★ </div> <div class="column"></div> </div> <div class="clear"></div> <div class="s30"></div> <h3>Positions</h3> <h5>PHP Developer</h5> <h5>ACME</h5> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. </p> <div class="s30"></div> <h3>Education</h3> <h5>Degree in Astrophysics</h5> <h5>UCL</h5> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. </p> </div>', '', '', function(opts) {
+riot.tag2('user', '<div class="row"> <div class="column"> <unsplash-cover></unsplash-cover> </div> </div> <div class="row"> <div class="column centered avatar-box"> <img class="avatar" riot-src="{user.avatarLg}"> <h2>{user.name}</h2> <h4>{user.jobTitle}</h4> </div> <div class="avatar-spacer"></div> </div> <div class="row"> <div class="column"> <p class="gray"> {user.bio} </p> <p> <strong>Location:</strong> {user.location} </p> <p> <strong>Nationality:</strong> {user.nationality} </p> </div> </div> <div class="s20"></div> <div class="gray"> <h3>Skills</h3> <div class="row"> <div class="column" each="{skills}"></div> </div> <div class="row"> <div class="column"> Apache ★★★ </div> <div class="column"> Nginx ★ </div> <div class="column"> Photoshop ★★★★ </div> <div class="column"> Illustrator ★★★ </div> <div class="column"></div> </div> <div class="clear"></div> <div class="s30"></div> <h3>Positions</h3> <h5>PHP Developer</h5> <h5>ACME</h5> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. </p> <div class="s30"></div> <h3>Education</h3> <h5>Degree in Astrophysics</h5> <h5>UCL</h5> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. </p> </div>', '.avatar-box { position: absolute; top: 180px; left: 0; } .avatar-box img { border: 15px solid #FFF; box-shadow: 0 0 22px 0 #777; } .avatar-spacer { height: 180px; }', '', function(opts) {
     (function() {
       var entry_id;
 
@@ -3533,7 +3533,7 @@ riot.tag2('user', '<h2>{user.name}</h2> <h4>{user.jobTitle}</h4> <div class="row
     }).call(this);
 }, '{ }');
 
-riot.tag2('org', '<h2>{org.name}</h2> <div class="row"> <div class="column"> <img class="avatar" riot-src="{org.avatarLg}"> </div> <div class="column"></div> <p class="gray"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum. </p> </div> <div class="s20"></div> <div class="row"> <div class="column"> <p> <strong>Industry:</strong> {org.industry} </p> </div> </div> <div class="row"> <div class="column"> <p> <strong>Location:</strong> {org.location} </p> </div> </div> <div class="row"> <div class="column"> <p class="gray"> <strong>Extra:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum. </p> </div> </div> <div class="row"> <div class="column right"> <p> organization type <br> {org.orgType} </p> <p> publicKey <br> <span class="hint--bottom-left hint--rounded" data-hint="{org.publicKey}">{org.publicKeyShort}</span> </p> </div> </div>', '', '', function(opts) {
+riot.tag2('org', '<h2>{org.name}</h2> <div class="row"> <div class="column"> <img class="avatar" riot-src="{org.avatarLg}"> </div> <div class="column"></div> <p class="gray"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum. </p> </div> <div class="s20"></div> <div class="row"> <div class="column"> <p> <strong>Industry:</strong> {org.industry} </p> </div> </div> <div class="row"> <div class="column"> <p> <strong>Location:</strong> {org.location} </p> </div> </div> <div class="row"> <div class="column"> <p class="gray"> <strong>Extra:</strong> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum. </p> </div> </div> <p>{org.publicKey}</p> <publickey org="{org.publicKey}" publickey="{org.name}" asd="true"></publickey>', '', '', function(opts) {
     (function() {
       var entry_id, present;
 
@@ -3550,8 +3550,18 @@ riot.tag2('org', '<h2>{org.name}</h2> <div class="row"> <div class="column"> <im
 
     }).call(this);
 }, '{ }');
+riot.tag2('publickey', '<div class="row"> <div class="column right"> <p> organization type <br> {org.orgType} </p> <p> publicKey <br> <span class="hint--bottom-left hint--rounded" data-hint="{org.publicKey}">{org.publicKeyShort}</span> </p> </div> </div>', '', '', function(opts) {
+    (function() {
+      c.log(this.opts);
 
-riot.tag2('user-edit', '<h4>Edit your profile:</h4> <h2>{user.name}</h2> <form id="user_form" onsubmit="{update}"> <h4> <input class="big-text" name="jobTitle" placeholder="Your current Job Title" type="text" value="{user.jobTitle}"> </h4> <div class="row"> <div class="column overlay_cont"> <label class="normal"> <img class="avatar" riot-src="{user.avatarLg}"> <div class="icon overlay white">📷</div> <input type="file"> </label> </div> <div class="column column-80"> <p class="border" contenteditable> Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum. {user.bio} </p> <div class="row"> <div class="column column-20"> <label> <strong>Location:</strong> </label> </div> <div class="column column-80"> <input name="location" placeholder="Your City, Planet Earth" type="text" value="{user.location}"> </div> </div> <div class="row"> <div class="column column-20"> <label> <strong>Nationality:</strong> </label> </div> <div class="column column-80"> <input name="nationality" placeholder="Your country of Origin" type="text" value="{user.nationality}"> </div> </div> </div> </div> <fieldset> <label> Email <input name="email" placeholder="you@email.com" type="email"> </label> <label> Gender <input name="gender" placeholder="M / F" type="text" value="{user.gender}"> </label> <label> Cover letter <textarea placeholder="A generic cover letter you want to send to your ideal employer, why you are suited for the job."></textarea> </label> <input class="left button-primary" onclick="{update}" type="submit" value="Save"> <div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> <div class="message">{message}</div> </fieldset> </form>', 'user-edit *[contentEditable],[riot-tag="user-edit"] *[contentEditable] { display: block; margin-bottom: 12px; } user-edit label,[riot-tag="user-edit"] label { margin-top: 10px; } user-edit input[type=file],[riot-tag="user-edit"] input[type=file] { display: none; }', '', function(opts) {
+      c.log(opts);
+
+      this.org = opts.org;
+
+    }).call(this);
+}, '{ }');
+
+riot.tag2('user-edit', '<div class="right"> <a class="button" href="/#/users/{user.id}">View Profile</a> </div> <h4>Edit your profile:</h4> <h2>{user.name}</h2> <form id="user_form" onsubmit="{update}"> <h4> <input class="big-text" name="jobTitle" placeholder="Your current Job Title" type="text" value="{user.jobTitle}"> </h4> <div class="row"> <div class="column overlay_cont"> <label class="normal"> <img class="avatar" riot-src="{user.avatarLg}"> <div class="icon overlay white">📷</div> <input type="file"> </label> </div> <div class="column column-80"> <p class="border" contenteditable> Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum. {user.bio} </p> <div class="row"> <div class="column column-20"> <label> <strong>Location:</strong> </label> </div> <div class="column column-80"> <input name="location" placeholder="Your City, Planet Earth" type="text" value="{user.location}"> </div> </div> <div class="row"> <div class="column column-20"> <label> <strong>Nationality:</strong> </label> </div> <div class="column column-80"> <input name="nationality" placeholder="Your country of Origin" type="text" value="{user.nationality}"> </div> </div> </div> </div> <fieldset> <label> Email <input name="email" placeholder="you@email.com" type="email"> </label> <label> Gender <input name="gender" placeholder="M / F" type="text" value="{user.gender}"> </label> <label> Cover letter <textarea placeholder="A generic cover letter you want to send to your ideal employer, why you are suited for the job."></textarea> </label> </fieldset> <div class="column overlay_cont"> <label class="normal"> <p>Cover Photo (optional)</p> <img class="avatar" src="https://placeholdit.imgix.net/~text?bg=999&amp;txtclr=fff&amp;txt=Upload+a+Cover+Photo&amp;txtsize=25&amp;w=1200&amp;h=200&amp;fm=png" width="100%"> <input type="file"> </label> </div> <input class="left button-primary" onclick="{update}" type="submit" value="Save"> <div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> <div class="message">{message}</div> </form>', 'user-edit *[contentEditable],[riot-tag="user-edit"] *[contentEditable] { display: block; margin-bottom: 12px; } user-edit label,[riot-tag="user-edit"] label { margin-top: 10px; } user-edit input[type=file],[riot-tag="user-edit"] input[type=file] { display: none; }', '', function(opts) {
     (function() {
       var entry_id;
 
@@ -3564,7 +3574,7 @@ riot.tag2('user-edit', '<h4>Edit your profile:</h4> <h2>{user.name}</h2> <form i
     }).call(this);
 }, '{ }');
 
-riot.tag2('org-edit', '<h4>Edit organization:</h4> <h2>{org.name}</h2> <form id="org_form" onsubmit="{update}"> <div class="row"> <div class="column overlay_cont"> <label class="normal"> <img class="avatar" riot-src="{org.avatarLg}"> <div class="icon overlay white">📷</div> <input type="file"> </label> </div> <div class="column column-80"> <div class="row"> <div class="column column-20"> <label> <strong>Location:</strong> </label> </div> <div class="column column-80"> <input name="location" placeholder="Your City, Planet Earth" type="text" value="{org.location}"> </div> </div> <div class="row"> <div class="column column-20"> <label> <strong>Industry:</strong> </label> </div> <div class="column column-80"> <input name="industry" placeholder="Business industry" type="text" value="{org.industry}"> </div> </div> </div> </div> <fieldset> <label> Email <input name="email" placeholder="you@email.com" type="email"> </label> <input class="left button-primary" onclick="{update}" type="submit" value="Save"> <div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> <div class="message">{message}</div> </fieldset> </form>', 'org-edit *[contentEditable],[riot-tag="org-edit"] *[contentEditable] { display: block; margin-bottom: 12px; } org-edit label,[riot-tag="org-edit"] label { margin-top: 10px; } org-edit input[type=file],[riot-tag="org-edit"] input[type=file] { display: none; }', '', function(opts) {
+riot.tag2('org-edit', '<div class="right"> <a class="button" href="/#/orgs/{org.id}">View</a> </div> <h4>Edit organization:</h4> <h2>{org.name}</h2> <form id="org_form" onsubmit="{update}"> <div class="row"> <div class="column overlay_cont"> <label class="normal"> <img class="avatar" riot-src="{org.avatarLg}"> <div class="icon overlay white">📷</div> <input type="file"> </label> </div> <div class="column column-80"> <div class="row"> <div class="column column-20"> <label> <strong>Location:</strong> </label> </div> <div class="column column-80"> <input name="location" placeholder="Your City, Planet Earth" type="text" value="{org.location}"> </div> </div> <div class="row"> <div class="column column-20"> <label> <strong>Industry:</strong> </label> </div> <div class="column column-80"> <input name="industry" placeholder="Business industry" type="text" value="{org.industry}"> </div> </div> </div> </div> <fieldset> <label> Email <input name="email" placeholder="you@email.com" type="email"> </label> <input class="left button-primary" onclick="{update}" type="submit" value="Save"> <div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> <div class="message">{message}</div> </fieldset> </form>', 'org-edit *[contentEditable],[riot-tag="org-edit"] *[contentEditable] { display: block; margin-bottom: 12px; } org-edit label,[riot-tag="org-edit"] label { margin-top: 10px; } org-edit input[type=file],[riot-tag="org-edit"] input[type=file] { display: none; }', '', function(opts) {
     (function() {
       var entry_id, present;
 
@@ -3633,6 +3643,9 @@ riot.tag2('notif', '<div class="{klass}" id="notif" onclick="{hide}"> <span>{lab
     }).call(this);
 }, '{ }');
 
+riot.tag2('unsplash-cover', '<img class="unsplash" src="https://unsplash.it/1200/250/?random"> <div class="unsplash-spacer"></div>', '.unsplash { width: 100%; left: 0; top: 50px; position: absolute; z-index: 0; } .unsplash-spacer { height: 250px; }', '', function(opts) {
+});
+
 riot.tag2('not-found', '<h2>404</h2> <p>Not found</p>', '', '', function(opts) {
 });
 
@@ -3667,7 +3680,6 @@ BApi = (function() {
   BApi.prototype.get = function(contract, methodName, values) {
     return new Promise((function(_this) {
       return function(resolve, reject) {
-        c.log("BApi#" + contract + "." + methodName + " " + (JSON.stringify(values)));
         return $.getJSON(_this.methodGet(contract, methodName, values)).fail(reject).then(function(val) {
           return resolve(val.value);
         });
@@ -3678,7 +3690,6 @@ BApi = (function() {
   BApi.prototype.post = function(contract, methodName, values) {
     return new Promise((function(_this) {
       return function(resolve, reject) {
-        c.log("BApi#" + contract + "." + methodName + " " + (JSON.stringify(values)));
         return $.post(_this.methodPost(contract, methodName), values).fail(reject).then(function(val) {
           return resolve(val.value);
         });
@@ -4210,7 +4221,7 @@ PENDING_TXST = null;
 wsHost = "localhost:3001";
 
 if (APP_ENV === "prod") {
-  wsHost = bappHost + ":3333";
+  wsHost = bappHost;
 }
 
 socket = new WebSocket("ws://" + wsHost);

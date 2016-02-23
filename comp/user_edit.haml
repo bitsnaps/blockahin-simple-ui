@@ -1,4 +1,6 @@
 %user-edit
+  .right
+    %a.button{ href: "/#/users/{ user.id }" } View Profile
   %h4 Edit your profile:
   %h2 { user.name }
   %form#user_form{ onsubmit: "{ update }" }
@@ -38,16 +40,23 @@
         Cover letter
         %textarea{placeholder: "A generic cover letter you want to send to your ideal employer, why you are suited for the job."}
 
-      %input.left.button-primary{onclick: "{ update }", type: "submit", value: "Save"}/
+    .column.overlay_cont
+      %label.normal
+        %p Cover Photo (optional)
+        - text = CGI::escape "Upload a Cover Photo"
+        %img.avatar{ src: "https://placeholdit.imgix.net/~text?bg=999&txtclr=fff&txt=#{text}&txtsize=25&w=1200&h=200&fm=png", width: "100%" }
+        %input{ type: "file" }
 
-      .spinner
-        .rect1
-        .rect2
-        .rect3
-        .rect4
-        .rect5
+    %input.left.button-primary{onclick: "{ update }", type: "submit", value: "Save"}/
 
-      .message { message }
+    .spinner
+      .rect1
+      .rect2
+      .rect3
+      .rect4
+      .rect5
+
+    .message { message }
 
 
   %style{scoped: true}

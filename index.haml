@@ -46,10 +46,12 @@
         user_new
         org_new
         notif
+        unsplash_cover
         not_found
       )
 
     %script{src: "bower_components/riot/riot.js"}
+    -# %script{src: "node_modules/riotgear/dist/rg-unsplash/rg-unsplash.js"}
     - dependencies.map do |name|
       %script{src: "js/vendor/#{name}.js"}
     - components.map do |name|

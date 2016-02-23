@@ -1,12 +1,16 @@
 %user
-  %h2 { user.name }
-  %h4 { user.jobTitle }
   .row
     .column
+      %unsplash-cover
+  .row
+    .column.centered.avatar-box
       %img.avatar{ src: "{ user.avatarLg }" }
-    .column.column-80
+      %h2 { user.name }
+      %h4 { user.jobTitle }
+    .avatar-spacer
+  .row
+    .column
       %p.gray
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
         { user.bio }
       %p
         %strong Location:
@@ -20,16 +24,13 @@
   .gray
     %h3 Skills
     .row
-      .column
-        PHP ★★★★★
-      .column
-        CSS ★★★★
-      .column
-        HTML5 ★★★★
-      .column
-        MYSQL ★★★
-      .column
-        Linux ★★
+      .column{ each: "{ skills }" }
+      / skills = { php: 5, css: 4, }
+      /
+        .column
+          PHP ★★★★★
+        .column
+          CSS ★★★★
     .row
       .column
         Apache ★★★
@@ -57,6 +58,18 @@
     %p
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis.
 
-  :coffeescript
+  :coffee
     entry_id = BR.getEntryId()
     BR.loadFromCollection "user", entry_id, this
+
+  :sass
+    .avatar-box
+      position: absolute
+      top: 180px
+      left: 0
+    .avatar-box img
+      border: 15px solid #FFF
+      box-shadow: 0 0 22px 0 #777
+
+    .avatar-spacer
+      height: 180px

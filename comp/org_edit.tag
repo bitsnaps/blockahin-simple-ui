@@ -1,4 +1,7 @@
 <org-edit>
+  <div class='right'>
+    <a class='button' href='/#/orgs/{ org.id }'>View</a>
+  </div>
   <h4>Edit organization:</h4>
   <h2>{ org.name }</h2>
   <form id='org_form' onsubmit='{ update }'>

@@ -11,7 +11,7 @@
     }
     filterUsers() {
       this.users = _(StoreData.users).select((user) => {
-        return matchString(user).include(this.query.value)
+        return matchString(user).include(this.query.value.toLowerCase())
       })
     }
     

@@ -1,4 +1,10 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
 body > .container {
+  position: static;
   padding-top: 7.5rem;
   padding-bottom: 7.5rem;
   margin-bottom: 0;
@@ -114,6 +120,11 @@ dth:last-child, dtd:last-child {
 
 .left {
   float: left;
+}
+
+.centered {
+  text-align: center;
+  float: none;
 }
 
 user-face, org-face {

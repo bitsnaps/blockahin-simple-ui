@@ -46,7 +46,7 @@
     
       this.store.on('update', (function(_this) {
         return function(data) {
-          _this.users = data.users;
+          _this.users = data.users.slice(0, 18);
           return _this.update();
         };
       })(this));
@@ -57,7 +57,7 @@
     
       this.store.on('update', (function(_this) {
         return function(data) {
-          _this.orgs = data.orgs;
+          _this.orgs = data.orgs.slice(0, 18);
           return _this.update();
         };
       })(this));

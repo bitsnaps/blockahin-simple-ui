@@ -1,3 +1,37 @@
+frontend:
+
+----
+
+# TODO:
+
+  - post certification on public chain
+
+
+------
+
+add riotgear:
+
+```
+# http://riotgear.js.org/getting-started/install/
+npm install riotgear --save ?
+
+# unsplash profile
+http://riotgear.js.org/components/unsplash/
+
+# date selector component http://riotgear.js.org/components/date/
+
+# skill selector
+http://riotgear.js.org/components/tags/
+
+
+# pagination? http://riotgear.js.org/components/pagination/
+
+
+# chart (people verified - skills [pie])
+http://riotgear.js.org/components/charts/
+(registered users [linear])
+```
+
 backend fields:
 
 ---

@@ -34,20 +34,8 @@
       </p>
     </div>
   </div>
-  <div class='row'>
-    <div class='column right'>
-      <p>
-        organization type
-        <br>
-        { org.orgType }
-      </p>
-      <p>
-        publicKey
-        <br>
-        <span class='hint--bottom-left hint--rounded' data-hint='{ org.publicKey }'>{ org.publicKeyShort }</span>
-      </p>
-    </div>
-  </div>
+  <p>{org.publicKey}</p>
+  <publicKey org={org.publicKey} publicKey={org.name} asd=true/>
   <script>
     (function() {
       var entry_id, present;
@@ -66,3 +54,29 @@
     }).call(this);
   </script>
 </org>
+<publicKey>
+  <div class='row'>
+    <div class='column right'>
+      <p>
+        organization type
+        <br>
+        { org.orgType }
+      </p>
+      <p>
+        publicKey
+        <br>
+        <span class='hint--bottom-left hint--rounded' data-hint='{ org.publicKey }'>{ org.publicKeyShort }</span>
+      </p>
+    </div>
+  </div>
+  <script>
+    (function() {
+      c.log(this.opts);
+    
+      c.log(opts);
+    
+      this.org = opts.org;
+    
+    }).call(this);
+  </script>
+</publicKey>

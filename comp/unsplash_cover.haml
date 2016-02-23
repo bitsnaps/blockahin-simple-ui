@@ -1,0 +1,15 @@
+- height = 250
+%unsplash-cover
+  %img.unsplash{ src: "https://unsplash.it/1200/#{height}/?random" }
+  .unsplash-spacer
+
+  :sass
+    .unsplash
+      width: 100%
+      left: 0
+      top: 50px
+      position: absolute
+      z-index: 0
+
+    .unsplash-spacer
+      height: #{height}px

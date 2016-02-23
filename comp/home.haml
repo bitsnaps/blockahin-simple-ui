@@ -34,7 +34,7 @@
     #
     @store = opts.store
     @store.on 'update', (data) =>
-     @users = data.users
+     @users = data.users[0..17]
      @update()
 
     # orgs
@@ -42,7 +42,7 @@
     #
     @store = opts.store
     @store.on 'update', (data) =>
-      @orgs = data.orgs
+      @orgs = data.orgs[0..17]
       @update()
 
 %user-face

@@ -1,13 +1,20 @@
 <user>
-  <h2>{ user.name }</h2>
-  <h4>{ user.jobTitle }</h4>
   <div class='row'>
     <div class='column'>
-      <img class='avatar' src='{ user.avatarLg }'>
+      <unsplash-cover></unsplash-cover>
     </div>
-    <div class='column column-80'>
+  </div>
+  <div class='row'>
+    <div class='column centered avatar-box'>
+      <img class='avatar' src='{ user.avatarLg }'>
+      <h2>{ user.name }</h2>
+      <h4>{ user.jobTitle }</h4>
+    </div>
+    <div class='avatar-spacer'></div>
+  </div>
+  <div class='row'>
+    <div class='column'>
       <p class='gray'>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
         { user.bio }
       </p>
       <p>
@@ -24,21 +31,16 @@
   <div class='gray'>
     <h3>Skills</h3>
     <div class='row'>
-      <div class='column'>
-        PHP ★★★★★
-      </div>
-      <div class='column'>
-        CSS ★★★★
-      </div>
-      <div class='column'>
-        HTML5 ★★★★
-      </div>
-      <div class='column'>
-        MYSQL ★★★
-      </div>
-      <div class='column'>
-        Linux ★★
-      </div>
+      <div class='column' each='{ skills }'></div>
+      <!-- skills = { php: 5, css: 4, } -->
+      <!--
+        <div class='column'>
+          PHP ★★★★★
+        </div>
+        <div class='column'>
+          CSS ★★★★
+        </div>
+      -->
     </div>
     <div class='row'>
       <div class='column'>
@@ -81,4 +83,17 @@
     
     }).call(this);
   </script>
+  <style>
+    .avatar-box {
+      position: absolute;
+      top: 180px;
+      left: 0; }
+    
+    .avatar-box img {
+      border: 15px solid #FFF;
+      box-shadow: 0 0 22px 0 #777; }
+    
+    .avatar-spacer {
+      height: 180px; }
+  </style>
 </user>

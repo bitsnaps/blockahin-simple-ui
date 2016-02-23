@@ -30,7 +30,6 @@ BApi = (function() {
   BApi.prototype.get = function(contract, methodName, values) {
     return new Promise((function(_this) {
       return function(resolve, reject) {
-        c.log("BApi#" + contract + "." + methodName + " " + (JSON.stringify(values)));
         return $.getJSON(_this.methodGet(contract, methodName, values)).fail(reject).then(function(val) {
           return resolve(val.value);
         });
@@ -41,7 +40,6 @@ BApi = (function() {
   BApi.prototype.post = function(contract, methodName, values) {
     return new Promise((function(_this) {
       return function(resolve, reject) {
-        c.log("BApi#" + contract + "." + methodName + " " + (JSON.stringify(values)));
         return $.post(_this.methodPost(contract, methodName), values).fail(reject).then(function(val) {
           return resolve(val.value);
         });

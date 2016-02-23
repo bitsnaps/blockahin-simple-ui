@@ -1,5 +1,6 @@
 %org
   %h2 { org.name }
+
   .row
     .column
       %img.avatar{ src: "{ org.avatarLg }" }
@@ -26,6 +27,22 @@
         %strong Extra:
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
 
+  -# %publicKey{ org: "{org}", asd: "true", props: "aaa" }
+  %p {org.publicKey}
+  :plain
+    <publicKey org={org.publicKey} publicKey={org.name} asd=true/>
+
+  :coffeescript
+    present = (org) ->
+      if org && org.publicKey
+        org.publicKeyShort = "\#{org.publicKey[0..8]}...\#{org.publicKey[-6..-1]}"
+      org
+
+    entry_id = BR.getEntryId()
+    BR.loadFromCollection "org", entry_id, this, present
+
+
+%publicKey
   .row
     .column.right
       %p
@@ -37,12 +54,7 @@
         %br
         %span{ class: "hint--bottom-left hint--rounded", :"data-hint" => "{ org.publicKey }"} { org.publicKeyShort }
 
-
-  :coffeescript
-    present = (org) ->
-      if org && org.publicKey
-        org.publicKeyShort = "\#{org.publicKey[0..8]}...\#{org.publicKey[-6..-1]}"
-      org
-
-    entry_id = BR.getEntryId()
-    BR.loadFromCollection "org", entry_id, this, present
+  :coffee
+    c.log @opts
+    c.log opts
+    @org = opts.org

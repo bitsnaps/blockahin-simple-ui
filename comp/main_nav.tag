@@ -13,7 +13,7 @@
           <a class='navigation-link' href='#/professionals'>Professionals</a>
         </li>
         <li class='navigation-item'>
-          <a class='navigation-link' href='#/organizations'>Organizations</a>
+          <a class='navigation-link' href='#/organizations'>Companies</a>
         </li>
         <li class='navigation-item'>
           <a class='navigation-link' href='#/universities'>Universities</a>

@@ -18,7 +18,7 @@ class BApi
 
   get: (contract, methodName, values) ->
     new Promise (resolve, reject) =>
-      c.log "BApi##{contract}.#{methodName} #{JSON.stringify values}"
+      # c.log "BApi##{contract}.#{methodName} #{JSON.stringify values}"
       $.getJSON @methodGet(contract, methodName, values)
         .fail reject
         .then (val) ->
@@ -27,7 +27,7 @@ class BApi
 
   post: (contract, methodName, values) ->
     new Promise (resolve, reject) =>
-      c.log "BApi##{contract}.#{methodName} #{JSON.stringify values}"
+      # c.log "BApi##{contract}.#{methodName} #{JSON.stringify values}"
       $.post @methodPost(contract, methodName), values
         .fail reject
         .then (val) ->

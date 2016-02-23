@@ -1,18 +1,18 @@
 <table-orgs>
   <p>Search</p>
-  <input name='query' onkeyup='{ filterOrgs }' placeholder='enter a skill or a location' type='text'>
+  <input name='query' onkeyup='{ filterOrgs }' placeholder='enter a company name, an industry or a location' type='text'>
     <dtable>
       <org-row each='{ orgs }'></org-row>
     </dtable>
   </input>
   <script>
     var matchString = (org) => {
-      return s(`${org.name}`).toLowerCase()
+      return s(`${org.name}|${org.industry}|${org.location}`).toLowerCase()
     }
     filterOrgs() {
-      this.orgs = _(Orgs).select((org) => {
-        return matchString(org).include(this.query.value)
-      })
+      this.orgs = present(_(StoreData.orgs).select((org) => {
+        return matchString(org).include(this.query.value.toLowerCase())
+      }))
     }
     
     var present = (orgs) => {
