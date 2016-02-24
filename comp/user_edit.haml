@@ -63,12 +63,13 @@
     .message { message }
 
   .clear
+  .s40
   %section
     %h1 Positions
 
-    %a.button{ onclick: "" } Add Position
+    %a{ onclick: "{ addPos }", class: "button { showPosForm ? 'hidden' : '' }"  } Add Position
 
-    %form
+    %form{ class: "{ showPosForm ? '' : 'hidden' }" }
       %fieldset
         %label
           Company
@@ -122,3 +123,10 @@
 
     @today = new Date().toLocaleDateString()
     @emp = {}
+
+
+    @showPosForm = false
+
+    @addPos = =>
+      @showPosForm = true
+      @update()

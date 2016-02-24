@@ -25,6 +25,8 @@
   .row
     .column{ each: "{ skill, level in skills }" }
       { s.capitalize(skill) } { _(Number(level)).times(stars).join("") }
+    .column
+      { noSkillsMessage() }
   .clear
 
   .s30
@@ -38,7 +40,9 @@
       %a{ href: "/#/orgs/{ empl.org.id }" } { empl.org.name }
     %p
       { empl.desc || "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies." }
-
+  .row
+    .column
+      { noPosMessage() }
   .gray
     .s30
     %h3 Education
@@ -68,6 +72,14 @@
         catch error
           c.error "Skills JSON is invalid: \#{error}"
 
+    @noSkillsMessage = ->
+      if !@skills || _(@skills).keys().length == 0
+        "No skills present for this user."
+
+    @noPosMessage = ->
+      if !@empls || @empls.length == 0
+        "This user has no positions listed in his profile."
+        
   :sass
     .avatar-box
       position: absolute

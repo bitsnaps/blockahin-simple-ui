@@ -57,10 +57,11 @@
     <div class='message'>{ message }</div>
   </form>
   <div class='clear'></div>
+  <div class='s40'></div>
   <section>
     <h1>Positions</h1>
-    <a class='button' onclick=''>Add Position</a>
-    <form>
+    <a class="button { showPosForm ? 'hidden' : '' }" onclick='{ addPos }'>Add Position</a>
+    <form class="{ showPosForm ? '' : 'hidden' }">
       <fieldset>
         <label>
           Company
@@ -126,6 +127,15 @@
       this.today = new Date().toLocaleDateString();
     
       this.emp = {};
+    
+      this.showPosForm = false;
+    
+      this.addPos = (function(_this) {
+        return function() {
+          _this.showPosForm = true;
+          return _this.update();
+        };
+      })(this);
     
     }).call(this);
   </script>

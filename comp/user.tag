@@ -33,6 +33,9 @@
     <div class='column' each='{ skill, level in skills }'>
       { s.capitalize(skill) } { _(Number(level)).times(stars).join("") }
     </div>
+    <div class='column'>
+      { noSkillsMessage() }
+    </div>
   </div>
   <div class='clear'></div>
   <div class='s30'></div>
@@ -46,6 +49,11 @@
       { empl.desc || "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies." }
     </p>
   </section>
+  <div class='row'>
+    <div class='column'>
+      { noPosMessage() }
+    </div>
+  </div>
   <div class='gray'>
     <div class='s30'></div>
     <h3>Education</h3>
@@ -90,6 +98,18 @@
           }
         };
       })(this));
+    
+      this.noSkillsMessage = function() {
+        if (!this.skills || _(this.skills).keys().length === 0) {
+          return "No skills present for this user.";
+        }
+      };
+    
+      this.noPosMessage = function() {
+        if (!this.empls || this.empls.length === 0) {
+          return "This user has no positions listed in his profile.";
+        }
+      };
     
     }).call(this);
   </script>
