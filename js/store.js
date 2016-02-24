@@ -61,7 +61,7 @@ StoreData = {
   users: Users,
   orgs: Orgs,
   unis: Unis,
-  empl: Empls,
+  empls: Empls,
   evt: null
 };
 
@@ -96,7 +96,7 @@ Store = function() {
   });
   Empl.all().then((function(_this) {
     return function(empl) {
-      StoreData.empl = empl;
+      StoreData.empls = empl;
       return _this.update(StoreData);
     };
   })(this))["catch"](function(error) {

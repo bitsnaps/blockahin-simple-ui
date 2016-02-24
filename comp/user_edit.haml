@@ -69,12 +69,12 @@
 
     %a{ onclick: "{ addPos }", class: "button { showPosForm ? 'hidden' : '' }"  } Add Position
 
-    %form{ class: "{ showPosForm ? '' : 'hidden' }" }
+    %form#empl_form{ onsubmit: "{ create }", class: "{ showPosForm ? '' : 'hidden' }" }
       %fieldset
         %label
           Company
-          %select{ name: "org[name]" }
-            %option{ each: "{ org in orgs }" }
+          %select{ name: "orgId" }
+            %option{ each: "{ org in orgs }", value: "{ org.id }" }
               { org.name }
 
         %label
@@ -114,19 +114,19 @@
 
 
     # form: new position
-    @orgs = StoreData.orgs
-
-    @store = opts.store
-    @store.on 'update', (data) =>
-     @orgs = StoreData.orgs
-     @update()
+    BR.prepare opts, @, =>
+      @orgs = StoreData.orgs
 
     @today = new Date().toLocaleDateString()
     @emp = {}
-
 
     @showPosForm = false
 
     @addPos = =>
       @showPosForm = true
       @update()
+
+    # pos form create
+    @empl = new Empl({})
+    @empl.userId = entry_id
+    BR.bindCreateEntityForm "empl", this

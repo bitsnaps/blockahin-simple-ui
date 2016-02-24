@@ -22,24 +22,26 @@
   .s20
 
   %h3 Skills
-  .row
+  .row.skills
     .column{ each: "{ skill, level in skills }" }
       { s.capitalize(skill) } { _(Number(level)).times(stars).join("") }
     .column
       { noSkillsMessage() }
   .clear
 
-  .s30
+  .s50
   %h3 Positions
 
   -#  @userId, @orgId, @role, @dateStart, @dateEnd, @reportsTo, @budget, @desc }) ->
 
-  %section{ each: "{ empl in empls }" }
-    %h5 { empl.role }
-    %h5
-      %a{ href: "/#/orgs/{ empl.org.id }" } { empl.org.name }
-    %p
-      { empl.desc || "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies." }
+  %section.positions
+    %div{ each: "{ empl in empls }" }
+      %h4 { empl.role != "-" ? empl.role : "Employee" }
+      %h5
+        %a{ href: "/#/orgs/{ empl.org.id }" } { empl.org.name }
+      %p { empl.dateRange() }
+      %p
+        { empl.desc != "-" ? empl.desc : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies." }
   .row
     .column
       { noPosMessage() }
@@ -60,7 +62,7 @@
     @stars = (i) -> "★"
 
     BR.prepare opts, @, =>
-      @empls =  _(StoreData.empl).select (empl) -> empl.userId == entry_id
+      @empls =  _(StoreData.empls).select (empl) -> empl.userId == entry_id
       _(@empls).each (empl) ->
         empl.org = _(StoreData.orgs).find (org) ->
           empl.orgId == org.id
@@ -79,7 +81,7 @@
     @noPosMessage = ->
       if !@empls || @empls.length == 0
         "This user has no positions listed in his profile."
-        
+
   :sass
     .avatar-box
       position: absolute

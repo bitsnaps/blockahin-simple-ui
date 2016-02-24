@@ -46,7 +46,7 @@ StoreData =
   users: Users
   orgs:  Orgs
   unis:  Unis
-  empl:  Empls
+  empls: Empls
   evt:   null
 
 Store = ->
@@ -80,7 +80,7 @@ Store = ->
 
   Empl.all()
     .then (empl) =>
-      StoreData.empl = empl
+      StoreData.empls = empl
       @update StoreData
     .catch (error) ->
       c.error "Error: #{error}"

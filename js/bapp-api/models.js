@@ -42,6 +42,25 @@ Empl = (function(superClass) {
 
   Empl.attrs = ["id", "userId", "orgId", "dateStart", "dateEnd", "role", "reportsTo", "budget", "desc"];
 
+  Empl.prototype.dateLocale = function(date) {
+    if (isNaN(date)) {
+      return null;
+    }
+    return date.toLocaleDateString();
+  };
+
+  Empl.prototype.dateStartLoc = function() {
+    return this.dateLocale(new Date(this.dateStart));
+  };
+
+  Empl.prototype.dateEndLoc = function() {
+    return this.dateLocale(new Date(this.dateEnd));
+  };
+
+  Empl.prototype.dateRange = function() {
+    return "from " + (this.dateStartLoc() || "unknown") + " to " + (this.dateEndLoc() || "present");
+  };
+
   return Empl;
 
 })(BAppModel);

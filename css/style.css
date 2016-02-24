@@ -286,3 +286,20 @@ approvables section section {
   border: 1px solid #CCC;
   padding: 3%;
 }
+
+.bold {
+  font-weight: bold;
+}
+
+.positions > div {
+  margin-bottom: 35px;
+}
+
+.positions h4, .positions h5, .positions p {
+  margin-bottom: 10px;
+}
+
+user h3 {
+  border-bottom: 1px solid #DDD;
+  padding-bottom: 5px;
+}

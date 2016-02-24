@@ -29,7 +29,7 @@
   </div>
   <div class='s20'></div>
   <h3>Skills</h3>
-  <div class='row'>
+  <div class='row skills'>
     <div class='column' each='{ skill, level in skills }'>
       { s.capitalize(skill) } { _(Number(level)).times(stars).join("") }
     </div>
@@ -38,16 +38,19 @@
     </div>
   </div>
   <div class='clear'></div>
-  <div class='s30'></div>
+  <div class='s50'></div>
   <h3>Positions</h3>
-  <section each='{ empl in empls }'>
-    <h5>{ empl.role }</h5>
-    <h5>
-      <a href='/#/orgs/{ empl.org.id }'>{ empl.org.name }</a>
-    </h5>
-    <p>
-      { empl.desc || "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies." }
-    </p>
+  <section class='positions'>
+    <div each='{ empl in empls }'>
+      <h4>{ empl.role != "-" ? empl.role : "Employee" }</h4>
+      <h5>
+        <a href='/#/orgs/{ empl.org.id }'>{ empl.org.name }</a>
+      </h5>
+      <p>{ empl.dateRange() }</p>
+      <p>
+        { empl.desc != "-" ? empl.desc : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies." }
+      </p>
+    </div>
   </section>
   <div class='row'>
     <div class='column'>
@@ -79,7 +82,7 @@
       BR.prepare(opts, this, (function(_this) {
         return function() {
           var error, error1;
-          _this.empls = _(StoreData.empl).select(function(empl) {
+          _this.empls = _(StoreData.empls).select(function(empl) {
             return empl.userId === entry_id;
           });
           _(_this.empls).each(function(empl) {

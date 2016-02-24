@@ -61,12 +61,12 @@
   <section>
     <h1>Positions</h1>
     <a class="button { showPosForm ? 'hidden' : '' }" onclick='{ addPos }'>Add Position</a>
-    <form class="{ showPosForm ? '' : 'hidden' }">
+    <form class="{ showPosForm ? '' : 'hidden' }" id='empl_form' onsubmit='{ create }'>
       <fieldset>
         <label>
           Company
-          <select name='org[name]'>
-            <option each='{ org in orgs }'>
+          <select name='orgId'>
+            <option each='{ org in orgs }' value='{ org.id }'>
               { org.name }
             </option>
           </select>
@@ -113,14 +113,9 @@
     
       BR.bindUpdateEntityForm("user", entry_id, this);
     
-      this.orgs = StoreData.orgs;
-    
-      this.store = opts.store;
-    
-      this.store.on('update', (function(_this) {
-        return function(data) {
-          _this.orgs = StoreData.orgs;
-          return _this.update();
+      BR.prepare(opts, this, (function(_this) {
+        return function() {
+          return _this.orgs = StoreData.orgs;
         };
       })(this));
     
@@ -136,6 +131,12 @@
           return _this.update();
         };
       })(this);
+    
+      this.empl = new Empl({});
+    
+      this.empl.userId = entry_id;
+    
+      BR.bindCreateEntityForm("empl", this);
     
     }).call(this);
   </script>

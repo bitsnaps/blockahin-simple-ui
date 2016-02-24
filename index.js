@@ -3522,7 +3522,7 @@ riot.tag2('ab-footer', '<div class="s80"></div> <footer class="footer"> <section
     this.time = new Date().getFullYear()
 }, '{ }');
 
-riot.tag2('user', '<div class="row"> <div class="column"> <unsplash-cover store="{store}"></unsplash-cover> </div> </div> <div class="row"> <div class="column centered avatar-box"> <img class="avatar" riot-src="{user.avatarLg}"> <h2>{user.name}</h2> <h4>{user.jobTitle}</h4> </div> <div class="avatar-spacer"></div> </div> <div class="row"> <div class="column"> <p class="gray"> {user.bio} </p> <p> <strong>Location:</strong> {user.location} </p> <p> <strong>Nationality:</strong> {user.nationality} </p> </div> </div> <div class="s20"></div> <h3>Skills</h3> <div class="row"> <div class="column" each="{skill, level in skills}"> {s.capitalize(skill)} {_(Number(level)).times(stars).join(⁗⁗)} </div> <div class="column"> {noSkillsMessage()} </div> </div> <div class="clear"></div> <div class="s30"></div> <h3>Positions</h3> <section each="{empl in empls}"> <h5>{empl.role}</h5> <h5> <a href="/#/orgs/{empl.org.id}">{empl.org.name}</a> </h5> <p> {empl.desc || ⁗Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies.⁗} </p> </section> <div class="row"> <div class="column"> {noPosMessage()} </div> </div> <div class="gray"> <div class="s30"></div> <h3>Education</h3> <h5>Degree in Astrophysics</h5> <h5>UCL</h5> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. </p> </div> <publickeyuser store="{store}"></publicKeyUser>', '.avatar-box { position: absolute; top: 180px; left: 0; } .avatar-box img { border: 15px solid #FFF; box-shadow: 0 0 22px 0 #777; } .avatar-spacer { height: 180px; }', '', function(opts) {
+riot.tag2('user', '<div class="row"> <div class="column"> <unsplash-cover store="{store}"></unsplash-cover> </div> </div> <div class="row"> <div class="column centered avatar-box"> <img class="avatar" riot-src="{user.avatarLg}"> <h2>{user.name}</h2> <h4>{user.jobTitle}</h4> </div> <div class="avatar-spacer"></div> </div> <div class="row"> <div class="column"> <p class="gray"> {user.bio} </p> <p> <strong>Location:</strong> {user.location} </p> <p> <strong>Nationality:</strong> {user.nationality} </p> </div> </div> <div class="s20"></div> <h3>Skills</h3> <div class="row skills"> <div class="column" each="{skill, level in skills}"> {s.capitalize(skill)} {_(Number(level)).times(stars).join(⁗⁗)} </div> <div class="column"> {noSkillsMessage()} </div> </div> <div class="clear"></div> <div class="s50"></div> <h3>Positions</h3> <section class="positions"> <div each="{empl in empls}"> <h4>{empl.role != ⁗-⁗ ? empl.role : ⁗Employee⁗}</h4> <h5> <a href="/#/orgs/{empl.org.id}">{empl.org.name}</a> </h5> <p>{empl.dateRange()}</p> <p> {empl.desc != ⁗-⁗ ? empl.desc : ⁗Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies.⁗} </p> </div> </section> <div class="row"> <div class="column"> {noPosMessage()} </div> </div> <div class="gray"> <div class="s30"></div> <h3>Education</h3> <h5>Degree in Astrophysics</h5> <h5>UCL</h5> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. </p> </div> <publickeyuser store="{store}"></publicKeyUser>', '.avatar-box { position: absolute; top: 180px; left: 0; } .avatar-box img { border: 15px solid #FFF; box-shadow: 0 0 22px 0 #777; } .avatar-spacer { height: 180px; }', '', function(opts) {
     (function() {
       var entry_id;
 
@@ -3537,7 +3537,7 @@ riot.tag2('user', '<div class="row"> <div class="column"> <unsplash-cover store=
       BR.prepare(opts, this, (function(_this) {
         return function() {
           var error, error1;
-          _this.empls = _(StoreData.empl).select(function(empl) {
+          _this.empls = _(StoreData.empls).select(function(empl) {
             return empl.userId === entry_id;
           });
           _(_this.empls).each(function(empl) {
@@ -3603,7 +3603,7 @@ riot.tag2('publickeyorg', '<div class="row"> <div class="column right"> <p> orga
     }).call(this);
 }, '{ }');
 
-riot.tag2('user-edit', '<div class="right"> <a class="button" href="/#/users/{user.id}">View Profile</a> </div> <h4>Edit your profile:</h4> <h2>{user.name}</h2> <form id="user_form" onsubmit="{update}"> <div class="row"> <div class="column overlay_cont"> <label class="normal"> <img class="avatar" riot-src="{user.avatarLg}"> <div class="icon overlay white">📷</div> <input type="file"> </label> </div> <div class="column column-80"> <div class="row"> <div class="column column-20"> <label> <strong>Location:</strong> </label> </div> <div class="column column-80"> <input name="location" placeholder="Your City, Planet Earth" type="text" value="{user.location}"> </div> </div> <div class="row"> <div class="column column-20"> <label> <strong>Nationality:</strong> </label> </div> <div class="column column-80"> <input name="nationality" placeholder="Your country of Origin" type="text" value="{user.nationality}"> </div> </div> </div> </div> <fieldset> <label> Gender <input name="gender" placeholder="M / F" type="text" value="{user.gender}"> </label> <label> Birth Date <input name="birthDate" placeholder="{today}" value="{user.birthDate}" type="{\'date\'}"> </label> </fieldset> <input class="left button-primary" onclick="{update}" type="submit" value="Save"> <div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> <div class="message">{message}</div> </form> <div class="clear"></div> <div class="s40"></div> <section> <h1>Positions</h1> <a class="button {showPosForm ? \'hidden\' : \'\'}" onclick="{addPos}">Add Position</a> <form class="{showPosForm ? \'\' : \'hidden\'}"> <fieldset> <label> Company <select name="org[name]"> <option each="{org in orgs}"> {org.name} </option> </select> </label> <label> From <input name="dateStart" placeholder="{today}" value="{emp.dateStart}" type="{\'date\'}"> </label> <label> To <input name="dateEnd" placeholder="{today}" value="{emp.dateEnd}" type="{\'date\'}"> </label> <label> Role <input name="role" placeholder="Your position" type="text" value="{emp.role}"> </label> <label> Description (opt.) <textarea name="desc" placeholder="You can describe your role briefly" type="text" value="{emp.desc}"></textarea> </label> <input class="left button-primary" onclick="{update}" type="submit" value="Save"> </fieldset> </form> </section>', 'user-edit *[contentEditable],[riot-tag="user-edit"] *[contentEditable] { display: block; margin-bottom: 12px; } user-edit label,[riot-tag="user-edit"] label { margin-top: 10px; } user-edit input[type=file],[riot-tag="user-edit"] input[type=file] { display: none; }', '', function(opts) {
+riot.tag2('user-edit', '<div class="right"> <a class="button" href="/#/users/{user.id}">View Profile</a> </div> <h4>Edit your profile:</h4> <h2>{user.name}</h2> <form id="user_form" onsubmit="{update}"> <div class="row"> <div class="column overlay_cont"> <label class="normal"> <img class="avatar" riot-src="{user.avatarLg}"> <div class="icon overlay white">📷</div> <input type="file"> </label> </div> <div class="column column-80"> <div class="row"> <div class="column column-20"> <label> <strong>Location:</strong> </label> </div> <div class="column column-80"> <input name="location" placeholder="Your City, Planet Earth" type="text" value="{user.location}"> </div> </div> <div class="row"> <div class="column column-20"> <label> <strong>Nationality:</strong> </label> </div> <div class="column column-80"> <input name="nationality" placeholder="Your country of Origin" type="text" value="{user.nationality}"> </div> </div> </div> </div> <fieldset> <label> Gender <input name="gender" placeholder="M / F" type="text" value="{user.gender}"> </label> <label> Birth Date <input name="birthDate" placeholder="{today}" value="{user.birthDate}" type="{\'date\'}"> </label> </fieldset> <input class="left button-primary" onclick="{update}" type="submit" value="Save"> <div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> <div class="message">{message}</div> </form> <div class="clear"></div> <div class="s40"></div> <section> <h1>Positions</h1> <a class="button {showPosForm ? \'hidden\' : \'\'}" onclick="{addPos}">Add Position</a> <form class="{showPosForm ? \'\' : \'hidden\'}" id="empl_form" onsubmit="{create}"> <fieldset> <label> Company <select name="orgId"> <option each="{org in orgs}" value="{org.id}"> {org.name} </option> </select> </label> <label> From <input name="dateStart" placeholder="{today}" value="{emp.dateStart}" type="{\'date\'}"> </label> <label> To <input name="dateEnd" placeholder="{today}" value="{emp.dateEnd}" type="{\'date\'}"> </label> <label> Role <input name="role" placeholder="Your position" type="text" value="{emp.role}"> </label> <label> Description (opt.) <textarea name="desc" placeholder="You can describe your role briefly" type="text" value="{emp.desc}"></textarea> </label> <input class="left button-primary" onclick="{update}" type="submit" value="Save"> </fieldset> </form> </section>', 'user-edit *[contentEditable],[riot-tag="user-edit"] *[contentEditable] { display: block; margin-bottom: 12px; } user-edit label,[riot-tag="user-edit"] label { margin-top: 10px; } user-edit input[type=file],[riot-tag="user-edit"] input[type=file] { display: none; }', '', function(opts) {
     (function() {
       var entry_id;
 
@@ -3613,14 +3613,9 @@ riot.tag2('user-edit', '<div class="right"> <a class="button" href="/#/users/{us
 
       BR.bindUpdateEntityForm("user", entry_id, this);
 
-      this.orgs = StoreData.orgs;
-
-      this.store = opts.store;
-
-      this.store.on('update', (function(_this) {
-        return function(data) {
-          _this.orgs = StoreData.orgs;
-          return _this.update();
+      BR.prepare(opts, this, (function(_this) {
+        return function() {
+          return _this.orgs = StoreData.orgs;
         };
       })(this));
 
@@ -3636,6 +3631,12 @@ riot.tag2('user-edit', '<div class="right"> <a class="button" href="/#/users/{us
           return _this.update();
         };
       })(this);
+
+      this.empl = new Empl({});
+
+      this.empl.userId = entry_id;
+
+      BR.bindCreateEntityForm("empl", this);
 
     }).call(this);
 }, '{ }');
@@ -4008,6 +4009,25 @@ Empl = (function(superClass) {
 
   Empl.attrs = ["id", "userId", "orgId", "dateStart", "dateEnd", "role", "reportsTo", "budget", "desc"];
 
+  Empl.prototype.dateLocale = function(date) {
+    if (isNaN(date)) {
+      return null;
+    }
+    return date.toLocaleDateString();
+  };
+
+  Empl.prototype.dateStartLoc = function() {
+    return this.dateLocale(new Date(this.dateStart));
+  };
+
+  Empl.prototype.dateEndLoc = function() {
+    return this.dateLocale(new Date(this.dateEnd));
+  };
+
+  Empl.prototype.dateRange = function() {
+    return "from " + (this.dateStartLoc() || "unknown") + " to " + (this.dateEndLoc() || "present");
+  };
+
   return Empl;
 
 })(BAppModel);
@@ -4197,7 +4217,7 @@ StoreData = {
   users: Users,
   orgs: Orgs,
   unis: Unis,
-  empl: Empls,
+  empls: Empls,
   evt: null
 };
 
@@ -4232,7 +4252,7 @@ Store = function() {
   });
   Empl.all().then((function(_this) {
     return function(empl) {
-      StoreData.empl = empl;
+      StoreData.empls = empl;
       return _this.update(StoreData);
     };
   })(this))["catch"](function(error) {

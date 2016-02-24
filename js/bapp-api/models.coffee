@@ -14,3 +14,19 @@ class Empl extends BAppModel
   @collectionUp = -> "Employments"
 
   @attrs: ["id", "userId", "orgId", "dateStart", "dateEnd", "role", "reportsTo", "budget", "desc"]
+
+
+  # presentation (presenter logic)
+
+  dateLocale: (date) ->
+    return null if isNaN date
+    date.toLocaleDateString()
+
+  dateStartLoc: ->
+    @dateLocale new Date @dateStart
+
+  dateEndLoc: ->
+    @dateLocale new Date @dateEnd
+
+  dateRange: ->
+    "from #{@dateStartLoc() || "unknown"} to #{@dateEndLoc() || "present"}"
