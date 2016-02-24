@@ -38,6 +38,7 @@
       </div>
     </div>
     <fieldset>
+      <div class='s40'></div>
       <input class='left button-primary' onclick='{ update }' type='submit' value='Save'>
       <div class='spinner'>
         <div class='rect1'></div>
