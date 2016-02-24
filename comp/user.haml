@@ -1,7 +1,7 @@
 %user
   .row
     .column
-      %unsplash-cover
+      %unsplash-cover{ store: "{store}" }
   .row
     .column.centered.avatar-box
       %img.avatar{ src: "{ user.avatarLg }" }
@@ -58,6 +58,8 @@
     %p
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis.
 
+  %publicKeyUser{ store: "{store}" }
+
   :coffee
     entry_id = BR.getEntryId()
     BR.loadFromCollection "user", entry_id, this
@@ -73,3 +75,19 @@
 
     .avatar-spacer
       height: 180px
+
+
+%publicKeyUser
+  .row
+    .column.right
+      %p
+        - hint = { class: "hint--bottom-left hint--rounded", :"data-hint" => "{ user.publicKey }" }
+        .icon-mini{ hint } 🔑
+        %br
+        %span{ hint } publicKey
+        %br
+        %span{ hint } { user.publicKeyShort }
+
+  :coffee
+    entry_id = BR.getEntryId()
+    BR.loadFromCollection "user", entry_id, this, presentUser

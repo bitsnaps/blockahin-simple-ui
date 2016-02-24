@@ -34,27 +34,19 @@
       </p>
     </div>
   </div>
-  <p>{org.publicKey}</p>
-  <publicKey org={org.publicKey} publicKey={org.name} asd=true/>
+  <publicKeyOrg store='{store}'></publicKeyOrg>
   <script>
     (function() {
-      var entry_id, present;
-    
-      present = function(org) {
-        if (org && org.publicKey) {
-          org.publicKeyShort = org.publicKey.slice(0, 9) + "..." + org.publicKey.slice(-6);
-        }
-        return org;
-      };
+      var entry_id;
     
       entry_id = BR.getEntryId();
     
-      BR.loadFromCollection("org", entry_id, this, present);
+      BR.loadFromCollection("org", entry_id, this, presentOrg);
     
     }).call(this);
   </script>
 </org>
-<publicKey>
+<publicKeyOrg>
   <div class='row'>
     <div class='column right'>
       <p>
@@ -63,7 +55,9 @@
         { org.orgType }
       </p>
       <p>
-        publicKey
+        <div class='hint--bottom-left hint--rounded icon-mini' data-hint='{ org.publicKey }'>🔑</div>
+        <br>
+        <span class='hint--bottom-left hint--rounded' data-hint='{ org.publicKey }'>publicKey</span>
         <br>
         <span class='hint--bottom-left hint--rounded' data-hint='{ org.publicKey }'>{ org.publicKeyShort }</span>
       </p>
@@ -71,12 +65,12 @@
   </div>
   <script>
     (function() {
-      c.log(this.opts);
+      var entry_id;
     
-      c.log(opts);
+      entry_id = BR.getEntryId();
     
-      this.org = opts.org;
+      BR.loadFromCollection("org", entry_id, this, presentOrg);
     
     }).call(this);
   </script>
-</publicKey>
+</publicKeyOrg>

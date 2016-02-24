@@ -1,7 +1,7 @@
 <user>
   <div class='row'>
     <div class='column'>
-      <unsplash-cover></unsplash-cover>
+      <unsplash-cover store='{store}'></unsplash-cover>
     </div>
   </div>
   <div class='row'>
@@ -73,6 +73,7 @@
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis.
     </p>
   </div>
+  <publicKeyUser store='{store}'></publicKeyUser>
   <script>
     (function() {
       var entry_id;
@@ -97,3 +98,26 @@
       height: 180px; }
   </style>
 </user>
+<publicKeyUser>
+  <div class='row'>
+    <div class='column right'>
+      <p>
+        <div class='hint--bottom-left hint--rounded icon-mini' data-hint='{ user.publicKey }'>🔑</div>
+        <br>
+        <span class='hint--bottom-left hint--rounded' data-hint='{ user.publicKey }'>publicKey</span>
+        <br>
+        <span class='hint--bottom-left hint--rounded' data-hint='{ user.publicKey }'>{ user.publicKeyShort }</span>
+      </p>
+    </div>
+  </div>
+  <script>
+    (function() {
+      var entry_id;
+    
+      entry_id = BR.getEntryId();
+    
+      BR.loadFromCollection("user", entry_id, this, presentUser);
+    
+    }).call(this);
+  </script>
+</publicKeyUser>

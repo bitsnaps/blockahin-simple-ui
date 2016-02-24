@@ -13,7 +13,8 @@
     @store = opts.store
     @store.on 'update', (data) =>
       @evt = StoreData.evt
-      @klass = if @evt then "" else "hidden"
+      evtPresent = _(["tx_latest", "tx_pending"]).include @evt
+      @klass = if evtPresent then "" else "hidden"
       @label = "Confirmed!" if @evt == "tx_latest"
       @label = "Pending..." if @evt == "tx_pending"
 

@@ -256,3 +256,30 @@ user-new form#user_form .overlay_cont:hover .icon.overlay, org-new form#org_form
   position: absolute;
   top: -5px;
 }
+
+.icon-mini{
+  font-size: 2em;
+  color: #777;
+}
+
+section h1 {
+  font-size: 2em;
+}
+
+section h2 {
+  font-size: 1.6em;
+}
+
+.button-danger {
+  background: #C33;
+  border: 1px solid #E00;
+}
+.button-danger:hover {
+  background: #933;
+  border: 1px solid #E00;
+}
+
+approvables section section {
+  border: 1px solid #CCC;
+  padding: 3%;
+}

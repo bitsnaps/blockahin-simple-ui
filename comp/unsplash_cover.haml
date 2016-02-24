@@ -1,7 +1,15 @@
+-# type = "random"
+-# type = "random&key={entry_id}"
+- type = "image={entry_id}"
 - height = 250
 %unsplash-cover
-  %img.unsplash{ src: "https://unsplash.it/1200/#{height}/?random" }
+  %img.unsplash{ src: "https://unsplash.it/1200/#{height}/?#{type}" }
   .unsplash-spacer
+
+  :coffee
+    entry_id = BR.getEntryId()
+    @entry_id = entry_id
+    BR.loadFromCollection "user", entry_id, this, presentUser
 
   :sass
     .unsplash

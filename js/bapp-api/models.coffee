@@ -1,7 +1,7 @@
 class User extends BAppModel
-  constructor: ({ @id, @name, @publicKey, @location, @achievements, @birthDate, @gender, @nationality }) ->
+  constructor: ({ @id, @name, @publicKey, @location, @achievements, @birthDate, @gender, @nationality, @skills }) ->
 
-  @attrs: ["id", "name", "publicKey", "location", "achievements", "birthDate", "gender", "nationality"]
+  @attrs: ["id", "name", "publicKey", "location", "achievements", "birthDate", "gender", "nationality", "skills"]
 
 class Org extends BAppModel
   constructor: ({ @id, @name, @publicKey, @orgType, @location, @industry }) ->
@@ -9,6 +9,6 @@ class Org extends BAppModel
   @attrs: ["id", "name", "publicKey", "orgType", "location", "industry"]
 
 class Employment extends BAppModel
-  constructor: ({ @id, @userId, @orgId, @role, @dateStart, @dateEnd, @reportsTo, @budget, @skills }) ->
+  constructor: ({ @id, @userId, @orgId, @role, @dateStart, @dateEnd, @reportsTo, @budget, @desc }) ->
 
-  @attrs: ["id", "userId", "orgId", "role", "dateStart", "dateEnd", "reportsTo", "budget", "skills"]
+  @attrs: ["id", "userId", "orgId", "role", "dateStart", "dateEnd", "reportsTo", "budget", "desc"]

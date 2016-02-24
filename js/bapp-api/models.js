@@ -7,10 +7,10 @@ User = (function(superClass) {
   extend(User, superClass);
 
   function User(arg) {
-    this.id = arg.id, this.name = arg.name, this.publicKey = arg.publicKey, this.location = arg.location, this.achievements = arg.achievements, this.birthDate = arg.birthDate, this.gender = arg.gender, this.nationality = arg.nationality;
+    this.id = arg.id, this.name = arg.name, this.publicKey = arg.publicKey, this.location = arg.location, this.achievements = arg.achievements, this.birthDate = arg.birthDate, this.gender = arg.gender, this.nationality = arg.nationality, this.skills = arg.skills;
   }
 
-  User.attrs = ["id", "name", "publicKey", "location", "achievements", "birthDate", "gender", "nationality"];
+  User.attrs = ["id", "name", "publicKey", "location", "achievements", "birthDate", "gender", "nationality", "skills"];
 
   return User;
 
@@ -33,10 +33,10 @@ Employment = (function(superClass) {
   extend(Employment, superClass);
 
   function Employment(arg) {
-    this.id = arg.id, this.userId = arg.userId, this.orgId = arg.orgId, this.role = arg.role, this.dateStart = arg.dateStart, this.dateEnd = arg.dateEnd, this.reportsTo = arg.reportsTo, this.budget = arg.budget, this.skills = arg.skills;
+    this.id = arg.id, this.userId = arg.userId, this.orgId = arg.orgId, this.role = arg.role, this.dateStart = arg.dateStart, this.dateEnd = arg.dateEnd, this.reportsTo = arg.reportsTo, this.budget = arg.budget, this.desc = arg.desc;
   }
 
-  Employment.attrs = ["id", "userId", "orgId", "role", "dateStart", "dateEnd", "reportsTo", "budget", "skills"];
+  Employment.attrs = ["id", "userId", "orgId", "role", "dateStart", "dateEnd", "reportsTo", "budget", "desc"];
 
   return Employment;
 

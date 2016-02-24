@@ -17,8 +17,10 @@
     
       this.store.on('update', (function(_this) {
         return function(data) {
+          var evtPresent;
           _this.evt = StoreData.evt;
-          _this.klass = _this.evt ? "" : "hidden";
+          evtPresent = _(["tx_latest", "tx_pending"]).include(_this.evt);
+          _this.klass = evtPresent ? "" : "hidden";
           if (_this.evt === "tx_latest") {
             _this.label = "Confirmed!";
           }

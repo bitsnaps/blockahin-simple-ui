@@ -4,8 +4,8 @@
   %h4 Edit your profile:
   %h2 { user.name }
   %form#user_form{ onsubmit: "{ update }" }
-    %h4
-      %input.big-text{placeholder: "Your current Job Title", name: "jobTitle", type: "text", value: "{ user.jobTitle }"}/
+    -# %h4
+    -#   %input.big-text{placeholder: "Your current Job Title", name: "jobTitle", type: "text", value: "{ user.jobTitle }"}/
     .row
       .column.overlay_cont
         %label.normal
@@ -13,9 +13,10 @@
           .icon.overlay.white 📷
           %input{ type: "file" }
       .column.column-80
-        %p.border{ contentEditable: true }
-          Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
-          { user.bio }
+        -# %p.border{ disabled: true }
+        -#   -#  contentEditable: true
+        -#   Bio: TODO Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
+        -#   { user.bio }
         .row
           .column.column-20
             %label
@@ -30,22 +31,23 @@
             %input{placeholder: "Your country of Origin", name: "nationality", type: "text", value: "{ user.nationality }"}/
 
     %fieldset
-      %label
-        Email
-        %input{placeholder: "you@email.com", name: "email", type: "email"}/
+      -# %label
+      -#   Email
+      -#   %input{placeholder: "you@email.com", name: "email", type: "email"}/
       %label
         Gender
         %input{placeholder: "M / F", name: "gender", type: "text", value: "{ user.gender }"}
-      %label
-        Cover letter
-        %textarea{placeholder: "A generic cover letter you want to send to your ideal employer, why you are suited for the job."}
 
-    .column.overlay_cont
-      %label.normal
-        %p Cover Photo (optional)
-        - text = CGI::escape "Upload a Cover Photo"
-        %img.avatar{ src: "https://placeholdit.imgix.net/~text?bg=999&txtclr=fff&txt=#{text}&txtsize=25&w=1200&h=200&fm=png", width: "100%" }
-        %input{ type: "file" }
+      -# %label
+      -#   Cover letter
+      -#   %textarea{placeholder: "A generic cover letter you want to send to your ideal employer, why you are suited for the job."}
+
+    -# .column.overlay_cont
+    -#   %label.normal
+    -#     %p Cover Photo (optional)
+    -#     - text = CGI::escape "Upload a Cover Photo"
+    -#     %img.avatar{ src: "https://placeholdit.imgix.net/~text?bg=999&txtclr=fff&txt=#{text}&txtsize=25&w=1200&h=200&fm=png", width: "100%" }
+    -#     %input{ type: "file" }
 
     %input.left.button-primary{onclick: "{ update }", type: "submit", value: "Save"}/
 
@@ -58,6 +60,34 @@
 
     .message { message }
 
+  .clear
+  %section
+    %h1 Positions
+
+    %a.button{ onclick: "" } Add Position
+
+    %form
+      %fieldset
+        %label
+          Company
+          %select{ name: "org[name]" }
+            %option{ each: "{ org in orgs }" }
+              { org.name }
+
+        %label
+          From
+          %input{placeholder: "{ today }", name: "dateStart", type: "text", value: "{ emp.dateStart }"}
+        %label
+          To
+          %input{placeholder: "{ today }", name: "dateEnd", type: "text", value: "{ emp.dateEnd }"}
+        %label
+          Role
+          %input{placeholder: "Your position", name: "role", type: "text", value: "{ emp.role }"}
+        %label
+          Description (opt.)
+          %textarea{placeholder: "You can describe your role briefly", name: "desc", type: "text", value: "{ emp.desc }"}
+
+        %input.left.button-primary{onclick: "{ update }", type: "submit", value: "Save"}/
 
   %style{scoped: true}
     :plain
@@ -78,3 +108,15 @@
     BR.loadFromCollection "user", entry_id, this
 
     BR.bindUpdateEntityForm "user", entry_id, this
+
+
+    # form: new position
+    @orgs = StoreData.orgs
+
+    @store = opts.store
+    @store.on 'update', (data) =>
+     @orgs = StoreData.orgs
+     @update()
+
+    @today = new Date().toLocaleDateString()
+    @emp = {}

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset='utf-8'>
-    <title>Blockedin</title>
+    <title>Asent.io</title>
     <meta content='width=device-width' name='viewport'>
     <link charset='utf-8' href='css/vendor/milligram.css' rel='stylesheet'>
     <link charset='utf-8' href='css/vendor/milligram-nav.css' rel='stylesheet'>
@@ -44,6 +44,7 @@
     <script src='comp/org_new.js'></script>
     <script src='comp/notif.js'></script>
     <script src='comp/unsplash_cover.js'></script>
+    <script src='comp/approvables.js'></script>
     <script src='comp/not_found.js'></script>
     <script src='js/bapp-api/bapi.js'></script>
     <script src='js/bapp-api/model.js'></script>
@@ -52,6 +53,7 @@
     <script src='js/mkv-riot.js'></script>
     <script src='js/store.js'></script>
     <script src='js/routes.js'></script>
+    <script src='js/presenters.js'></script>
     <script src='js/main.js'></script>
   </body>
 </html>

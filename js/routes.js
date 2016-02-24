@@ -55,6 +55,10 @@ ROUTES = [
     path: '/orgs/:id',
     tag: 'org',
     api: api
+  }), new Route({
+    path: '/approvables',
+    tag: 'approvables',
+    api: api
   }), new NotFoundRoute({
     tag: 'not-found'
   })
