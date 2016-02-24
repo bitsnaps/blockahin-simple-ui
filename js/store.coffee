@@ -30,17 +30,6 @@ fetchUserAvatars = (users) ->
     user.avatarLg = "http://api.randomuser.me/portraits/med/#{gender}/#{user.id}.jpg"
     user
 
-TMP_JOB_TITLES = ["Graphic Designer", "Software Developer", "Mathematician", "Biologist", "Engineer", "Trader", "Accountant", "Video Editor", "Cameraman", "Illustrator", "SEO", "Social Media Expert", "Copywriter", "Writer", "Editor"]
-
-
-
-addTmpJobTitle  = (users) ->
-  _(users).map (user) ->
-    user.jobTitle = _.sample TMP_JOB_TITLES
-    user
-
-# Orgs = genAvatars Orgs
-
 
 StoreData =
   users: Users
@@ -72,7 +61,6 @@ Store = ->
   User.all()
     .then (users) =>
       users = fetchUserAvatars users
-      users = addTmpJobTitle users
       StoreData.users = users
       @update StoreData
     .catch (error) ->

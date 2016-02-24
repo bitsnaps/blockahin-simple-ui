@@ -4,7 +4,6 @@
     <h5>
       <input class='big-text' name='name' placeholder='Your First and Last Name' required type='text' value='{ user.name }'>
     </h5>
-    <input class='big-text' name='jobTitle' placeholder='Your current Job Title' type='text' value='{ user.jobTitle }'>
     <div class='row'>
       <div class='column overlay_cont'>
         <label class='normal'>

@@ -7,8 +7,10 @@
   <div class='row'>
     <div class='column centered avatar-box'>
       <img class='avatar' src='{ user.avatarLg }'>
+      <div class='clear'></div>
       <h2>{ user.name }</h2>
-      <h4>{ user.jobTitle }</h4>
+      <div class='clear'></div>
+      <h4>{ user.jobTitle() }</h4>
     </div>
     <div class='avatar-spacer'></div>
   </div>

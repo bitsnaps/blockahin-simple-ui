@@ -7,7 +7,7 @@
   </input>
   <script>
     var matchString = (user) => {
-      return s(`${user.name}|${user.jobTitle}`).toLowerCase()
+      return s(`${user.name}|${user.jobTitle()}`).toLowerCase()
     }
     filterUsers() {
       this.users = _(StoreData.users).select((user) => {
@@ -46,5 +46,5 @@
       { name }
     </a>
   </dtd>
-  <dtd>{ jobTitle }</dtd>
+  <dtd>{ jobTitle() }</dtd>
 </user-row>

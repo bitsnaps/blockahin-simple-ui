@@ -6,7 +6,7 @@
 
   :javascript
     var matchString = (user) => {
-      return s(`${user.name}|${user.jobTitle}`).toLowerCase()
+      return s(`${user.name}|${user.jobTitle()}`).toLowerCase()
     }
     filterUsers() {
       this.users = _(StoreData.users).select((user) => {
@@ -40,4 +40,4 @@
   %dtd
     %a{:href => "#/users/{ id }"}
       { name }
-  %dtd { jobTitle }
+  %dtd { jobTitle() }

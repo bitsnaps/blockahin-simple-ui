@@ -3,6 +3,16 @@ class User extends BAppModel
 
   @attrs: ["id", "name", "publicKey", "location", "achievements", "birthDate", "gender", "nationality", "skills"]
 
+  empls: ->
+    employments = _(StoreData.empls).select (empl) =>
+      empl.userId == @id
+    employments.reverse()
+
+  jobTitle: ->
+    empl = @empls()[0]
+    return "Employee" unless empl
+    empl.role
+
 class Org extends BAppModel
   constructor: ({ @id, @name, @publicKey, @orgType, @location, @industry }) ->
 

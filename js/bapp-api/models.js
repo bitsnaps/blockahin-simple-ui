@@ -12,6 +12,25 @@ User = (function(superClass) {
 
   User.attrs = ["id", "name", "publicKey", "location", "achievements", "birthDate", "gender", "nationality", "skills"];
 
+  User.prototype.empls = function() {
+    var employments;
+    employments = _(StoreData.empls).select((function(_this) {
+      return function(empl) {
+        return empl.userId === _this.id;
+      };
+    })(this));
+    return employments.reverse();
+  };
+
+  User.prototype.jobTitle = function() {
+    var empl;
+    empl = this.empls()[0];
+    if (!empl) {
+      return "Employee";
+    }
+    return empl.role;
+  };
+
   return User;
 
 })(BAppModel);

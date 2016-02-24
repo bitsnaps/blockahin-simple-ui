@@ -5,8 +5,10 @@
   .row
     .column.centered.avatar-box
       %img.avatar{ src: "{ user.avatarLg }" }
+      .clear
       %h2 { user.name }
-      %h4 { user.jobTitle }
+      .clear
+      %h4 { user.jobTitle() }
     .avatar-spacer
   .row
     .column

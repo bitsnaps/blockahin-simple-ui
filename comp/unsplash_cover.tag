@@ -19,7 +19,8 @@
       left: 0;
       top: 50px;
       position: absolute;
-      z-index: 0; }
+      z-index: 0;
+      border-bottom: 3px solid #DDD; }
     
     .unsplash-spacer {
       height: 250px; }

@@ -303,3 +303,11 @@ user h3 {
   border-bottom: 1px solid #DDD;
   padding-bottom: 5px;
 }
+
+user .avatar-box h2, user .avatar-box h4 {
+  background: #FFF;
+  display: inline-block;
+  padding: 8px 16px;
+  margin-bottom: 10px;
+  border-radius: 7px;
+}
