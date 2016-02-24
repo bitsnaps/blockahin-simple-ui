@@ -37,7 +37,9 @@
       %label
         Gender
         %input{placeholder: "M / F", name: "gender", type: "text", value: "{ user.gender }"}
-
+      %label
+        Birth Date
+        %input{placeholder: "{ today }", name: "birthDate", type: "date", value: "{ user.birthDate }"}
       -# %label
       -#   Cover letter
       -#   %textarea{placeholder: "A generic cover letter you want to send to your ideal employer, why you are suited for the job."}
@@ -76,10 +78,10 @@
 
         %label
           From
-          %input{placeholder: "{ today }", name: "dateStart", type: "text", value: "{ emp.dateStart }"}
+          %input{placeholder: "{ today }", name: "dateStart", type: "date", value: "{ emp.dateStart }"}
         %label
           To
-          %input{placeholder: "{ today }", name: "dateEnd", type: "text", value: "{ emp.dateEnd }"}
+          %input{placeholder: "{ today }", name: "dateEnd", type: "date", value: "{ emp.dateEnd }"}
         %label
           Role
           %input{placeholder: "Your position", name: "role", type: "text", value: "{ emp.role }"}

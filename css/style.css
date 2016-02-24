@@ -147,6 +147,9 @@ input.big-text {
   color: #666;
 }
 
+input[type=date] {
+  display: block;
+}
 
 
 

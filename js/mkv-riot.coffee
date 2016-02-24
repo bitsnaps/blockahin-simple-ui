@@ -71,6 +71,13 @@ BR =
   bindUpdateEntityForm: (name, entry_id, ctx) =>
     BR.bindSaveEntityForm "update", name, entry_id, ctx
 
+  prepare: (opts, ctx, fun) =>
+    fun()
+    opts.store.on 'update', (data) =>
+      fun()
+      ctx.update()
+
+
   # utils
   #
   pluralize: (word) ->

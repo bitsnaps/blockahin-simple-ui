@@ -21,36 +21,25 @@
 
   .s20
 
-  .gray
-    %h3 Skills
-    .row
-      .column{ each: "{ skills }" }
-      / skills = { php: 5, css: 4, }
-      /
-        .column
-          PHP ★★★★★
-        .column
-          CSS ★★★★
-    .row
-      .column
-        Apache ★★★
-      .column
-        Nginx ★
-      .column
-        Photoshop ★★★★
-      .column
-        Illustrator ★★★
-      .column
-    .clear
+  %h3 Skills
+  .row
+    .column{ each: "{ skill, level in skills }" }
+      { s.capitalize(skill) } { _(Number(level)).times(stars).join("") }
+  .clear
 
-    .s30
-    %h3 Positions
-    %h5 PHP Developer
-    %h5 ACME
+  .s30
+  %h3 Positions
+
+  -#  @userId, @orgId, @role, @dateStart, @dateEnd, @reportsTo, @budget, @desc }) ->
+
+  %section{ each: "{ empl in empls }" }
+    %h5 { empl.role }
+    %h5
+      %a{ href: "/#/orgs/{ empl.org.id }" } { empl.org.name }
     %p
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis.
+      { empl.desc || "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies." }
 
-
+  .gray
     .s30
     %h3 Education
     %h5 Degree in Astrophysics
@@ -64,6 +53,21 @@
     entry_id = BR.getEntryId()
     BR.loadFromCollection "user", entry_id, this
 
+    @stars = (i) -> "★"
+
+    BR.prepare opts, @, =>
+      @empls =  _(StoreData.empl).select (empl) -> empl.userId == entry_id
+      _(@empls).each (empl) ->
+        empl.org = _(StoreData.orgs).find (org) ->
+          empl.orgId == org.id
+      c.log @empls
+
+      if @user
+        try
+          @skills = JSON.parse @user.skills
+        catch error
+          c.error "Skills JSON is invalid: \#{error}"
+
   :sass
     .avatar-box
       position: absolute
@@ -76,6 +80,15 @@
     .avatar-spacer
       height: 180px
 
+
+
+
+
+
+
+
+-# ----------------------------------------------------------
+-# PUBLIC _ KEY TODO: move
 
 %publicKeyUser
   .row

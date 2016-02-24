@@ -41,6 +41,10 @@
         Gender
         <input name='gender' placeholder='M / F' type='text' value='{ user.gender }'>
       </label>
+      <label>
+        Birth Date
+        <input name='birthDate' placeholder='{ today }' type='date' value='{ user.birthDate }'>
+      </label>
     </fieldset>
     <input class='left button-primary' onclick='{ update }' type='submit' value='Save'>
     <div class='spinner'>
@@ -68,11 +72,11 @@
         </label>
         <label>
           From
-          <input name='dateStart' placeholder='{ today }' type='text' value='{ emp.dateStart }'>
+          <input name='dateStart' placeholder='{ today }' type='date' value='{ emp.dateStart }'>
         </label>
         <label>
           To
-          <input name='dateEnd' placeholder='{ today }' type='text' value='{ emp.dateEnd }'>
+          <input name='dateEnd' placeholder='{ today }' type='date' value='{ emp.dateEnd }'>
         </label>
         <label>
           Role

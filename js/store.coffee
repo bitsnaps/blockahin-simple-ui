@@ -1,8 +1,7 @@
 Users = []
-
-# Org.all()
-
-Orgs = []
+Empls = []
+Orgs  = []
+Unis  = []
 
 Orgs = _(Orgs).map (entity) =>
   new Org(entity)
@@ -42,12 +41,12 @@ addTmpJobTitle  = (users) ->
 
 # Orgs = genAvatars Orgs
 
-Unis = []
 
 StoreData =
   users: Users
   orgs:  Orgs
   unis:  Unis
+  empl:  Empls
   evt:   null
 
 Store = ->
@@ -75,6 +74,13 @@ Store = ->
       users = fetchUserAvatars users
       users = addTmpJobTitle users
       StoreData.users = users
+      @update StoreData
+    .catch (error) ->
+      c.error "Error: #{error}"
+
+  Empl.all()
+    .then (empl) =>
+      StoreData.empl = empl
       @update StoreData
     .catch (error) ->
       c.error "Error: #{error}"

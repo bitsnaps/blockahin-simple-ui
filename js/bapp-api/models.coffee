@@ -8,7 +8,9 @@ class Org extends BAppModel
 
   @attrs: ["id", "name", "publicKey", "orgType", "location", "industry"]
 
-class Employment extends BAppModel
-  constructor: ({ @id, @userId, @orgId, @role, @dateStart, @dateEnd, @reportsTo, @budget, @desc }) ->
+class Empl extends BAppModel
+  constructor: ({ @id, @userId, @orgId, @dateStart, @dateEnd, @role, @reportsTo, @budget, @desc }) ->
 
-  @attrs: ["id", "userId", "orgId", "role", "dateStart", "dateEnd", "reportsTo", "budget", "desc"]
+  @collectionUp = -> "Employments"
+
+  @attrs: ["id", "userId", "orgId", "dateStart", "dateEnd", "role", "reportsTo", "budget", "desc"]

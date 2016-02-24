@@ -28,43 +28,25 @@
     </div>
   </div>
   <div class='s20'></div>
-  <div class='gray'>
-    <h3>Skills</h3>
-    <div class='row'>
-      <div class='column' each='{ skills }'></div>
-      <!-- skills = { php: 5, css: 4, } -->
-      <!--
-        <div class='column'>
-          PHP ★★★★★
-        </div>
-        <div class='column'>
-          CSS ★★★★
-        </div>
-      -->
+  <h3>Skills</h3>
+  <div class='row'>
+    <div class='column' each='{ skill, level in skills }'>
+      { s.capitalize(skill) } { _(Number(level)).times(stars).join("") }
     </div>
-    <div class='row'>
-      <div class='column'>
-        Apache ★★★
-      </div>
-      <div class='column'>
-        Nginx ★
-      </div>
-      <div class='column'>
-        Photoshop ★★★★
-      </div>
-      <div class='column'>
-        Illustrator ★★★
-      </div>
-      <div class='column'></div>
-    </div>
-    <div class='clear'></div>
-    <div class='s30'></div>
-    <h3>Positions</h3>
-    <h5>PHP Developer</h5>
-    <h5>ACME</h5>
+  </div>
+  <div class='clear'></div>
+  <div class='s30'></div>
+  <h3>Positions</h3>
+  <section each='{ empl in empls }'>
+    <h5>{ empl.role }</h5>
+    <h5>
+      <a href='/#/orgs/{ empl.org.id }'>{ empl.org.name }</a>
+    </h5>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis.
+      { empl.desc || "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies." }
     </p>
+  </section>
+  <div class='gray'>
     <div class='s30'></div>
     <h3>Education</h3>
     <h5>Degree in Astrophysics</h5>
@@ -81,6 +63,33 @@
       entry_id = BR.getEntryId();
     
       BR.loadFromCollection("user", entry_id, this);
+    
+      this.stars = function(i) {
+        return "★";
+      };
+    
+      BR.prepare(opts, this, (function(_this) {
+        return function() {
+          var error, error1;
+          _this.empls = _(StoreData.empl).select(function(empl) {
+            return empl.userId === entry_id;
+          });
+          _(_this.empls).each(function(empl) {
+            return empl.org = _(StoreData.orgs).find(function(org) {
+              return empl.orgId === org.id;
+            });
+          });
+          c.log(_this.empls);
+          if (_this.user) {
+            try {
+              return _this.skills = JSON.parse(_this.user.skills);
+            } catch (error1) {
+              error = error1;
+              return c.error("Skills JSON is invalid: " + error);
+            }
+          }
+        };
+      })(this));
     
     }).call(this);
   </script>

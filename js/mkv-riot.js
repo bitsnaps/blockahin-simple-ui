@@ -91,6 +91,15 @@ BR = {
       return BR.bindSaveEntityForm("update", name, entry_id, ctx);
     };
   })(this),
+  prepare: (function(_this) {
+    return function(opts, ctx, fun) {
+      fun();
+      return opts.store.on('update', function(data) {
+        fun();
+        return ctx.update();
+      });
+    };
+  })(this),
   pluralize: function(word) {
     if (s(word).endsWith('y')) {
       word = word.substring(word.length - 1);
