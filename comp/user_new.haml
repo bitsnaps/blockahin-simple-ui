@@ -12,10 +12,10 @@
           .icon.overlay.white 📷
           %input{ type: "file" }
       .column.column-80
-        %p.border{ contentEditable: true }
-          :plain
-            Bio:
-          { user.bio }
+        -# %p.border{ contentEditable: true }
+        -#   :plain
+        -#     Bio:
+        -#   { user.bio }
         .row
           .column.column-20
             %label
@@ -30,15 +30,18 @@
             %input{placeholder: "Your country of Origin", name: "nationality", type: "text", value: "{ user.nationality }"}/
 
     %fieldset
-      %label
-        Email
-        %input{placeholder: "you@email.com", name: "email", type: "email"}/
+      -# %label
+      -#   Email
+      -#   %input{placeholder: "you@email.com", name: "email", type: "email"}/
       %label
         Gender
         %input{placeholder: "M / F", name: "gender", type: "text", value: "{ user.gender }"}
       %label
-        Cover letter
-        %textarea{placeholder: "A generic cover letter you want to send to your ideal employer, why you are suited for the job."}
+        Birth Date
+        %input{placeholder: "{ today }", name: "birthDate", type: "date", value: "{ user.birthDate }"}
+      -# %label
+      -#   Cover letter
+      -#   %textarea{placeholder: "A generic cover letter you want to send to your ideal employer, why you are suited for the job."}
 
       %input.left.button-primary{onclick: "{ update }", type: "submit", value: "Register"}/
 

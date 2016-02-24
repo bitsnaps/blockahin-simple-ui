@@ -13,10 +13,6 @@
         </label>
       </div>
       <div class='column column-80'>
-        <p class='border' contentEditable>
-          Bio:
-          { user.bio }
-        </p>
         <div class='row'>
           <div class='column column-20'>
             <label>
@@ -41,16 +37,12 @@
     </div>
     <fieldset>
       <label>
-        Email
-        <input name='email' placeholder='you@email.com' type='email'>
-      </label>
-      <label>
         Gender
         <input name='gender' placeholder='M / F' type='text' value='{ user.gender }'>
       </label>
       <label>
-        Cover letter
-        <textarea placeholder='A generic cover letter you want to send to your ideal employer, why you are suited for the job.'></textarea>
+        Birth Date
+        <input name='birthDate' placeholder='{ today }' type='date' value='{ user.birthDate }'>
       </label>
       <input class='left button-primary' onclick='{ update }' type='submit' value='Register'>
       <div class='spinner'>
