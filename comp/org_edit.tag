@@ -38,10 +38,6 @@
       </div>
     </div>
     <fieldset>
-      <label>
-        Email
-        <input name='email' placeholder='you@email.com' type='email'>
-      </label>
       <input class='left button-primary' onclick='{ update }' type='submit' value='Save'>
       <div class='spinner'>
         <div class='rect1'></div>
