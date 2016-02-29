@@ -59,6 +59,10 @@ ROUTES = [
     path: '/approvables',
     tag: 'approvables',
     api: api
+  }), new Route({
+    path: '/blockchain',
+    tag: 'blockchain',
+    api: api
   }), new NotFoundRoute({
     tag: 'not-found'
   })

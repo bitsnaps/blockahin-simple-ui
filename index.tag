@@ -46,6 +46,7 @@
     <script src='comp/unsplash_cover.js'></script>
     <script src='comp/approvables.js'></script>
     <script src='comp/not_found.js'></script>
+    <script src='comp/blockchain.js'></script>
     <script src='js/bapp-api/bapi.js'></script>
     <script src='js/bapp-api/model.js'></script>
     <script src='js/bapp-api/models.js'></script>

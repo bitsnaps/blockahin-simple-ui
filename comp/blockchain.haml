@@ -1,0 +1,64 @@
+%blockchain
+  .blocks
+    %h1 Blockchain
+    .block{ each: "{ block in blocks }" }
+      %h5
+        Block # { block.number }
+        %span - hash: { block.hash }
+      %p
+        %strong Mined by:
+        { block.miner }
+      %p
+        %strong Timestamp:
+        { new Date(block.timestamp*1000).toDateString() } - { new Date(block.timestamp*1000).toTimeString() }
+      %h5 Transactions:
+      .tx{ each: "{ tx in block.transactions }" }
+        %p
+          %strong Hash:
+          { tx.hash }
+        %p
+          %strong From:
+          { tx.from }
+        %p
+          %strong To:
+          { tx.to }
+
+        %p
+          %strong Smart Contract: { tx.method.contract } - Method: { tx.method.name }
+
+        %h5
+          Values:
+          %span.value{ each: "{ name, value in tx.method.values }" }
+            %strong { s.ltrim(name, "_") }: 
+            { value },
+        .s20
+
+      .s50
+
+  :css
+    .block span {
+      font-size: 0.8em;
+    }
+    .tx {
+      padding-left: 30px;
+    }
+
+    .block .tx {
+    }
+
+    .block p {
+      margin-bottom: 10px;
+    }
+
+  :coffee
+    @blocks = []
+
+    c.log "-------"
+    API.blocksLog()
+      .catch (err) ->
+        c.error err
+      .then (log) =>
+        c.log "log"
+        c.log log
+        @blocks = log
+        @update()

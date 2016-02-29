@@ -47,6 +47,14 @@ BApi = (function() {
     })(this));
   };
 
+  BApi.prototype.blocksLog = function() {
+    return new Promise((function(_this) {
+      return function(resolve, reject) {
+        return $.getJSON(_this.host + "/blocks_log").fail(reject).then(resolve);
+      };
+    })(this));
+  };
+
   return BApi;
 
 })();

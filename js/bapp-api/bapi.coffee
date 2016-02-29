@@ -35,6 +35,11 @@ class BApi
           # console.log "POST { contract: #{contract}, methodName: #{methodName}, values: #{JSON.stringify values} } ( POST /contract/:contractId/:method ) })"
           resolve val.value
 
+  blocksLog: ->
+    new Promise (resolve, reject) =>
+      $.getJSON "#{@host}/blocks_log"
+        .fail reject
+        .then resolve
 # --------------
 
 # api = API
