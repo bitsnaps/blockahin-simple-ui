@@ -7,7 +7,6 @@
           %th
           %th Name
           %th Job title
-      -# %user-row{ each: "{ users }" }
       %tr{ each: "{users}" }
         %td
           %a{href: "#/users/{ id }"}
@@ -30,4 +29,3 @@
     BR.prepare( opts, this, () => {
       this.users = StoreData.users
     })
-    
