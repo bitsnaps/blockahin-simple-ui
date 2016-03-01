@@ -33,10 +33,7 @@
         </p>
         <h5>
           Values:
-          <span class='value' each='{ name, value in tx.method.values }'>
-            <strong>{ s.ltrim(name, "_") }:</strong>
-            { value },
-          </span>
+          <val each='{ name, value in tx.method.values }'></val>
         </h5>
         <div class='s20'></div>
       </div>
@@ -62,14 +59,10 @@
     (function() {
       this.blocks = [];
     
-      c.log("-------");
-    
       API.blocksLog()["catch"](function(err) {
         return c.error(err);
       }).then((function(_this) {
         return function(log) {
-          c.log("log");
-          c.log(log);
           _this.blocks = log;
           return _this.update();
         };
@@ -78,3 +71,55 @@
     }).call(this);
   </script>
 </blockchain>
+<val>
+  <span>
+    <strong>{ s.ltrim(name, "_") }:</strong>
+    <raw content='{ autolink(tx.method.contract, name, value) }, '></raw>
+  </span>
+  <script>
+    (function() {
+      this.genLink = function(contract, value) {
+        return this.innerHTML = "<a href='/#/" + contract + "/" + value + "'>" + value + "</a>";
+      };
+    
+      this.genLinkAssoc = function(name, value) {
+        var section;
+        name = s.ltrim(name, "_");
+        name = s.rtrim(name, "Id");
+        section = name + "s";
+        return this.innerHTML = "<a href='/#/" + section + "/" + value + "'>" + name + "[ " + value + " ]</a>";
+      };
+    
+      this.autolink = function(contract, name, value) {
+        contract = contract.toLowerCase();
+        switch (name) {
+          case "_publicKey":
+            return this.genLink(contract, value);
+          case "_userId":
+          case "_orgId":
+            return this.genLinkAssoc(name, value);
+          default:
+            return value;
+        }
+      };
+    
+    }).call(this);
+  </script>
+</val>
+<raw>
+  <span></span>
+  <script>
+    (function() {
+      this.updateContent = function() {
+        return this.root.innerHTML = opts.content;
+      };
+    
+      this.on('update', function() {
+        return this.updateContent();
+      });
+    
+      this.updateContent();
+    
+    }).call(this);
+  </script>
+</raw>

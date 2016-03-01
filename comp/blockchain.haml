@@ -28,12 +28,12 @@
 
         %h5
           Values:
-          %span.value{ each: "{ name, value in tx.method.values }" }
-            %strong { s.ltrim(name, "_") }: 
-            { value },
+          %val{ each: "{ name, value in tx.method.values }" }
+
         .s20
 
       .s50
+
 
   :css
     .block span {
@@ -51,14 +51,52 @@
     }
 
   :coffee
+
+
     @blocks = []
 
-    c.log "-------"
     API.blocksLog()
       .catch (err) ->
         c.error err
       .then (log) =>
-        c.log "log"
-        c.log log
         @blocks = log
         @update()
+
+
+%val
+  %span
+    %strong { s.ltrim(name, "_") }:
+    %raw{ content: "{ autolink(tx.method.contract, name, value) }, " }
+
+  :coffee
+    @genLink = (contract, value) ->
+      @innerHTML = "<a href='/#/\#{contract}/\#{value}'>\#{value}</a>"
+
+    @genLinkAssoc = (name, value) ->
+      name = s.ltrim name, "_"
+      name = s.rtrim name, "Id"
+      section = "\#{name}s"
+      @innerHTML = "<a href='/#/\#{section}/\#{value}'>\#{name}[ \#{value} ]</a>"
+
+    @autolink = (contract, name, value) ->
+      contract = contract.toLowerCase()
+      switch name
+        when "_publicKey"
+          @genLink contract, value
+        when "_userId", "_orgId"
+          @genLinkAssoc name, value
+        else
+          value
+
+
+-# TODO: globalize and reuse RAW - powerful tag
+%raw
+  %span
+  :coffee
+    @updateContent = ->
+      @root.innerHTML = opts.content
+
+    @on 'update', ->
+      @updateContent()
+
+    @updateContent()

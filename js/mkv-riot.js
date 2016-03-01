@@ -3,9 +3,14 @@ var BR;
 
 BR = {
   getEntryId: function() {
-    var entry_id;
+    var entry_id, id;
     entry_id = s(location.hash).strRightBack("/").value();
-    return Number(entry_id);
+    id = Number(entry_id);
+    if (id) {
+      return id;
+    } else {
+      return entry_id;
+    }
   },
   loadFromCollection: (function(_this) {
     return function(name, entry_id, ctx, presenter) {
@@ -15,6 +20,11 @@ BR = {
       elem = _(coll).find(function(e) {
         return entry_id === e.id;
       });
+      if (!elem) {
+        elem = _(coll).find(function(e) {
+          return entry_id === e.publicKey;
+        });
+      }
       if (presenter) {
         elem = presenter(elem);
       }
@@ -26,6 +36,11 @@ BR = {
         elem = _(coll).find(function(e) {
           return entry_id === e.id;
         });
+        if (!elem) {
+          elem = _(coll).find(function(e) {
+            return entry_id === e.publicKey;
+          });
+        }
         if (presenter) {
           elem = presenter(elem);
         }

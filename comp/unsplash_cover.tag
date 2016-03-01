@@ -1,5 +1,5 @@
 <unsplash-cover>
-  <img class='unsplash' src='https://unsplash.it/1200/250/?image={entry_id}'>
+  <img class='unsplash' src='https://unsplash.it/1200/250/?image={Number(entry_id) || user.id}'>
   <div class='unsplash-spacer'></div>
   <script>
     (function() {

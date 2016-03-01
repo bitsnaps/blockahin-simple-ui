@@ -1,6 +1,6 @@
 -# type = "random"
 -# type = "random&key={entry_id}"
-- type = "image={entry_id}"
+- type = "image={Number(entry_id) || user.id}"
 - height = 250
 %unsplash-cover
   %img.unsplash{ src: "https://unsplash.it/1200/#{height}/?#{type}" }

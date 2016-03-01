@@ -1,13 +1,17 @@
 BR =
   getEntryId: ->
     entry_id = s(location.hash).strRightBack("/").value()
-    Number entry_id
+    id = Number entry_id
+    if id then id else entry_id
 
   loadFromCollection: (name, entry_id, ctx, presenter) =>
     coll_name = BR.pluralize name
     coll = StoreData[coll_name]
     elem = _(coll).find (e) ->
       entry_id == e.id
+    unless elem
+      elem = _(coll).find (e) ->
+        entry_id == e.publicKey
     elem = presenter elem if presenter
     ctx[name] = elem
     ctx.update()
@@ -17,6 +21,9 @@ BR =
       coll = data[coll_name]
       elem = _(coll).find (e) ->
         entry_id == e.id
+      unless elem
+        elem = _(coll).find (e) ->
+          entry_id == e.publicKey
       elem = presenter elem if presenter
       ctx[name] = elem
       ctx.update()
