@@ -1,8 +1,21 @@
 %table-users
   %p Search
-  %input{:name => "query", :onkeyup => "{ filterUsers }", :placeholder => "enter a skill or a location", :type => "text"}
-    %dtable
-      %user-row{ each: "{ users }" }
+  %input{name: "query", onkeyup: "{ filterUsers }", placeholder: "enter a skill or a location", type: "text"}
+    %table
+      %thead
+        %tr
+          %th
+          %th Name
+          %th Job title
+      -# %user-row{ each: "{ users }" }
+      %tr{ each: "{users}" }
+        %td
+          %a{href: "#/users/{ id }"}
+            %img.avatar{src: "{ avatar }"}/
+        %td
+          %a{href: "#/users/{ id }"}
+            { name }
+        %td { jobTitle() }
 
   :javascript
     var matchString = (user) => {
@@ -14,30 +27,7 @@
       })
     }
 
-    this.on('mount', function() {
-      $("dtable").prepend("    \
-        <user-row>             \
-          <dtd></dtd>          \
-          <dtd>Name</dtd>      \
-          <dtd>Job title</dtd> \
-        </user-row>            \
-      ")
+    BR.prepare( opts, this, () => {
+      this.users = StoreData.users
     })
-
-    this.users = StoreData.users
-
-    var self = this
-    this.store = opts.store
-    this.store.on('update', function(data) {
-      self.users = data.users
-      self.update()
-    })
-
-%user-row
-  %dtd
-    %a{:href => "#/users/{ id }"}
-      %img.avatar{:src => "{ avatar }"}/
-  %dtd
-    %a{:href => "#/users/{ id }"}
-      { name }
-  %dtd { jobTitle() }
+    

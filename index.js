@@ -3431,7 +3431,7 @@ riot.tag2('form-cont', '<h2>Register</h2> <form> <fieldset> <label> First name <
 riot.tag2('ab-table', '<table> <thead> <tr> <th>a</th> <th>b</th> </tr> </thead> <tbody> <tr> <td> <img src="http://api.randomuser.me/portraits/thumb/women/39.jpg"> <a href="#/users/1">Stephen Curry</a> </td> <td>27</td> </tr> <tr> <td><a href="#/users/2">Klay Thompson<a></td> <td>25</td> </tr> </tbody> </table>', '', '', function(opts) {
 });
 
-riot.tag2('table-users', '<p>Search</p> <input name="query" onkeyup="{filterUsers}" placeholder="enter a skill or a location" type="text"> <dtable> <user-row each="{users}"></user-row> </dtable> </input>', '', '', function(opts) {
+riot.tag2('table-users', '<p>Search</p> <input name="query" onkeyup="{filterUsers}" placeholder="enter a skill or a location" type="text"> <table> <thead> <tr> <th></th> <th>Name</th> <th>Job title</th> </tr> </thead> <tr each="{users}"> <td> <a href="#/users/{id}"> <img class="avatar" riot-src="{avatar}"> </a> </td> <td> <a href="#/users/{id}"> {name} </a> </td> <td>{jobTitle()}</td> </tr> </table> </input>', '', '', function(opts) {
     var matchString = (user) => {
       return s(`${user.name}|${user.jobTitle()}`).toLowerCase()
     }
@@ -3441,29 +3441,12 @@ riot.tag2('table-users', '<p>Search</p> <input name="query" onkeyup="{filterUser
       })
     }.bind(this)
 
-    this.on('mount', function() {
-      $("dtable").prepend("    \
-        <user-row>             \
-          <dtd></dtd>          \
-          <dtd>Name</dtd>      \
-          <dtd>Job title</dtd> \
-        </user-row>            \
-      ")
-    })
-
-    this.users = StoreData.users
-
-    var self = this
-    this.store = opts.store
-    this.store.on('update', function(data) {
-      self.users = data.users
-      self.update()
+    BR.prepare( opts, this, () => {
+      this.users = StoreData.users
     })
 }, '{ }');
-riot.tag2('user-row', '<dtd> <a href="#/users/{id}"> <img class="avatar" riot-src="{avatar}"> </a> </dtd> <dtd> <a href="#/users/{id}"> {name} </a> </dtd> <dtd>{jobTitle()}</dtd>', '', '', function(opts) {
-}, '{ }');
 
-riot.tag2('table-orgs', '<p>Search</p> <input name="query" onkeyup="{filterOrgs}" placeholder="enter a company name, an industry or a location" type="text"> <dtable> <org-row each="{orgs}"></org-row> </dtable> </input>', '', '', function(opts) {
+riot.tag2('table-orgs', '<p>Search</p> <input name="query" onkeyup="{filterOrgs}" placeholder="enter a company name, an industry or a location" type="text"> <table> <thead> <tr> <th></th> <th>Name</th> <th>Industry</th> <th>Location</th> <th>Employees</th> </tr> </thead> <tr each="{orgs}"> <td> <a href="#/orgs/{id}"> <img class="avatar" riot-src="{avatar}"> </a> </td> <td> <a href="#/orgs/{id}"> {name} </a> </td> <td>{industry}</td> <td>{location}</td> <td>{employees}</td> </tr> </table> </input>', '', '', function(opts) {
     var matchString = (org) => {
       return s(`${org.name}|${org.industry}|${org.location}`).toLowerCase()
     }
@@ -3480,30 +3463,9 @@ riot.tag2('table-orgs', '<p>Search</p> <input name="query" onkeyup="{filterOrgs}
       })
     }
 
-    var self = this
-
-    this.on('mount', function() {
-      $("dtable").prepend("    \
-        <org-row>             \
-          <dtd></dtd>          \
-          <dtd>Name</dtd>      \
-          <dtd>Industry</dtd> \
-          <dtd>Location</dtd> \
-          <dtd>Employees</dtd> \
-        </org-row>            \
-      ")
+    BR.prepare( opts, this, () => {
+      this.orgs = present(StoreData.orgs)
     })
-
-    this.orgs = present(StoreData.orgs)
-
-    var self = this
-    this.store = opts.store
-    this.store.on('update', function(data) {
-     self.orgs = present(data.orgs)
-     self.update()
-    })
-}, '{ }');
-riot.tag2('org-row', '<dtd> <a href="#/orgs/{id}"> <img class="avatar" riot-src="{avatar}"> </a> </dtd> <dtd> <a href="#/orgs/{id}"> {name} </a> </dtd> <dtd>{industry}</dtd> <dtd>{location}</dtd> <dtd>{employees}</dtd>', '', '', function(opts) {
 }, '{ }');
 
 riot.tag2('table-unis', '<table> <thead> <tr> <th>Name</th> </tr> </thead> <tbody> <tr> <td>UCL</td> </tr> <tr> <td>Oxford University</td> </tr> </tbody> </table>', '', '', function(opts) {

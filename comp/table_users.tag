@@ -1,9 +1,28 @@
 <table-users>
   <p>Search</p>
   <input name='query' onkeyup='{ filterUsers }' placeholder='enter a skill or a location' type='text'>
-    <dtable>
-      <user-row each='{ users }'></user-row>
-    </dtable>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Job title</th>
+        </tr>
+      </thead>
+      <tr each='{users}'>
+        <td>
+          <a href='#/users/{ id }'>
+            <img class='avatar' src='{ avatar }'>
+          </a>
+        </td>
+        <td>
+          <a href='#/users/{ id }'>
+            { name }
+          </a>
+        </td>
+        <td>{ jobTitle() }</td>
+      </tr>
+    </table>
   </input>
   <script>
     var matchString = (user) => {
@@ -15,36 +34,8 @@
       })
     }
     
-    this.on('mount', function() {
-      $("dtable").prepend("    \
-        <user-row>             \
-          <dtd></dtd>          \
-          <dtd>Name</dtd>      \
-          <dtd>Job title</dtd> \
-        </user-row>            \
-      ")
-    })
-    
-    this.users = StoreData.users
-    
-    var self = this
-    this.store = opts.store
-    this.store.on('update', function(data) {
-      self.users = data.users
-      self.update()
+    BR.prepare( opts, this, () => {
+      this.users = StoreData.users
     })
   </script>
 </table-users>
-<user-row>
-  <dtd>
-    <a href='#/users/{ id }'>
-      <img class='avatar' src='{ avatar }'>
-    </a>
-  </dtd>
-  <dtd>
-    <a href='#/users/{ id }'>
-      { name }
-    </a>
-  </dtd>
-  <dtd>{ jobTitle() }</dtd>
-</user-row>

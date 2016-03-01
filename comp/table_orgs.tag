@@ -1,9 +1,32 @@
 <table-orgs>
   <p>Search</p>
   <input name='query' onkeyup='{ filterOrgs }' placeholder='enter a company name, an industry or a location' type='text'>
-    <dtable>
-      <org-row each='{ orgs }'></org-row>
-    </dtable>
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Industry</th>
+          <th>Location</th>
+          <th>Employees</th>
+        </tr>
+      </thead>
+      <tr each='{orgs}'>
+        <td>
+          <a href='#/orgs/{ id }'>
+            <img class='avatar' src='{ avatar }'>
+          </a>
+        </td>
+        <td>
+          <a href='#/orgs/{ id }'>
+            { name }
+          </a>
+        </td>
+        <td>{ industry }</td>
+        <td>{ location }</td>
+        <td>{ employees }</td>
+      </tr>
+    </table>
   </input>
   <script>
     var matchString = (org) => {
@@ -22,42 +45,8 @@
       })
     }
     
-    var self = this
-    
-    this.on('mount', function() {
-      $("dtable").prepend("    \
-        <org-row>             \
-          <dtd></dtd>          \
-          <dtd>Name</dtd>      \
-          <dtd>Industry</dtd> \
-          <dtd>Location</dtd> \
-          <dtd>Employees</dtd> \
-        </org-row>            \
-      ")
-    })
-    
-    this.orgs = present(StoreData.orgs)
-    
-    var self = this
-    this.store = opts.store
-    this.store.on('update', function(data) {
-     self.orgs = present(data.orgs)
-     self.update()
+    BR.prepare( opts, this, () => {
+      this.orgs = present(StoreData.orgs)
     })
   </script>
 </table-orgs>
-<org-row>
-  <dtd>
-    <a href='#/orgs/{ id }'>
-      <img class='avatar' src='{ avatar }'>
-    </a>
-  </dtd>
-  <dtd>
-    <a href='#/orgs/{ id }'>
-      { name }
-    </a>
-  </dtd>
-  <dtd>{ industry }</dtd>
-  <dtd>{ location }</dtd>
-  <dtd>{ employees }</dtd>
-</org-row>

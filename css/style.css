@@ -28,10 +28,6 @@ body > .container {
 }
 
 
-dtable img {
-  width: 65px;
-}
-
 .clear {
   clear: both;
 }
@@ -46,30 +42,6 @@ dtable img {
 .s70{ height: 70px; }
 .s80{ height: 80px; }
 
-
-/* tables */
-
-dtable{
-  display:table;
-  width: 100%;
-  margin-bottom: 2.5rem;
-}
-ddtr, user-row, org-row, uni-row{
-  display:table-row;
-}
-dtd, dth {
-  display:table-cell;
-  border-bottom: 0.1rem solid #e1e1e1;
-  padding: 1.2rem 1.5rem;
-  text-align: left;
-  vertical-align: middle;
-}
-dth:first-child, dtd:first-child {
-  padding-left: 0;
-}
-dth:last-child, dtd:last-child {
-  padding-right: 0;
-}
 
 .border {
   padding: 1.5%;
