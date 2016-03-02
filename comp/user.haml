@@ -38,12 +38,16 @@
 
   %section.positions
     %div{ each: "{ empl in empls }" }
-      %h4 { empl.role != "-" ? empl.role : "Employee" }
+      %h4
+        { empl.role != "-" ? empl.role : "Employee" }
+        %span{ class: "empl-status { empl.approved ? 'approved' : 'pending' } hint--bottom hint--rounded", :"data-hint" => "{ empl.approvedAtString() }" }
+          { empl.approved ? '✓ approved' : '·	·	· &nbsp; pending approval' }
       %h5
         %a{ href: "/#/orgs/{ empl.org.id }" } { empl.org.name }
       %p { empl.dateRange() }
       %p
         { empl.desc != "-" ? empl.desc : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies." }
+
   .row
     .column
       { noPosMessage() }
@@ -68,7 +72,6 @@
       _(@empls).each (empl) ->
         empl.org = _(StoreData.orgs).find (org) ->
           empl.orgId == org.id
-      c.log @empls
 
       if @user
         try

@@ -19,12 +19,13 @@ class Org extends BAppModel
   @attrs: ["id", "name", "publicKey", "orgType", "location", "industry"]
 
 class Empl extends BAppModel
-  constructor: ({ @id, @userId, @orgId, @dateStart, @dateEnd, @role, @reportsTo, @budget, @desc }) ->
+  constructor: ({ @id, @userId, @orgId, @dateStart, @dateEnd, @role, @reportsTo, @budget, @desc, @approved, @approvedAt }) ->
 
   @collectionUp = -> "Employments"
 
-  @attrs: ["id", "userId", "orgId", "dateStart", "dateEnd", "role", "reportsTo", "budget", "desc"]
+  @attrs: ["id", "userId", "orgId", "dateStart", "dateEnd", "role", "reportsTo", "budget", "desc", "approved", "approvedAt"]
 
+  @attrsSave: ["id", "userId", "orgId", "dateStart", "dateEnd", "role", "reportsTo", "budget", "desc"]
 
   # presentation (presenter logic)
 
@@ -40,3 +41,11 @@ class Empl extends BAppModel
 
   dateRange: ->
     "from #{@dateStartLoc() || "unknown"} to #{@dateEndLoc() || "present"}"
+
+  approvedAtString: ->
+    date = new Date @approvedAt
+    "approved on #{date.toLocaleDateString()}"
+
+  @approve: (id) ->
+    now = new Date().toISOString()
+    API.post @collection(), "approve", { id: id, _approvedAt: now }

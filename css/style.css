@@ -283,3 +283,25 @@ user .avatar-box h2, user .avatar-box h4 {
   margin-bottom: 10px;
   border-radius: 7px;
 }
+
+user .positions .empl-status {
+  font-size: 0.55em;
+  padding: 3px 8px 5px;
+  border: 1px solid #999;
+  border-radius: 9px;
+  position: relative;
+  top: -4px;
+  margin-left: 10px;
+}
+user .positions .empl-status.pending {
+  background: #e5e5e5;
+}
+user .positions .empl-status.approved {
+  background: #0ecc31;
+  color: #FFF;
+  font-weight: bold;
+}
+
+approvables .empl {
+  margin-bottom: 20px;
+}

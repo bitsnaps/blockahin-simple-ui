@@ -40,7 +40,7 @@ class BAppModel
   @create: (values) ->
     new Promise (resolve, reject) =>
       @c.error @errApiNotFound unless API
-      values = @filterValues values, @
+      values = @filterValuesForSave values, @
       values = @convertValuesForSave values
       delete values.id
       API.post(@collection(), "create", values)
@@ -53,7 +53,7 @@ class BAppModel
   @update: (values) ->
     new Promise (resolve, reject) =>
       @c.error @errApiNotFound unless API
-      values = @filterValues values, @
+      values = @filterValuesForSave values, @
       values = @convertValuesForSave values
       API.post(@collection(), "update", values)
         .then (resp) =>
@@ -65,9 +65,11 @@ class BAppModel
 
   # tools
 
-  @filterValues = (values, ctx) ->
+  @filterValuesForSave = (values, ctx) ->
     newVals = {}
-    _(ctx.attrs).each (attr) ->
+    attrs = ctx.attrsSave
+    attrs = ctx.attrs unless attrs
+    _(attrs).each (attr) ->
       val = values[attr] if _(ctx.attrs).include attr
       val = "-" unless val
       newVals[attr] = val

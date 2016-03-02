@@ -3480,11 +3480,11 @@ riot.tag2('sample', 'Timer: <h4>{count}</h4>', 'sample,[riot-tag="sample"] { fon
 
 }, '{ }');
 
-riot.tag2('ab-footer', '<div class="s80"></div> <footer class="footer"> <section class="container"> <p>© {time} - Applied Blockchain ltd. - Register as: <a href="/#/users/new">User</a> / <a href="/#/orgs/new">Organization or University</a> </p> </section> </footer>', '', '', function(opts) {
+riot.tag2('ab-footer', '<div class="s80"></div> <footer class="footer"> <section class="container"> <p> © {time} - Applied Blockchain ltd. - Register as: <a href="/#/users/new">User</a> / <a href="/#/orgs/new">Organization or University</a> - See the <a href="/#/blockchain">Blockchain transactions</a> </p> </section> </footer>', '', '', function(opts) {
     this.time = new Date().getFullYear()
 }, '{ }');
 
-riot.tag2('user', '<div class="row"> <div class="column"> <unsplash-cover store="{store}"></unsplash-cover> </div> </div> <div class="row"> <div class="column centered avatar-box"> <img class="avatar" riot-src="{user.avatarLg}"> <div class="clear"></div> <h2>{user.name}</h2> <div class="clear"></div> <h4>{user.jobTitle()}</h4> </div> <div class="avatar-spacer"></div> </div> <div class="row"> <div class="column"> <p class="gray"> {user.bio} </p> <p> <strong>Location:</strong> {user.location} </p> <p> <strong>Nationality:</strong> {user.nationality} </p> </div> </div> <div class="s20"></div> <h3>Skills</h3> <div class="row skills"> <div class="column" each="{skill, level in skills}"> {s.capitalize(skill)} {_(Number(level)).times(stars).join(⁗⁗)} </div> <div class="column"> {noSkillsMessage()} </div> </div> <div class="clear"></div> <div class="s50"></div> <h3>Positions</h3> <section class="positions"> <div each="{empl in empls}"> <h4>{empl.role != ⁗-⁗ ? empl.role : ⁗Employee⁗}</h4> <h5> <a href="/#/orgs/{empl.org.id}">{empl.org.name}</a> </h5> <p>{empl.dateRange()}</p> <p> {empl.desc != ⁗-⁗ ? empl.desc : ⁗Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies.⁗} </p> </div> </section> <div class="row"> <div class="column"> {noPosMessage()} </div> </div> <div class="gray"> <div class="s30"></div> <h3>Education</h3> <h5>Degree in Astrophysics</h5> <h5>UCL</h5> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. </p> </div> <publickeyuser store="{store}"></publicKeyUser>', '.avatar-box { position: absolute; top: 180px; left: 0; } .avatar-box img { border: 15px solid #FFF; box-shadow: 0 0 22px 0 #777; } .avatar-spacer { height: 180px; }', '', function(opts) {
+riot.tag2('user', '<div class="row"> <div class="column"> <unsplash-cover store="{store}"></unsplash-cover> </div> </div> <div class="row"> <div class="column centered avatar-box"> <img class="avatar" riot-src="{user.avatarLg}"> <div class="clear"></div> <h2>{user.name}</h2> <div class="clear"></div> <h4>{user.jobTitle()}</h4> </div> <div class="avatar-spacer"></div> </div> <div class="row"> <div class="column"> <p class="gray"> {user.bio} </p> <p> <strong>Location:</strong> {user.location} </p> <p> <strong>Nationality:</strong> {user.nationality} </p> </div> </div> <div class="s20"></div> <h3>Skills</h3> <div class="row skills"> <div class="column" each="{skill, level in skills}"> {s.capitalize(skill)} {_(Number(level)).times(stars).join(⁗⁗)} </div> <div class="column"> {noSkillsMessage()} </div> </div> <div class="clear"></div> <div class="s50"></div> <h3>Positions</h3> <section class="positions"> <div each="{empl in empls}"> <h4> {empl.role != ⁗-⁗ ? empl.role : ⁗Employee⁗} <span class="empl-status {empl.approved ? \'approved\' : \'pending\'} hint--bottom hint--rounded" data-hint="{empl.approvedAtString()}"> {empl.approved ? \'✓ approved\' : \'·	·	· &nbsp; pending approval\'} </span> </h4> <h5> <a href="/#/orgs/{empl.org.id}">{empl.org.name}</a> </h5> <p>{empl.dateRange()}</p> <p> {empl.desc != ⁗-⁗ ? empl.desc : ⁗Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies.⁗} </p> </div> </section> <div class="row"> <div class="column"> {noPosMessage()} </div> </div> <div class="gray"> <div class="s30"></div> <h3>Education</h3> <h5>Degree in Astrophysics</h5> <h5>UCL</h5> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. </p> </div> <publickeyuser store="{store}"></publicKeyUser>', '.avatar-box { position: absolute; top: 180px; left: 0; } .avatar-box img { border: 15px solid #FFF; box-shadow: 0 0 22px 0 #777; } .avatar-spacer { height: 180px; }', '', function(opts) {
     (function() {
       var entry_id;
 
@@ -3507,7 +3507,6 @@ riot.tag2('user', '<div class="row"> <div class="column"> <unsplash-cover store=
               return empl.orgId === org.id;
             });
           });
-          c.log(_this.empls);
           if (_this.user) {
             try {
               return _this.skills = JSON.parse(_this.user.skills);
@@ -3687,8 +3686,55 @@ riot.tag2('unsplash-cover', '<img class="unsplash" riot-src="https://unsplash.it
     }).call(this);
 }, '{ }');
 
-riot.tag2('approvables', '<section> <h1>Positions to Approve</h1> <section> <h1> <a href="/#/users/11">Stephanie Curry</a> </h1> <h2>Social Media Expert</h2> <p>20/1/2015 to 22/7/2015</p> <div> <a class="button" href="/#/approvables">Approve</a> <a class="button button-danger" href="/#/approvables">Reject</a> </div> </section> </section>', '', '', function(opts) {
-});
+riot.tag2('approvables', '<section> <h1>Positions to Approve</h1> <div class="row"> <div class="column"> {noEmplMessage()} </div> </div> <section class="empl" data-id="{empl.id}" each="{empl in empls}"> <h1> <a href="/#/users/{empl.user.id}">{empl.user.name} (# {empl.user.id})</a> </h1> <h2>{empl.role}</h2> <p>{empl.dateRange()}</p> <div> <a class="button left" data-id="{empl.id}" href="javascript:void(0)" onclick="{approve}">Approve</a> <div class="spinner"> <div class="rect1"></div> <div class="rect2"></div> <div class="rect3"></div> <div class="rect4"></div> <div class="rect5"></div> </div> <div class="message"></div> <div class="clear"></div> </div> </section> </section>', '', '', function(opts) {
+    (function() {
+      var entry_id;
+
+      this.prod_host = s(location.hostname).strLeft(".").value();
+
+      entry_id = Number(this.prod_host[2]) || 4;
+
+      BR.prepare(opts, this, (function(_this) {
+        return function() {
+          _this.empls = _(StoreData.empls).select(function(empl) {
+            return empl.orgId === entry_id && !empl.approved;
+          });
+          return _(_this.empls).each(function(empl) {
+            return empl.user = _(StoreData.users).find(function(user) {
+              return empl.userId === user.id;
+            });
+          });
+        };
+      })(this));
+
+      this.approve = function(evt) {
+        var data, emplElem, spinner;
+        data = evt.target.dataset;
+        emplElem = ".empl[data-id='" + data.id + "']";
+        spinner = $(emplElem + " .spinner");
+        spinner.css({
+          visibility: "visible"
+        });
+        return Empl.approve(data.id).then(function(res) {
+          spinner.css({
+            visibility: "hidden"
+          });
+          return $(emplElem + " .message").html("Employment approved!");
+        })["catch"](function(err) {
+          return c.error("Error approving employment " + data.id, err);
+        });
+      };
+
+      this.reject = function() {};
+
+      this.noEmplMessage = function() {
+        if (!this.empls || this.empls.length === 0) {
+          return "You don't have any positions to approve yet, please check this page later.";
+        }
+      };
+
+    }).call(this);
+}, '{ }');
 
 riot.tag2('not-found', '<h2>404</h2> <p>Not found</p>', '', '', function(opts) {
 });
@@ -3879,7 +3925,7 @@ BAppModel = (function() {
         if (!API) {
           _this.c.error(_this.errApiNotFound);
         }
-        values = _this.filterValues(values, _this);
+        values = _this.filterValuesForSave(values, _this);
         values = _this.convertValuesForSave(values);
         delete values.id;
         return API.post(_this.collection(), "create", values).then(function(resp) {
@@ -3898,7 +3944,7 @@ BAppModel = (function() {
         if (!API) {
           _this.c.error(_this.errApiNotFound);
         }
-        values = _this.filterValues(values, _this);
+        values = _this.filterValuesForSave(values, _this);
         values = _this.convertValuesForSave(values);
         return API.post(_this.collection(), "update", values).then(function(resp) {
           return resolve(resp);
@@ -3910,10 +3956,14 @@ BAppModel = (function() {
     })(this));
   };
 
-  BAppModel.filterValues = function(values, ctx) {
-    var newVals;
+  BAppModel.filterValuesForSave = function(values, ctx) {
+    var attrs, newVals;
     newVals = {};
-    _(ctx.attrs).each(function(attr) {
+    attrs = ctx.attrsSave;
+    if (!attrs) {
+      attrs = ctx.attrs;
+    }
+    _(attrs).each(function(attr) {
       var val;
       if (_(ctx.attrs).include(attr)) {
         val = values[attr];
@@ -4048,14 +4098,16 @@ Empl = (function(superClass) {
   extend(Empl, superClass);
 
   function Empl(arg) {
-    this.id = arg.id, this.userId = arg.userId, this.orgId = arg.orgId, this.dateStart = arg.dateStart, this.dateEnd = arg.dateEnd, this.role = arg.role, this.reportsTo = arg.reportsTo, this.budget = arg.budget, this.desc = arg.desc;
+    this.id = arg.id, this.userId = arg.userId, this.orgId = arg.orgId, this.dateStart = arg.dateStart, this.dateEnd = arg.dateEnd, this.role = arg.role, this.reportsTo = arg.reportsTo, this.budget = arg.budget, this.desc = arg.desc, this.approved = arg.approved, this.approvedAt = arg.approvedAt;
   }
 
   Empl.collectionUp = function() {
     return "Employments";
   };
 
-  Empl.attrs = ["id", "userId", "orgId", "dateStart", "dateEnd", "role", "reportsTo", "budget", "desc"];
+  Empl.attrs = ["id", "userId", "orgId", "dateStart", "dateEnd", "role", "reportsTo", "budget", "desc", "approved", "approvedAt"];
+
+  Empl.attrsSave = ["id", "userId", "orgId", "dateStart", "dateEnd", "role", "reportsTo", "budget", "desc"];
 
   Empl.prototype.dateLocale = function(date) {
     if (isNaN(date)) {
@@ -4074,6 +4126,21 @@ Empl = (function(superClass) {
 
   Empl.prototype.dateRange = function() {
     return "from " + (this.dateStartLoc() || "unknown") + " to " + (this.dateEndLoc() || "present");
+  };
+
+  Empl.prototype.approvedAtString = function() {
+    var date;
+    date = new Date(this.approvedAt);
+    return "approved on " + (date.toLocaleDateString());
+  };
+
+  Empl.approve = function(id) {
+    var now;
+    now = new Date().toISOString();
+    return API.post(this.collection(), "approve", {
+      id: id,
+      _approvedAt: now
+    });
   };
 
   return Empl;

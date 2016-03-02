@@ -52,14 +52,16 @@ Empl = (function(superClass) {
   extend(Empl, superClass);
 
   function Empl(arg) {
-    this.id = arg.id, this.userId = arg.userId, this.orgId = arg.orgId, this.dateStart = arg.dateStart, this.dateEnd = arg.dateEnd, this.role = arg.role, this.reportsTo = arg.reportsTo, this.budget = arg.budget, this.desc = arg.desc;
+    this.id = arg.id, this.userId = arg.userId, this.orgId = arg.orgId, this.dateStart = arg.dateStart, this.dateEnd = arg.dateEnd, this.role = arg.role, this.reportsTo = arg.reportsTo, this.budget = arg.budget, this.desc = arg.desc, this.approved = arg.approved, this.approvedAt = arg.approvedAt;
   }
 
   Empl.collectionUp = function() {
     return "Employments";
   };
 
-  Empl.attrs = ["id", "userId", "orgId", "dateStart", "dateEnd", "role", "reportsTo", "budget", "desc"];
+  Empl.attrs = ["id", "userId", "orgId", "dateStart", "dateEnd", "role", "reportsTo", "budget", "desc", "approved", "approvedAt"];
+
+  Empl.attrsSave = ["id", "userId", "orgId", "dateStart", "dateEnd", "role", "reportsTo", "budget", "desc"];
 
   Empl.prototype.dateLocale = function(date) {
     if (isNaN(date)) {
@@ -78,6 +80,21 @@ Empl = (function(superClass) {
 
   Empl.prototype.dateRange = function() {
     return "from " + (this.dateStartLoc() || "unknown") + " to " + (this.dateEndLoc() || "present");
+  };
+
+  Empl.prototype.approvedAtString = function() {
+    var date;
+    date = new Date(this.approvedAt);
+    return "approved on " + (date.toLocaleDateString());
+  };
+
+  Empl.approve = function(id) {
+    var now;
+    now = new Date().toISOString();
+    return API.post(this.collection(), "approve", {
+      id: id,
+      _approvedAt: now
+    });
   };
 
   return Empl;

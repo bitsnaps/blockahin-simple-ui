@@ -44,7 +44,12 @@
   <h3>Positions</h3>
   <section class='positions'>
     <div each='{ empl in empls }'>
-      <h4>{ empl.role != "-" ? empl.role : "Employee" }</h4>
+      <h4>
+        { empl.role != "-" ? empl.role : "Employee" }
+        <span class="empl-status { empl.approved ? 'approved' : 'pending' } hint--bottom hint--rounded" data-hint='{ empl.approvedAtString() }'>
+          { empl.approved ? '✓ approved' : '·	·	· &nbsp; pending approval' }
+        </span>
+      </h4>
       <h5>
         <a href='/#/orgs/{ empl.org.id }'>{ empl.org.name }</a>
       </h5>
@@ -92,7 +97,6 @@
               return empl.orgId === org.id;
             });
           });
-          c.log(_this.empls);
           if (_this.user) {
             try {
               return _this.skills = JSON.parse(_this.user.skills);

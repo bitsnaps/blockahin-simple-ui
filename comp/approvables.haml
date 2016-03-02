@@ -2,12 +2,55 @@
   %section
     %h1 Positions to Approve
 
+    .row
+      .column
+        { noEmplMessage() }
 
-    %section
+    %section.empl{ each: "{empl in empls}", data: { id: "{ empl.id }" } }
       %h1
-        %a{ href: "/#/users/11" } Stephanie Curry
-      %h2 Social Media Expert
-      %p 20/1/2015 to 22/7/2015
+        %a{ href: "/#/users/{ empl.user.id }" } { empl.user.name } (# {empl.user.id})
+      %h2 { empl.role }
+      %p { empl.dateRange() }
       %div
-        %a.button{ href: "/#/approvables" } Approve
-        %a.button.button-danger{ href: "/#/approvables" } Reject
+        %a.button.left{ href: "javascript:void(0)", onclick: "{ approve }", data: { id: "{ empl.id }" } } Approve
+        -# %a.button.button-danger{ href: "javascript:void(0)", onclick: "{ reject }" } Reject
+        .spinner
+          .rect1
+          .rect2
+          .rect3
+          .rect4
+          .rect5
+        .message
+        .clear
+
+  :coffee
+    # entry_id = BR.getEntryId()
+    @prod_host = s(location.hostname).strLeft(".").value()
+    entry_id = Number(@prod_host[2]) || 4
+
+    BR.prepare opts, @, =>
+      @empls =  _(StoreData.empls).select (empl) -> empl.orgId == entry_id && !empl.approved
+      _(@empls).each (empl) ->
+        empl.user = _(StoreData.users).find (user) ->
+          empl.userId == user.id
+
+    @approve = (evt) ->
+      data = evt.target.dataset
+      emplElem = ".empl[data-id='\#{ data.id }']"
+      spinner = $ "\#{emplElem} .spinner"
+      spinner.css visibility: "visible"
+
+      Empl.approve(data.id)
+        .then (res) ->
+          spinner.css visibility: "hidden"
+          $("\#{emplElem} .message").html "Employment approved!"
+
+        .catch (err) ->
+          c.error "Error approving employment \#{data.id}", err
+
+    @reject = ->
+      # TODO:
+
+    @noEmplMessage = ->
+      if !@empls || @empls.length == 0
+        "You don't have any positions to approve yet, please check this page later."

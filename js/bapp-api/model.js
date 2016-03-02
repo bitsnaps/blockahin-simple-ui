@@ -66,7 +66,7 @@ BAppModel = (function() {
         if (!API) {
           _this.c.error(_this.errApiNotFound);
         }
-        values = _this.filterValues(values, _this);
+        values = _this.filterValuesForSave(values, _this);
         values = _this.convertValuesForSave(values);
         delete values.id;
         return API.post(_this.collection(), "create", values).then(function(resp) {
@@ -85,7 +85,7 @@ BAppModel = (function() {
         if (!API) {
           _this.c.error(_this.errApiNotFound);
         }
-        values = _this.filterValues(values, _this);
+        values = _this.filterValuesForSave(values, _this);
         values = _this.convertValuesForSave(values);
         return API.post(_this.collection(), "update", values).then(function(resp) {
           return resolve(resp);
@@ -97,10 +97,14 @@ BAppModel = (function() {
     })(this));
   };
 
-  BAppModel.filterValues = function(values, ctx) {
-    var newVals;
+  BAppModel.filterValuesForSave = function(values, ctx) {
+    var attrs, newVals;
     newVals = {};
-    _(ctx.attrs).each(function(attr) {
+    attrs = ctx.attrsSave;
+    if (!attrs) {
+      attrs = ctx.attrs;
+    }
+    _(attrs).each(function(attr) {
       var val;
       if (_(ctx.attrs).include(attr)) {
         val = values[attr];
