@@ -3432,40 +3432,60 @@ riot.tag2('ab-table', '<table> <thead> <tr> <th>a</th> <th>b</th> </tr> </thead>
 });
 
 riot.tag2('table-users', '<p>Search</p> <input name="query" onkeyup="{filterUsers}" placeholder="enter a skill or a location" type="text"> <table> <thead> <tr> <th></th> <th>Name</th> <th>Job title</th> </tr> </thead> <tr each="{users}"> <td> <a href="#/users/{id}"> <img class="avatar" riot-src="{avatar}"> </a> </td> <td> <a href="#/users/{id}"> {name} </a> </td> <td>{jobTitle()}</td> </tr> </table> </input>', '', '', function(opts) {
-    var matchString = (user) => {
-      return s(`${user.name}|${user.jobTitle()}`).toLowerCase()
-    }
-    this.filterUsers = function() {
-      this.users = _(StoreData.users).select((user) => {
-        return matchString(user).include(this.query.value.toLowerCase())
-      })
-    }.bind(this)
+    (function() {
+      var matchString;
 
-    BR.prepare( opts, this, () => {
-      this.users = StoreData.users
-    })
+      matchString = function(user) {
+        return s(user.name + "|" + (user.jobTitle())).toLowerCase();
+      };
+
+      this.filterUsers = (function(_this) {
+        return function() {
+          return _this.users = _(StoreData.users).select(function(user) {
+            return matchString(user).include(_this.query.value.toLowerCase());
+          });
+        };
+      })(this);
+
+      BR.prepare(opts, this, (function(_this) {
+        return function() {
+          return _this.users = StoreData.users;
+        };
+      })(this));
+
+    }).call(this);
 }, '{ }');
 
 riot.tag2('table-orgs', '<p>Search</p> <input name="query" onkeyup="{filterOrgs}" placeholder="enter a company name, an industry or a location" type="text"> <table> <thead> <tr> <th></th> <th>Name</th> <th>Industry</th> <th>Location</th> <th>Employees</th> </tr> </thead> <tr each="{orgs}"> <td> <a href="#/orgs/{id}"> <img class="avatar" riot-src="{avatar}"> </a> </td> <td> <a href="#/orgs/{id}"> {name} </a> </td> <td>{industry}</td> <td>{location}</td> <td>{employees}</td> </tr> </table> </input>', '', '', function(opts) {
-    var matchString = (org) => {
-      return s(`${org.name}|${org.industry}|${org.location}`).toLowerCase()
-    }
-    this.filterOrgs = function() {
-      this.orgs = present(_(StoreData.orgs).select((org) => {
-        return matchString(org).include(this.query.value.toLowerCase())
-      }))
-    }.bind(this)
+    (function() {
+      var matchString, present;
 
-    var present = (orgs) => {
-      return _(orgs).map((org) => {
-        org.employees = org.employees || Math.round(Math.random()*20+1)
-        return org
-      })
-    }
+      present = function(orgs) {
+        return _(orgs).map(function(org) {
+          org.employees = org.employees || Math.round(Math.random() * 20 + 1);
+          return org;
+        });
+      };
 
-    BR.prepare( opts, this, () => {
-      this.orgs = present(StoreData.orgs)
-    })
+      matchString = function(org) {
+        return s(org.name + "|" + org.industry + "|" + org.location).toLowerCase();
+      };
+
+      this.filterOrgs = (function(_this) {
+        return function() {
+          return _this.orgs = _(StoreData.orgs).select(function(org) {
+            return matchString(org).include(_this.query.value.toLowerCase());
+          });
+        };
+      })(this);
+
+      BR.prepare(opts, this, (function(_this) {
+        return function() {
+          return _this.orgs = present(StoreData.orgs);
+        };
+      })(this));
+
+    }).call(this);
 }, '{ }');
 
 riot.tag2('table-unis', '<table> <thead> <tr> <th>Name</th> </tr> </thead> <tbody> <tr> <td>UCL</td> </tr> <tr> <td>Oxford University</td> </tr> </tbody> </table>', '', '', function(opts) {

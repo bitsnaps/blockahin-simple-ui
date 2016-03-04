@@ -20,23 +20,18 @@
         %td { location }
         %td { employees }
 
-  :javascript
-    var matchString = (org) => {
-      return s(`${org.name}|${org.industry}|${org.location}`).toLowerCase()
-    }
-    filterOrgs() {
-      this.orgs = present(_(StoreData.orgs).select((org) => {
-        return matchString(org).include(this.query.value.toLowerCase())
-      }))
-    }
+  :coffee
+    present = (orgs) ->
+      _(orgs).map (org) ->
+        org.employees = org.employees || Math.round(Math.random() * 20 + 1)
+        org
 
-    var present = (orgs) => {
-      return _(orgs).map((org) => {
-        org.employees = org.employees || Math.round(Math.random()*20+1)
-        return org
-      })
-    }
+    matchString = (org) ->
+      s("\#{org.name}|\#{org.industry}|\#{org.location}").toLowerCase()
 
-    BR.prepare( opts, this, () => {
-      this.orgs = present(StoreData.orgs)
-    })
+    @filterOrgs = =>
+      @orgs = _(StoreData.orgs).select (org) =>
+        matchString(org).include @query.value.toLowerCase()
+
+    BR.prepare opts, @, =>
+      @orgs = present StoreData.orgs

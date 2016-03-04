@@ -18,15 +18,11 @@
 
   :coffee
     matchString = (user) ->
-      s(user.name + '|' + user.jobTitle()).toLowerCase()
+      s("\#{user.name}|\#{user.jobTitle()}").toLowerCase()
 
-    @filterUsers = ->
-      _this = this
-      @users = _(StoreData.users).select((user) ->
-        matchString(user).include _this.query.value.toLowerCase()
-      )
-      return
+    @filterUsers = =>
+      @users = _(StoreData.users).select (user) =>
+        matchString(user).include @query.value.toLowerCase()
 
-    BR.prepare opts, undefined, ->
-      undefined.users = StoreData.users
-      return
+    BR.prepare opts, @, =>
+      @users = StoreData.users

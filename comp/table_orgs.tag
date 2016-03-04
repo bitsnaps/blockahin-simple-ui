@@ -29,24 +29,34 @@
     </table>
   </input>
   <script>
-    var matchString = (org) => {
-      return s(`${org.name}|${org.industry}|${org.location}`).toLowerCase()
-    }
-    filterOrgs() {
-      this.orgs = present(_(StoreData.orgs).select((org) => {
-        return matchString(org).include(this.query.value.toLowerCase())
-      }))
-    }
+    (function() {
+      var matchString, present;
     
-    var present = (orgs) => {
-      return _(orgs).map((org) => {
-        org.employees = org.employees || Math.round(Math.random()*20+1)
-        return org
-      })
-    }
+      present = function(orgs) {
+        return _(orgs).map(function(org) {
+          org.employees = org.employees || Math.round(Math.random() * 20 + 1);
+          return org;
+        });
+      };
     
-    BR.prepare( opts, this, () => {
-      this.orgs = present(StoreData.orgs)
-    })
+      matchString = function(org) {
+        return s(org.name + "|" + org.industry + "|" + org.location).toLowerCase();
+      };
+    
+      this.filterOrgs = (function(_this) {
+        return function() {
+          return _this.orgs = _(StoreData.orgs).select(function(org) {
+            return matchString(org).include(_this.query.value.toLowerCase());
+          });
+        };
+      })(this);
+    
+      BR.prepare(opts, this, (function(_this) {
+        return function() {
+          return _this.orgs = present(StoreData.orgs);
+        };
+      })(this));
+    
+    }).call(this);
   </script>
 </table-orgs>

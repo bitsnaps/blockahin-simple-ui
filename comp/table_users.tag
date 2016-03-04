@@ -25,17 +25,27 @@
     </table>
   </input>
   <script>
-    var matchString = (user) => {
-      return s(`${user.name}|${user.jobTitle()}`).toLowerCase()
-    }
-    filterUsers() {
-      this.users = _(StoreData.users).select((user) => {
-        return matchString(user).include(this.query.value.toLowerCase())
-      })
-    }
+    (function() {
+      var matchString;
     
-    BR.prepare( opts, this, () => {
-      this.users = StoreData.users
-    })
+      matchString = function(user) {
+        return s(user.name + "|" + (user.jobTitle())).toLowerCase();
+      };
+    
+      this.filterUsers = (function(_this) {
+        return function() {
+          return _this.users = _(StoreData.users).select(function(user) {
+            return matchString(user).include(_this.query.value.toLowerCase());
+          });
+        };
+      })(this);
+    
+      BR.prepare(opts, this, (function(_this) {
+        return function() {
+          return _this.users = StoreData.users;
+        };
+      })(this));
+    
+    }).call(this);
   </script>
 </table-users>
