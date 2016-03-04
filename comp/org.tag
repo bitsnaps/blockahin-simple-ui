@@ -4,10 +4,11 @@
     <div class='column'>
       <img class='avatar' src='{ org.avatarLg }'>
     </div>
-    <div class='column'></div>
-    <p class='gray'>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
-    </p>
+    <div class='column'>
+      <p class='gray'>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
+      </p>
+    </div>
   </div>
   <div class='s20'></div>
   <div class='row'>
