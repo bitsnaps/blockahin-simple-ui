@@ -1,10 +1,10 @@
 <org>
   <h2>{ org.name }</h2>
   <div class='row'>
-    <div class='column'>
+    <div class='column column-20'>
       <img class='avatar' src='{ org.avatarLg }'>
     </div>
-    <div class='column'>
+    <div class='column column-80'>
       <p class='gray'>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
       </p>
