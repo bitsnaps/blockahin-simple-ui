@@ -16,16 +16,17 @@
             { name }
         %td { jobTitle() }
 
-  :javascript
-    var matchString = (user) => {
-      return s(`${user.name}|${user.jobTitle()}`).toLowerCase()
-    }
-    filterUsers() {
-      this.users = _(StoreData.users).select((user) => {
-        return matchString(user).include(this.query.value.toLowerCase())
-      })
-    }
+  :coffee
+    matchString = (user) ->
+      s(user.name + '|' + user.jobTitle()).toLowerCase()
 
-    BR.prepare( opts, this, () => {
-      this.users = StoreData.users
-    })
+    @filterUsers = ->
+      _this = this
+      @users = _(StoreData.users).select((user) ->
+        matchString(user).include _this.query.value.toLowerCase()
+      )
+      return
+
+    BR.prepare opts, undefined, ->
+      undefined.users = StoreData.users
+      return
