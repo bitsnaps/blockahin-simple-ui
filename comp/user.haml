@@ -2,66 +2,82 @@
   .row
     .column
       %unsplash-cover{ store: "{store}" }
-  .row
-    .column.centered.avatar-box
-      %img.avatar{ src: "{ user.avatarLg }" }
+  .over-user
+    .box.box-main
+      .row
+        .column.column-20
+          %img.avatar{ src: "{ user.avatarLg }" }
+        .column.column-80
+          .user-main-details
+            %h2 { user.name }
+            %h4 { user.jobTitle() }
+            %p { user.location }
+
+            %button Send a message
+      .row
+        .column
+          .profile-link
+            http://carayra.com/profile.link
+    .s20
+    .box
+      %h3 Background
+      .h3-space
+      .row
+        .column
+          %p.gray
+            { user.bio || lipsum }
+          %p
+            %strong Nationality:
+            { user.nationality }
+
+    .s20
+    .box
+      %h3 Skills
+      .h3-space
+      .row.skills
+        .column{ each: "{ skill, level in skills }" }
+          { s.capitalize(skill) } { _(Number(level)).times(stars).join("") }
+        .column
+          { noSkillsMessage() }
       .clear
-      %h2 { user.name }
-      .clear
-      %h4 { user.jobTitle() }
-    .avatar-spacer
-  .row
-    .column
-      %p.gray
-        { user.bio }
-      %p
-        %strong Location:
-        { user.location }
-      %p
-        %strong Nationality:
-        { user.nationality }
 
-  .s20
+    .s50
+    .box
+      %h3 Experience
+      .h3-space
+      -#  @userId, @orgId, @role, @dateStart, @dateEnd, @reportsTo, @budget, @desc }) ->
 
-  %h3 Skills
-  .row.skills
-    .column{ each: "{ skill, level in skills }" }
-      { s.capitalize(skill) } { _(Number(level)).times(stars).join("") }
-    .column
-      { noSkillsMessage() }
-  .clear
+      %section.positions
+        %div{ each: "{ empl in empls }" }
+          %h4
+            { empl.role != "-" ? empl.role : "Employee" }
+            %span{ class: "empl-status { empl.approved ? 'approved' : 'pending' } hint--bottom hint--rounded", :"data-hint" => "{ empl.approvedAtString() }" }
+              { empl.approved ? '✓ approved' : '·	·	· &nbsp; pending approval' }
+          %h5
+            %a{ href: "/#/orgs/{ empl.org.id }" } { empl.org.name }
+          %p { empl.dateRange() }
+          %p
+            { empl.desc != "-" ? empl.desc : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies." }
+      .row
+        .column
+          { noPosMessage() }
 
-  .s50
-  %h3 Positions
-
-  -#  @userId, @orgId, @role, @dateStart, @dateEnd, @reportsTo, @budget, @desc }) ->
-
-  %section.positions
-    %div{ each: "{ empl in empls }" }
-      %h4
-        { empl.role != "-" ? empl.role : "Employee" }
-        %span{ class: "empl-status { empl.approved ? 'approved' : 'pending' } hint--bottom hint--rounded", :"data-hint" => "{ empl.approvedAtString() }" }
-          { empl.approved ? '✓ approved' : '·	·	· &nbsp; pending approval' }
-      %h5
-        %a{ href: "/#/orgs/{ empl.org.id }" } { empl.org.name }
-      %p { empl.dateRange() }
-      %p
-        { empl.desc != "-" ? empl.desc : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies." }
-
-  .row
-    .column
-      { noPosMessage() }
-  .gray
     .s30
-    %h3 Education
-    %h5 Degree in Astrophysics
-    %h5 UCL
-    %p
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis.
+    .box
+      .gray
+        %h3 Education
+        .h3-space
+        %h5 Degree in Astrophysics
+        %h5 UCL
+        %p
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis.
 
-  %publicKeyUser{ store: "{store}" }
+    .s30
+    %publicKeyUser{ store: "{store}" }
 
   :coffee
+    @lipsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sollicitudin, dui sit amet fermentum dapibus, dolor nulla sagittis tellus, vitae eleifend justo nisl imperdiet quam. Aenean et ornare velit. In est eros, sollicitudin id porta at, consequat quis quam. Accusamus rerum autem quas et asperiores cupiditate quasi libero. Qui et voluptatem rem omnis. Error et deleniti impedit culpa. Atque sunt consequatur dolore quisquam dolorem sequi. Voluptatem ea consequatur reiciendis corrupti eligendi."
+
     entry_id = BR.getEntryId()
     BR.loadFromCollection "user", entry_id, this
 
@@ -86,23 +102,6 @@
     @noPosMessage = ->
       if !@empls || @empls.length == 0
         "This user has no positions listed in his profile."
-
-  :sass
-    .avatar-box
-      position: absolute
-      top: 180px
-      left: 0
-    .avatar-box img
-      border: 15px solid #FFF
-      box-shadow: 0 0 22px 0 #777
-
-    .avatar-spacer
-      height: 180px
-
-
-
-
-
 
 
 

@@ -1,6 +1,6 @@
-# BlockedIn UI
+# Carayra UI
 
-BlockedIn - Blockchain based Professionals Network
+Carayra - Blockchain based Professionals Network
 
 ## UI
 
@@ -12,7 +12,7 @@ Main targets:
 ### Setup
 
     npm i -g bower
-    
+
     bower install
 
 

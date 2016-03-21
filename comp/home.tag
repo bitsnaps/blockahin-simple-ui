@@ -1,13 +1,13 @@
 <home>
   <div class='row'>
     <div class='column'>
-      <h2>BlockedIn</h2>
+      <img class='hero full' src='/img/home_hero.jpg'>
     </div>
   </div>
   <div class='row'>
     <div class='column'>
       <p>
-        BlockedIn is the right place to find your next position. If you are a Company looking to hire a new talent, that's the right place.
+        Carayra is the right place to find your next position. If you are a Company looking to hire a new talent, that's the right place.
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies.
         <br>
         ctetur adipiscing elit. In consequat mauris et  elit. In consequat mauris et ante pretium ultricies.....

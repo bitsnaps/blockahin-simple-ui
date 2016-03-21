@@ -1,5 +1,5 @@
 <unsplash-cover>
-  <img class='unsplash' src='https://unsplash.it/1200/250/?image={Number(entry_id) || user.id}'>
+  <img class='unsplash' src='https://unsplash.it/1200/430/?image={Number(entry_id) || user.id}'>
   <div class='unsplash-spacer'></div>
   <script>
     (function() {
@@ -23,6 +23,6 @@
       border-bottom: 3px solid #DDD; }
     
     .unsplash-spacer {
-      height: 250px; }
+      height: 430px; }
   </style>
 </unsplash-cover>
