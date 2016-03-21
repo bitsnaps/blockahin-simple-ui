@@ -1,6 +1,11 @@
 <table-users>
-  <p>Search</p>
-  <input name='query' onkeyup='{ filterUsers }' placeholder='enter a skill or a location' type='text'>
+  <div class='box'>
+    <p>Search</p>
+    <input name='query' onkeyup='{ filterUsers }' placeholder='enter a skill or a location' type='text'>
+    <div class='s10'></div>
+  </div>
+  <div class='s30'></div>
+  <div class='box'>
     <table>
       <thead>
         <tr>
@@ -23,7 +28,7 @@
         <td>{ jobTitle() }</td>
       </tr>
     </table>
-  </input>
+  </div>
   <script>
     (function() {
       var matchString;

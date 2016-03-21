@@ -3394,27 +3394,17 @@ riot.tag2('main-nav', '<nav class="navigation"> <notif store="{opts.store}"></no
     }).call(this);
 }, '{ }');
 
-riot.tag2('home', '<div class="row"> <div class="column"> <img class="hero full" src="/img/home_hero.jpg"> </div> </div> <div class="row"> <div class="column"> <p> Carayra is the right place to find your next position. If you are a Company looking to hire a new talent, that\'s the right place. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. <br> ctetur adipiscing elit. In consequat mauris et elit. In consequat mauris et ante pretium ultricies..... </p> </div> </div> <div class="s20"></div> <div class="row"> <div class="column"> <h5>For Companies:</h5> <h3>Find a Professional</h3> </div> </div> <div class="row"> <div class="column"> <user-face each="{users}"></user-face> </div> </div> <div class="s50"></div> <div class="row"> <div class="column"> <h5>For You:</h5> <h3>Find a Position</h3> </div> </div> <div class="row"> <div class="column"> <org-face each="{orgs}"></org-face> </div> </div>', '', '', function(opts) {
+riot.tag2('home', '<div class="row"> <div class="column"> <img class="hero full" src="/img/home_hero.jpg"> </div> </div> <div class="box"> <div class="row"> <div class="column"> <p> Carayra is the right place to find your next position. If you are a Company looking to hire a new talent, that\'s the right place. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. <br> ctetur adipiscing elit. In consequat mauris et elit. In consequat mauris et ante pretium ultricies..... <br> </p> </div> </div> </div> <div class="s30"></div> <div class="box"> <div class="row"> <div class="column"> <h5>For Companies:</h5> <h3>Find a Professional</h3> </div> </div> <div class="row"> <div class="column"> <user-face each="{users}"></user-face> </div> </div> <div class="s20"></div> </div> <div class="s30"></div> <div class="box"> <div class="row"> <div class="column"> <h5>For You:</h5> <h3>Find a Position</h3> </div> </div> <div class="row"> <div class="column"> <org-face each="{orgs}"></org-face> </div> </div> </div>', '', '', function(opts) {
     (function() {
-      this.users = StoreData.users;
-
-      this.store = opts.store;
-
-      this.store.on('update', (function(_this) {
-        return function(data) {
-          _this.users = data.users.slice(0, 18);
-          return _this.update();
+      BR.prepare(opts, this, (function(_this) {
+        return function() {
+          return _this.users = StoreData.users.slice(0, 8);
         };
       })(this));
 
-      this.orgs = StoreData.orgs;
-
-      this.store = opts.store;
-
-      this.store.on('update', (function(_this) {
-        return function(data) {
-          _this.orgs = data.orgs.slice(0, 18);
-          return _this.update();
+      BR.prepare(opts, this, (function(_this) {
+        return function() {
+          return _this.orgs = StoreData.orgs.slice(0, 8);
         };
       })(this));
 
@@ -3431,7 +3421,7 @@ riot.tag2('form-cont', '<h2>Register</h2> <form> <fieldset> <label> First name <
 riot.tag2('ab-table', '<table> <thead> <tr> <th>a</th> <th>b</th> </tr> </thead> <tbody> <tr> <td> <img src="http://api.randomuser.me/portraits/thumb/women/39.jpg"> <a href="#/users/1">Stephen Curry</a> </td> <td>27</td> </tr> <tr> <td><a href="#/users/2">Klay Thompson<a></td> <td>25</td> </tr> </tbody> </table>', '', '', function(opts) {
 });
 
-riot.tag2('table-users', '<p>Search</p> <input name="query" onkeyup="{filterUsers}" placeholder="enter a skill or a location" type="text"> <table> <thead> <tr> <th></th> <th>Name</th> <th>Job title</th> </tr> </thead> <tr each="{users}"> <td> <a href="#/users/{id}"> <img class="avatar" riot-src="{avatar}"> </a> </td> <td> <a href="#/users/{id}"> {name} </a> </td> <td>{jobTitle()}</td> </tr> </table> </input>', '', '', function(opts) {
+riot.tag2('table-users', '<div class="box"> <p>Search</p> <input name="query" onkeyup="{filterUsers}" placeholder="enter a skill or a location" type="text"> <div class="s10"></div> </div> <div class="s30"></div> <div class="box"> <table> <thead> <tr> <th></th> <th>Name</th> <th>Job title</th> </tr> </thead> <tr each="{users}"> <td> <a href="#/users/{id}"> <img class="avatar" riot-src="{avatar}"> </a> </td> <td> <a href="#/users/{id}"> {name} </a> </td> <td>{jobTitle()}</td> </tr> </table> </div>', '', '', function(opts) {
     (function() {
       var matchString;
 
