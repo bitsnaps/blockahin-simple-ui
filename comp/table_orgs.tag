@@ -1,6 +1,11 @@
 <table-orgs>
-  <p>Search</p>
-  <input name='query' onkeyup='{ filterOrgs }' placeholder='enter a company name, an industry or a location' type='text'>
+  <div class='box'>
+    <p>Search</p>
+    <input name='query' onkeyup='{ filterOrgs }' placeholder='enter a company name, an industry or a location' type='text'>
+    <div class='s10'></div>
+  </div>
+  <div class='s30'></div>
+  <div class='box'>
     <table>
       <thead>
         <tr>
@@ -27,7 +32,7 @@
         <td>{ employees }</td>
       </tr>
     </table>
-  </input>
+  </div>
   <script>
     (function() {
       var matchString, present;

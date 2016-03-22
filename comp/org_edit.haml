@@ -4,46 +4,47 @@
     %a.button{ href: "/#/approvables" } Approve Positions
 
   %h4 Edit organization:
-  %h2 { org.name }
 
-  %form#org_form{ onsubmit: "{ update }" }
-    .row
-      .column.overlay_cont
-        %label.normal
-          %img.avatar{ src: "{ org.avatarLg }" }
-          .icon.overlay.white 📷
-          %input{ type: "file" }
-      .column.column-80
-        .row
-          .column.column-20
-            %label
-              %strong Location:
-          .column.column-80
-            %input{placeholder: "Your City, Planet Earth", name: "location", type: "text", value: "{ org.location }"}/
+  .box
+    %h2 { org.name }
+    %form#org_form{ onsubmit: "{ update }" }
+      .row
+        .column.overlay_cont
+          %label.normal
+            %img.avatar{ src: "{ org.avatarLg }" }
+            .icon.overlay.white 📷
+            %input{ type: "file" }
+        .column.column-80
+          .row
+            .column.column-20
+              %label
+                %strong Location:
+            .column.column-80
+              %input{placeholder: "Your City, Planet Earth", name: "location", type: "text", value: "{ org.location }"}/
 
-        .row
-          .column.column-20
-            %label
-              %strong Industry:
-          .column.column-80
-            %input{placeholder: "Business industry", name: "industry", type: "text", value: "{ org.industry }"}/
+          .row
+            .column.column-20
+              %label
+                %strong Industry:
+            .column.column-80
+              %input{placeholder: "Business industry", name: "industry", type: "text", value: "{ org.industry }"}/
 
-    %fieldset
-      -# %label
-      -#   Email
-      -#   %input{placeholder: "you@email.com", name: "email", type: "email"}/
-      .s40
-      
-      %input.left.button-primary{onclick: "{ update }", type: "submit", value: "Save"}/
+      %fieldset
+        -# %label
+        -#   Email
+        -#   %input{placeholder: "you@email.com", name: "email", type: "email"}/
+        .s30
 
-      .spinner
-        .rect1
-        .rect2
-        .rect3
-        .rect4
-        .rect5
+        %input.left.button-primary{onclick: "{ update }", type: "submit", value: "Save"}/
 
-      .message { message }
+        .spinner
+          .rect1
+          .rect2
+          .rect3
+          .rect4
+          .rect5
+
+        .message { message }
 
 
   %style{scoped: true}

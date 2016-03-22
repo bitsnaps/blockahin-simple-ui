@@ -2,67 +2,69 @@
   .right
     %a.button{ href: "/#/users/{ user.id }" } View Profile
   %h4 Edit your profile:
-  %h2 { user.name }
-  %form#user_form{ onsubmit: "{ update }" }
-    .row
-      .column.overlay_cont
-        %label.normal
-          %img.avatar{ src: "{ user.avatarLg }" }
-          .icon.overlay.white 📷
-          %input{ type: "file" }
-      .column.column-80
-        -# %p.border{ disabled: true }
-        -#   -#  contentEditable: true
-        -#   Bio: TODO Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
-        -#   { user.bio }
-        .row
-          .column.column-20
-            %label
-              %strong Location:
-          .column.column-80
-            %input{placeholder: "Your City, Planet Earth", name: "location", type: "text", value: "{ user.location }"}/
-        .row
-          .column.column-20
-            %label
-              %strong Nationality:
-          .column.column-80
-            %input{placeholder: "Your country of Origin", name: "nationality", type: "text", value: "{ user.nationality }"}/
 
-    %fieldset
-      -# %label
-      -#   Email
-      -#   %input{placeholder: "you@email.com", name: "email", type: "email"}/
-      %label
-        Gender
-        %input{placeholder: "M / F", name: "gender", type: "text", value: "{ user.gender }"}
-      %label
-        Birth Date
-        %input{placeholder: "{ today }", name: "birthDate", type: "date", value: "{ user.birthDate }"}
-      -# %label
-      -#   Cover letter
-      -#   %textarea{placeholder: "A generic cover letter you want to send to your ideal employer, why you are suited for the job."}
+  .box
+    %h2 { user.name }
+    %form#user_form{ onsubmit: "{ update }" }
+      .row
+        .column.overlay_cont
+          %label.normal
+            %img.avatar{ src: "{ user.avatarLg }" }
+            .icon.overlay.white 📷
+            %input{ type: "file" }
+        .column.column-80
+          -# %p.border{ disabled: true }
+          -#   -#  contentEditable: true
+          -#   Bio: TODO Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
+          -#   { user.bio }
+          .row
+            .column.column-20
+              %label
+                %strong Location:
+            .column.column-80
+              %input{placeholder: "Your City, Planet Earth", name: "location", type: "text", value: "{ user.location }"}/
+          .row
+            .column.column-20
+              %label
+                %strong Nationality:
+            .column.column-80
+              %input{placeholder: "Your country of Origin", name: "nationality", type: "text", value: "{ user.nationality }"}/
 
-    -# .column.overlay_cont
-    -#   %label.normal
-    -#     %p Cover Photo (optional)
-    -#     - text = CGI::escape "Upload a Cover Photo"
-    -#     %img.avatar{ src: "https://placeholdit.imgix.net/~text?bg=999&txtclr=fff&txt=#{text}&txtsize=25&w=1200&h=200&fm=png", width: "100%" }
-    -#     %input{ type: "file" }
+      %fieldset
+        -# %label
+        -#   Email
+        -#   %input{placeholder: "you@email.com", name: "email", type: "email"}/
+        %label
+          Gender
+          %input{placeholder: "M / F", name: "gender", type: "text", value: "{ user.gender }"}
+        %label
+          Birth Date
+          %input{placeholder: "{ today }", name: "birthDate", type: "date", value: "{ user.birthDate }"}
+        -# %label
+        -#   Cover letter
+        -#   %textarea{placeholder: "A generic cover letter you want to send to your ideal employer, why you are suited for the job."}
 
-    %input.left.button-primary{onclick: "{ update }", type: "submit", value: "Save"}/
+      -# .column.overlay_cont
+      -#   %label.normal
+      -#     %p Cover Photo (optional)
+      -#     - text = CGI::escape "Upload a Cover Photo"
+      -#     %img.avatar{ src: "https://placeholdit.imgix.net/~text?bg=999&txtclr=fff&txt=#{text}&txtsize=25&w=1200&h=200&fm=png", width: "100%" }
+      -#     %input{ type: "file" }
 
-    .spinner
-      .rect1
-      .rect2
-      .rect3
-      .rect4
-      .rect5
+      %input.left.button-primary{onclick: "{ update }", type: "submit", value: "Save"}/
 
-    .message { message }
+      .spinner
+        .rect1
+        .rect2
+        .rect3
+        .rect4
+        .rect5
 
-  .clear
+      .message { message }
+    .clear
+
   .s40
-  %section
+  %section.box
     %h1 Positions
 
     %a{ onclick: "{ addPos }", class: "button { showPosForm ? 'hidden' : '' }"  } Add Position

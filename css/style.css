@@ -386,6 +386,7 @@ user .avatar {
 user .box.box-main {
   padding-left: 0;
   padding-top: 0;
+  min-width: 650px;
 }
 
 user .user-main-details h2 {
@@ -424,4 +425,38 @@ user .box h3 {
 
 user .box .h3-space {
   height: 30px;
+}
+
+org .avatar {
+  width: 150px;
+  border: 1px solid #DDD;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.15),-1px 0 0 rgba(0,0,0,0.03),1px 0 0 rgba(0,0,0,0.03),0 1px 0 rgba(0,0,0,0.12);
+  position: relative;
+  top: -40px;
+  margin-left: 10px;
+}
+
+org .box.main-box * {
+  box-sizing: border-box;
+}
+
+org .box.main-box {
+  padding-bottom: 0;
+  min-width: 620px;
+}
+
+org .box.main-box h2 {
+  font-family: Helvetica, FreeSans, 'Liberation Sans', Helmet, Arial, sans-serif;
+  font-weight: bold;
+  font-size: 1.7em;
+  color: #222;
+  margin-bottom: 5px;
+}
+
+org .box.main-box .lpad {
+  padding-left: 30px;
+}
+
+org .box.main-box p {
+  margin-bottom: 5px;
 }

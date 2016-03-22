@@ -1,38 +1,32 @@
 <org>
-  <h2>{ org.name }</h2>
-  <div class='row'>
-    <div class='column column-20'>
-      <img class='avatar' src='{ org.avatarLg }'>
-    </div>
-    <div class='column column-80'>
-      <p class='gray'>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
-      </p>
-    </div>
-  </div>
   <div class='s20'></div>
-  <div class='row'>
-    <div class='column'>
-      <p>
-        <strong>Industry:</strong>
-        { org.industry }
-      </p>
+  <div class='box main-box'>
+    <div class='row'>
+      <div class='left'>
+        <img class='avatar' src='{ org.avatarLg }'>
+      </div>
+      <div class='left lpad'>
+        <h2>
+          { org.name }
+        </h2>
+        <p>
+          { org.industry }
+        </p>
+        <p>
+          { org.location }
+        </p>
+      </div>
+      <div class='clear'></div>
     </div>
   </div>
-  <div class='row'>
-    <div class='column'>
-      <p>
-        <strong>Location:</strong>
-        { org.location }
-      </p>
-    </div>
-  </div>
-  <div class='row'>
-    <div class='column'>
-      <p class='gray'>
-        <strong>Extra:</strong>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
-      </p>
+  <div class='s30'></div>
+  <div class='box'>
+    <div class='row'>
+      <div class='column'>
+        <p class='gray'>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
+        </p>
+      </div>
     </div>
   </div>
   <publicKeyOrg store='{store}'></publicKeyOrg>
@@ -50,6 +44,7 @@
 <publicKeyOrg>
   <div class='row'>
     <div class='column right'>
+      <div class='s20'></div>
       <p>
         organization type
         <br>

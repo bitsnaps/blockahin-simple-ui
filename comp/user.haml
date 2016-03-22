@@ -5,15 +5,15 @@
   .over-user
     .box.box-main
       .row
-        .column.column-20
-          %img.avatar{ src: "{ user.avatarLg }" }
-        .column.column-80
-          .user-main-details
+        .column
+          %img.avatar.left{ src: "{ user.avatarLg }" }
+          .user-main-details.left
             %h2 { user.name }
             %h4 { user.jobTitle() }
             %p { user.location }
 
             %button Send a message
+          .clear
       .row
         .column
           .profile-link

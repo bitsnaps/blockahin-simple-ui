@@ -7,16 +7,15 @@
   <div class='over-user'>
     <div class='box box-main'>
       <div class='row'>
-        <div class='column column-20'>
-          <img class='avatar' src='{ user.avatarLg }'>
-        </div>
-        <div class='column column-80'>
-          <div class='user-main-details'>
+        <div class='column'>
+          <img class='avatar left' src='{ user.avatarLg }'>
+          <div class='user-main-details left'>
             <h2>{ user.name }</h2>
             <h4>{ user.jobTitle() }</h4>
             <p>{ user.location }</p>
             <button>Send a message</button>
           </div>
+          <div class='clear'></div>
         </div>
       </div>
       <div class='row'>
