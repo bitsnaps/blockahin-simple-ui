@@ -4,7 +4,7 @@
     <section class='container'>
       <a class='navigation-title float-left' href='#/'>
         <h1 class='title'>
-          <img src='/img/appii_logo.png'>
+          <img class='logo' src='/img/appii_logo.png'>
         </h1>
       </a>
       <ul class='navigation-list float-left'>

@@ -460,3 +460,7 @@ org .box.main-box .lpad {
 org .box.main-box p {
   margin-bottom: 5px;
 }
+
+img.logo {
+  margin-top: 7px;
+}
