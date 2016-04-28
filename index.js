@@ -3490,7 +3490,7 @@ riot.tag2('sample', 'Timer: <h4>{count}</h4>', 'sample,[riot-tag="sample"] { fon
 
 }, '{ }');
 
-riot.tag2('ab-footer', '<div class="s80"></div> <footer class="footer"> <section class="container"> <p> © {time} - Applied Blockchain ltd. - Register as: <a href="/#/users/new">User</a> / <a href="/#/orgs/new">Organization or University</a> - See the <a href="/#/blockchain">Blockchain transactions</a> </p> </section> </footer>', '', '', function(opts) {
+riot.tag2('ab-footer', '<div class="s80"></div> <footer class="footer"> <section class="container"> <p> © {time} - <a href="/">APPII</a> - <a href="http://www.appii.io">appii.io</a> - Register as: <a href="/#/users/new">User</a> / <a href="/#/orgs/new">Organization or University</a> - See the <a href="/#/blockchain">Blockchain transactions</a> </p> </section> </footer>', '', '', function(opts) {
     this.time = new Date().getFullYear()
 }, '{ }');
 
