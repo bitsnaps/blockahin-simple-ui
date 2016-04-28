@@ -46,8 +46,8 @@ button,
 input[type='button'],
 input[type='reset'],
 input[type='submit'] {
-  background-color: #4c7cc9;
-  border: 0.1rem solid #4c7cc9;
+  background-color: #ff5f00;
+  border: 0.1rem solid #ff5f00;
   border-radius: 0.4rem;
   box-sizing: border-box;
   color: #ffffff;
@@ -73,8 +73,8 @@ input[type='reset']:hover,
 input[type='reset']:focus,
 input[type='submit']:hover,
 input[type='submit']:focus {
-  background-color: #115d9b;
-  border-color: #115d9b;
+  background-color: #ce4d02;
+  border-color: #ce4d02;
   color: #ffffff;
   outline: 0;
 }
@@ -83,7 +83,7 @@ button.button-outline,
 input[type='button'].button-outline,
 input[type='reset'].button-outline,
 input[type='submit'].button-outline {
-  color: #4c7cc9;
+  color: #ff5f00;
   background-color: transparent;
 }
 .button.button-outline:hover, .button.button-outline:focus,
@@ -95,16 +95,16 @@ input[type='reset'].button-outline:hover,
 input[type='reset'].button-outline:focus,
 input[type='submit'].button-outline:hover,
 input[type='submit'].button-outline:focus {
-  color: #115d9b;
+  color: #ce4d02;
   background-color: transparent;
-  border-color: #115d9b;
+  border-color: #ce4d02;
 }
 .button.button-clear,
 button.button-clear,
 input[type='button'].button-clear,
 input[type='reset'].button-clear,
 input[type='submit'].button-clear {
-  color: #4c7cc9;
+  color: #ff5f00;
   background-color: transparent;
   border-color: transparent;
 }
@@ -117,14 +117,14 @@ input[type='reset'].button-clear:hover,
 input[type='reset'].button-clear:focus,
 input[type='submit'].button-clear:hover,
 input[type='submit'].button-clear:focus {
-  color: #115d9b;
+  color: #ce4d02;
   background-color: transparent;
   border-color: transparent;
 }
 
 pre {
   background: #f4f5f6;
-  border-left: 0.3rem solid #4c7cc9;
+  border-left: 0.3rem solid #ff5f00;
   font-family: Menlo, Consolas, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, monospace;
 }
 
@@ -175,7 +175,7 @@ input[type='text']:focus,
 input[type='url']:focus,
 textarea:focus,
 select:focus {
-  border: 0.1rem solid #4c7cc9;
+  border: 0.1rem solid #ff5f00;
   outline: 0;
 }
 
@@ -348,11 +348,11 @@ input[type='radio'] {
   }
 }
 a {
-  color: #4c7cc9;
+  color: #ff5f00;
   text-decoration: none;
 }
 a:hover {
-  color: #115d9b;
+  color: #ce4d02;
 }
 
 dl,

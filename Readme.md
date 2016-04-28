@@ -1,6 +1,6 @@
-# Carayra UI
+# APPII UI
 
-Carayra - Blockchain based Professionals Network
+APPII - Blockchain based Professionals Network
 
 ## UI
 

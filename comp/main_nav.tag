@@ -3,7 +3,9 @@
     <notif store='{ opts.store }'></notif>
     <section class='container'>
       <a class='navigation-title float-left' href='#/'>
-        <h1 class='title'>Carayra</h1>
+        <h1 class='title'>
+          <img src='/img/appii_logo.png'>
+        </h1>
       </a>
       <ul class='navigation-list float-left'>
         <li class='navigation-item'>

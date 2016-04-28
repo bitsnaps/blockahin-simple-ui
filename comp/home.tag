@@ -8,7 +8,7 @@
     <div class='row'>
       <div class='column'>
         <p>
-          Carayra is the right place to find your next position. If you are a Company looking to hire a new talent, that's the right place.
+          APPII is the right place to find your next position. If you are a Company looking to hire a new talent, that's the right place.
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies.
           <br>
           ctetur adipiscing elit. In consequat mauris et  elit. In consequat mauris et ante pretium ultricies.....

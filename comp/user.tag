@@ -21,7 +21,7 @@
       <div class='row'>
         <div class='column'>
           <div class='profile-link'>
-            http://carayra.com/profile.link
+            http://appii.io/profile.link
           </div>
         </div>
       </div>
