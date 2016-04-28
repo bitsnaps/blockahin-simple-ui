@@ -470,7 +470,10 @@ img.logo {
 }
 
 body, html body {
-
   background: url('/img/bg_cover.jpg');
   background-size: cover;
+}
+
+.footer {
+  color: #AAA;
 }

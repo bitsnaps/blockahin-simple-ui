@@ -1,66 +1,67 @@
 %blockchain
-  .blocks
-    %h1 Blockchain
-    .block{ each: "{ block in blocks }" }
-      %h5
-        Block # { block.number }
-        %span - hash: { block.hash }
-      %p
-        %strong Mined by:
-        { block.miner }
-      %p
-        %strong Timestamp:
-        { new Date(block.timestamp*1000).toDateString() } - { new Date(block.timestamp*1000).toTimeString() }
-      %h5 Transactions:
-      .tx{ each: "{ tx in block.transactions }" }
-        %p
-          %strong Hash:
-          { tx.hash }
-        %p
-          %strong From:
-          { tx.from }
-        %p
-          %strong To:
-          { tx.to }
-
-        %p
-          %strong Smart Contract: { tx.method.contract } - Method: { tx.method.name }
-
+  .box
+    .blocks
+      %h1 Blockchain
+      .block{ each: "{ block in blocks }" }
         %h5
-          Values:
-          %val{ each: "{ name, value in tx.method.values }" }
+          Block # { block.number }
+          %span - hash: { block.hash }
+        %p
+          %strong Mined by:
+          { block.miner }
+        %p
+          %strong Timestamp:
+          { new Date(block.timestamp*1000).toDateString() } - { new Date(block.timestamp*1000).toTimeString() }
+        %h5 Transactions:
+        .tx{ each: "{ tx in block.transactions }" }
+          %p
+            %strong Hash:
+            { tx.hash }
+          %p
+            %strong From:
+            { tx.from }
+          %p
+            %strong To:
+            { tx.to }
 
-        .s20
+          %p
+            %strong Smart Contract: { tx.method.contract } - Method: { tx.method.name }
 
-      .s50
+          %h5
+            Values:
+            %val{ each: "{ name, value in tx.method.values }" }
 
+          .s20
 
-  :css
-    .block span {
-      font-size: 0.8em;
-    }
-    .tx {
-      padding-left: 30px;
-    }
-
-    .block .tx {
-    }
-
-    .block p {
-      margin-bottom: 10px;
-    }
-
-  :coffee
+        .s50
 
 
-    @blocks = []
+    :css
+      .block span {
+        font-size: 0.8em;
+      }
+      .tx {
+        padding-left: 30px;
+      }
 
-    API.blocksLog()
-      .catch (err) ->
-        c.error err
-      .then (log) =>
-        @blocks = log
-        @update()
+      .block .tx {
+      }
+
+      .block p {
+        margin-bottom: 10px;
+      }
+
+    :coffee
+
+
+      @blocks = []
+
+      API.blocksLog()
+        .catch (err) ->
+          c.error err
+        .then (log) =>
+          @blocks = log
+          @update()
 
 
 %val
