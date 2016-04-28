@@ -27,7 +27,7 @@ fetchUserAvatars = (users) ->
   _(users).map (user) ->
     gender = if user.gender.toLowerCase() == "f" then "women" else "men"
     user.avatar   = "http://api.randomuser.me/portraits/thumb/#{gender}/#{user.id}.jpg"
-    user.avatarLg = "http://api.randomuser.me/portraits/med/#{gender}/#{user.id}.jpg"
+    user.avatarLg = "http://api.randomuser.me/portraits/#{gender}/#{user.id}.jpg"
     user
 
 

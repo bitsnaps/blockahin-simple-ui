@@ -43,7 +43,7 @@ fetchUserAvatars = function(users) {
     var gender;
     gender = user.gender.toLowerCase() === "f" ? "women" : "men";
     user.avatar = "http://api.randomuser.me/portraits/thumb/" + gender + "/" + user.id + ".jpg";
-    user.avatarLg = "http://api.randomuser.me/portraits/med/" + gender + "/" + user.id + ".jpg";
+    user.avatarLg = "http://api.randomuser.me/portraits/" + gender + "/" + user.id + ".jpg";
     return user;
   });
 };
