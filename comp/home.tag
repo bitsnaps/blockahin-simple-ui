@@ -1,7 +1,7 @@
 <home>
   <div class='row'>
     <div class='column'>
-      <img class='hero full' src='/img/home_hero.jpg'>
+      <img class='hero full' src='/img/home_cover.jpg'>
     </div>
   </div>
   <div class='box'>

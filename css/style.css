@@ -330,6 +330,9 @@ approvables .empl {
 .hero {
   position: relative;
   top: -22px;
+  border-right: 1px solid #AAA;
+  border-left: 1px solid #AAA;
+  margin-bottom: -30px;
 }
 
 /*.over-text {
@@ -463,4 +466,11 @@ org .box.main-box p {
 
 img.logo {
   margin-top: 7px;
+  width: 115px;
+}
+
+body, html body {
+
+  background: url('/img/bg_cover.jpg');
+  background-size: cover;
 }
