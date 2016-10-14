@@ -3478,8 +3478,62 @@ riot.tag2('table-orgs', '<div class="box"> <p>Search</p> <input name="query" onk
     }).call(this);
 }, '{ }');
 
-riot.tag2('table-unis', '<table> <thead> <tr> <th>Name</th> </tr> </thead> <tbody> <tr> <td>UCL</td> </tr> <tr> <td>Oxford University</td> </tr> </tbody> </table>', '', '', function(opts) {
-});
+riot.tag2('table-unis', '<div class="box"> <p>Search</p> <input name="query" onkeyup="{filterUnis}" placeholder="enter a company name, an industry or a location" type="text"> <div class="s10"></div> </div> <div class="s30"></div> <div class="box"> <table> <thead> <tr> <th></th> <th>Name</th> <th>Location</th> </tr> </thead> <tr each="{unis}"> <td> <a href="#/unis/{id}"> <img class="avatar" riot-src="{avatar}"> </a> </td> <td> <a href="#/unis/{id}"> {name} </a> </td> <td>{location}</td> </tr> </table> </div>', '', '', function(opts) {
+    (function() {
+      var UNIS, matchString, present;
+
+      UNIS = [
+        {
+          id: 1,
+          name: "UCL",
+          location: "London, UK",
+          avatar: identicon({
+            id: 21
+          })
+        }, {
+          id: 2,
+          name: "Imperial College London",
+          location: "London, UK",
+          avatar: identicon({
+            id: 22
+          })
+        }, {
+          id: 3,
+          name: "London Metropolitan University",
+          location: "London, UK",
+          avatar: identicon({
+            id: 23
+          })
+        }
+      ];
+
+      present = function(unis) {
+        return _(unis).map(function(uni) {
+          uni.employees = uni.employees || Math.round(Math.random() * 20 + 1);
+          return uni;
+        });
+      };
+
+      matchString = function(uni) {
+        return s(uni.name + "|" + uni.industry + "|" + uni.location).toLowerCase();
+      };
+
+      this.filterUnis = (function(_this) {
+        return function() {
+          return _this.unis = _(UNIS).select(function(uni) {
+            return matchString(uni).include(_this.query.value.toLowerCase());
+          });
+        };
+      })(this);
+
+      BR.prepare(opts, this, (function(_this) {
+        return function() {
+          return _this.unis = present(UNIS);
+        };
+      })(this));
+
+    }).call(this);
+}, '{ }');
 
 riot.tag2('sample', 'Timer: <h4>{count}</h4>', 'sample,[riot-tag="sample"] { font-size: 2rem } sample h3,[riot-tag="sample"] h3 { color: #444 } sample ul,[riot-tag="sample"] ul { color: #999 }', '', function(opts) {
     this.count = Store.count
@@ -3809,6 +3863,44 @@ riot.tag2('raw', '<span></span>', '', '', function(opts) {
 
     }).call(this);
 });
+
+riot.tag2('uni', '<div class="s20"></div> <div class="box main-box"> <div class="row"> <div class="left"> <img class="avatar" riot-src="{uni.avatar}"> </div> <div class="left lpad"> <h2> {uni.name} </h2> <p> {uni.location} </p> </div> <div class="clear"></div> </div> </div> <div class="s30"></div> <div class="box"> <div class="row"> <div class="column"> <p class="gray"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum. </p> </div> </div> </div>', '', '', function(opts) {
+    (function() {
+      var UNIS, entry_id;
+
+      UNIS = [
+        {
+          id: 1,
+          name: "UCL",
+          location: "London, UK",
+          avatar: identicon({
+            id: 21
+          })
+        }, {
+          id: 2,
+          name: "Imperial College London",
+          location: "London, UK",
+          avatar: identicon({
+            id: 22
+          })
+        }, {
+          id: 3,
+          name: "London Metropolitan University",
+          location: "London, UK",
+          avatar: identicon({
+            id: 23
+          })
+        }
+      ];
+
+      entry_id = BR.getEntryId();
+
+      c.log(UNIS[entry_id - 1]);
+
+      this.uni = UNIS[entry_id - 1];
+
+    }).call(this);
+}, '{ }');
 
 var BApi, G, c;
 
@@ -4424,6 +4516,10 @@ ROUTES = [
   }), new Route({
     path: '/universities',
     tag: 'table-unis',
+    api: api
+  }), new Route({
+    path: '/unis/:id',
+    tag: 'uni',
     api: api
   }), new Route({
     path: '/user',

@@ -1,0 +1,36 @@
+%uni
+  .s20
+  .box.main-box
+    .row
+      .left
+        %img.avatar{ src: "{ uni.avatar }" }
+      .left.lpad
+        %h2
+          { uni.name }
+        %p
+          { uni.location }
+      .clear
+  .s30
+
+  .box
+    .row
+      .column
+        %p.gray
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In consequat mauris et ante pretium ultricies. Curabitur eget ante eu enim efficitur congue. Praesent non condimentum turpis. In ultricies ipsum in sapien rutrum, eu ultricies mauris interdum.
+
+  :coffee
+
+    UNIS = [
+      { id: 1, name: "UCL", location: "London, UK", avatar: identicon({id: 21}) }
+      { id: 2, name: "Imperial College London", location: "London, UK", avatar: identicon({id: 22}) }
+      { id: 3, name: "London Metropolitan University", location: "London, UK", avatar: identicon({id: 23}) }
+    ]
+
+    entry_id = BR.getEntryId()
+    c.log UNIS[entry_id-1]
+    @uni = UNIS[entry_id-1]
+
+-# BR.prepare opts, @, =>
+-#   entry_id = BR.getEntryId()
+-#   @uni = UNIS[entry_id-1]
+-#   @update()

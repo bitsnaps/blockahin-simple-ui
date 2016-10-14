@@ -107,7 +107,7 @@ body > .container {
   float: none;
 }
 
-user-face, org-face {
+user-face, org-face, uni-face {
   display: inline-block;
   margin-right: 30px;
   margin-bottom: 30px;
@@ -117,7 +117,7 @@ user-face, org-face {
   border-radius: 4px;
 }*/
 
-user-face img, org-face img {
+user-face img, org-face img, uni-face img {
   width: 110px;
 }
 
@@ -430,7 +430,7 @@ user .box .h3-space {
   height: 30px;
 }
 
-org .avatar {
+org .avatar, uni .avatar {
   width: 150px;
   border: 1px solid #DDD;
   box-shadow: 0 1px 1px rgba(0,0,0,0.15),-1px 0 0 rgba(0,0,0,0.03),1px 0 0 rgba(0,0,0,0.03),0 1px 0 rgba(0,0,0,0.12);
@@ -439,16 +439,16 @@ org .avatar {
   margin-left: 10px;
 }
 
-org .box.main-box * {
+org .box.main-box *, uni .box.main-box * {
   box-sizing: border-box;
 }
 
-org .box.main-box {
+org .box.main-box, uni .box.main-box {
   padding-bottom: 0;
   min-width: 620px;
 }
 
-org .box.main-box h2 {
+org .box.main-box h2, uni .box.main-box h2 {
   font-family: Helvetica, FreeSans, 'Liberation Sans', Helmet, Arial, sans-serif;
   font-weight: bold;
   font-size: 1.7em;
@@ -456,11 +456,11 @@ org .box.main-box h2 {
   margin-bottom: 5px;
 }
 
-org .box.main-box .lpad {
+org .box.main-box .lpad, uni .box.main-box .lpad {
   padding-left: 30px;
 }
 
-org .box.main-box p {
+org .box.main-box p, uni .box.main-box p {
   margin-bottom: 5px;
 }
 

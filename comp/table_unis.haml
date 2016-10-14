@@ -1,0 +1,45 @@
+%table-unis
+  .box
+    %p Search
+    %input{:name => "query", :onkeyup => "{ filterUnis }", :placeholder => "enter a company name, an industry or a location", :type => "text"}
+    .s10
+  .s30
+
+  .box
+    %table
+      %thead
+        %tr
+          %th
+          %th Name
+          %th Location
+      %tr{ each: "{unis}" }
+        %td
+          %a{:href => "#/unis/{ id }"}
+            %img.avatar{:src => "{ avatar }"}/
+        %td
+          %a{:href => "#/unis/{ id }"}
+            { name }
+        %td { location }
+
+  :coffee
+    UNIS = [
+      { id: 1, name: "UCL", location: "London, UK", avatar: identicon({id: 21}) }
+      { id: 2, name: "Imperial College London", location: "London, UK", avatar: identicon({id: 22}) }
+      { id: 3, name: "London Metropolitan University", location: "London, UK", avatar: identicon({id: 23}) }
+    ]
+
+    present = (unis) ->
+      _(unis).map (uni) ->
+        uni.employees = uni.employees || Math.round(Math.random() * 20 + 1)
+        uni
+
+    matchString = (uni) ->
+      s("\#{uni.name}|\#{uni.industry}|\#{uni.location}").toLowerCase()
+
+    @filterUnis = =>
+      @unis = _(UNIS).select (uni) =>
+        matchString(uni).include @query.value.toLowerCase()
+
+
+    BR.prepare opts, @, =>
+      @unis = present UNIS

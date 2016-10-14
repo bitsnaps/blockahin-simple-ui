@@ -11,6 +11,7 @@ ROUTES = [
   new Route({path: '/professionals', tag: 'table-users', api: api}),
   new Route({path: '/organizations', tag: 'table-orgs',  api: api}),
   new Route({path: '/universities',  tag: 'table-unis',  api: api}),
+  new Route({path: '/unis/:id',      tag: 'uni',        api: api}),
   new Route({path: '/user',          tag: 'user-edit',   api: api}),
   new Route({path: '/users/new',     tag: 'user-new',    api: api}),
   new Route({path: '/users/:id',     tag: 'user',        api: api}),
