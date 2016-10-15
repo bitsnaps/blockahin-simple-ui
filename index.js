@@ -3478,7 +3478,7 @@ riot.tag2('table-orgs', '<div class="box"> <p>Search</p> <input name="query" onk
     }).call(this);
 }, '{ }');
 
-riot.tag2('table-unis', '<div class="box"> <p>Search</p> <input name="query" onkeyup="{filterUnis}" placeholder="enter a company name, an industry or a location" type="text"> <div class="s10"></div> </div> <div class="s30"></div> <div class="box"> <table> <thead> <tr> <th></th> <th>Name</th> <th>Location</th> </tr> </thead> <tr each="{unis}"> <td> <a href="#/unis/{id}"> <img class="avatar" riot-src="{avatar}"> </a> </td> <td> <a href="#/unis/{id}"> {name} </a> </td> <td>{location}</td> </tr> </table> </div>', '', '', function(opts) {
+riot.tag2('table-unis', '<div class="box"> <p>Search</p> <input name="query" onkeyup="{filterUnis}" placeholder="enter a university name or a location" type="text"> <div class="s10"></div> </div> <div class="s30"></div> <div class="box"> <table> <thead> <tr> <th></th> <th>Name</th> <th>Location</th> </tr> </thead> <tr each="{unis}"> <td> <a href="#/unis/{id}"> <img class="avatar" riot-src="{avatar}"> </a> </td> <td> <a href="#/unis/{id}"> {name} </a> </td> <td>{location}</td> </tr> </table> </div>', '', '', function(opts) {
     (function() {
       var UNIS, matchString, present;
 
@@ -3515,7 +3515,7 @@ riot.tag2('table-unis', '<div class="box"> <p>Search</p> <input name="query" onk
       };
 
       matchString = function(uni) {
-        return s(uni.name + "|" + uni.industry + "|" + uni.location).toLowerCase();
+        return s(uni.name + "|" + uni.location).toLowerCase();
       };
 
       this.filterUnis = (function(_this) {

@@ -1,7 +1,7 @@
 <table-unis>
   <div class='box'>
     <p>Search</p>
-    <input name='query' onkeyup='{ filterUnis }' placeholder='enter a company name, an industry or a location' type='text'>
+    <input name='query' onkeyup='{ filterUnis }' placeholder='enter a university name or a location' type='text'>
     <div class='s10'></div>
   </div>
   <div class='s30'></div>
@@ -66,7 +66,7 @@
       };
     
       matchString = function(uni) {
-        return s(uni.name + "|" + uni.industry + "|" + uni.location).toLowerCase();
+        return s(uni.name + "|" + uni.location).toLowerCase();
       };
     
       this.filterUnis = (function(_this) {
