@@ -29,11 +29,11 @@
   <script>
     (function() {
       var entry_id;
-
+    
       this.prod_host = s(location.hostname).strLeft(".").value();
-
+    
       entry_id = Number(this.prod_host[6]) || 1;
-
+    
       BR.prepare(opts, this, (function(_this) {
         return function() {
           _this.empls = _(StoreData.empls).select(function(empl) {
@@ -46,7 +46,7 @@
           });
         };
       })(this));
-
+    
       this.approve = function(evt) {
         var data, emplElem, spinner;
         data = evt.target.dataset;
@@ -64,15 +64,15 @@
           return c.error("Error approving employment " + data.id, err);
         });
       };
-
+    
       this.reject = function() {};
-
+    
       this.noEmplMessage = function() {
         if (!this.empls || this.empls.length === 0) {
           return "You don't have any positions to approve yet, please check this page later.";
         }
       };
-
+    
     }).call(this);
   </script>
 </approvables>
