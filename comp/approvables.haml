@@ -26,7 +26,7 @@
   :coffee
     # entry_id = BR.getEntryId()
     @prod_host = s(location.hostname).strLeft(".").value()
-    entry_id = Number(@prod_host[6]) || 1
+    entry_id = Number(@prod_host[5]) || 1
 
     BR.prepare opts, @, =>
       @empls =  _(StoreData.empls).select (empl) -> empl.orgId == entry_id && !empl.approved

@@ -3674,7 +3674,7 @@ riot.tag2('org-edit', '<div class="right"> <a class="button button-outline" href
 
       this.prod_host = s(location.hostname).strLeft(".").value();
 
-      entry_id = Number(this.prod_host[6]) || 1;
+      entry_id = Number(this.prod_host[5]) || 1;
 
       present = function(org) {
         if (org) {
@@ -3758,7 +3758,7 @@ riot.tag2('approvables', '<section> <h1>Positions to Approve</h1> <div class="ro
 
       this.prod_host = s(location.hostname).strLeft(".").value();
 
-      entry_id = Number(this.prod_host[6]) || 1;
+      entry_id = Number(this.prod_host[5]) || 1;
 
       BR.prepare(opts, this, (function(_this) {
         return function() {

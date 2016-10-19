@@ -32,7 +32,7 @@
     
       this.prod_host = s(location.hostname).strLeft(".").value();
     
-      entry_id = Number(this.prod_host[6]) || 1;
+      entry_id = Number(this.prod_host[5]) || 1;
     
       BR.prepare(opts, this, (function(_this) {
         return function() {
