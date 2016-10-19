@@ -19,9 +19,9 @@
           %a.navigation-link{href: "#/universities"} Universities
 
       %ul.navigation-list.float-right
-        %li.navigation-item{ if: "{ dev || prod_host == 'bi1' }"}
+        %li.navigation-item{ if: "{ dev || prod_host == 'appii1' }"}
           %a.navigation-link{href: "#/user"} Profile
-        %li.navigation-item{ if: "{ dev || prod_host != 'bi1' }"}
+        %li.navigation-item{ if: "{ dev || prod_host != 'appii1' }"}
           %a.navigation-link{href: "#/org"} Organization
 
   :coffee

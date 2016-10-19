@@ -19,10 +19,10 @@
         </li>
       </ul>
       <ul class='navigation-list float-right'>
-        <li class='navigation-item' if="{ dev || prod_host == 'bi1' }">
+        <li class='navigation-item' if="{ dev || prod_host == 'appii1' }">
           <a class='navigation-link' href='#/user'>Profile</a>
         </li>
-        <li class='navigation-item' if="{ dev || prod_host != 'bi1' }">
+        <li class='navigation-item' if="{ dev || prod_host != 'appii1' }">
           <a class='navigation-link' href='#/org'>Organization</a>
         </li>
       </ul>
@@ -31,11 +31,11 @@
   <script>
     (function() {
       this.dev = location.hostname === "localhost";
-    
+
       this.prod_host = s(location.hostname).strLeft(".").value();
-    
+
       console.log("dev", this.dev, "host", this.prod_host);
-    
+
     }).call(this);
   </script>
 </main-nav>

@@ -70,7 +70,7 @@
     
       this.prod_host = s(location.hostname).strLeft(".").value();
     
-      entry_id = Number(this.prod_host[2]) || 1;
+      entry_id = Number(this.prod_host[6]) || 1;
     
       present = function(org) {
         if (org) {

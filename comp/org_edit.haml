@@ -63,7 +63,7 @@
 
   :coffeescript
     @prod_host = s(location.hostname).strLeft(".").value()
-    entry_id = Number(@prod_host[2]) || 1
+    entry_id = Number(@prod_host[6]) || 1
 
     present = (org) ->
       org = genOrgAvatar org if org
