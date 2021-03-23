@@ -9,11 +9,11 @@ Orgs = [];
 
 Unis = [];
 
-Orgs = _(Orgs).map((function(_this) {
-  return function(entity) {
-    return new Org(entity);
-  };
-})(this));
+// Orgs = _(Orgs).map((function(_this) {
+//   return function(entity) {
+//     return new Org(entity);
+//   };
+// })(this));
 
 identicon = function(entity, size) {
   var icon, id, sizePx;
@@ -26,17 +26,17 @@ identicon = function(entity, size) {
   return "data:image/png;base64," + icon;
 };
 
-genOrgAvatar = function(entity) {
-  entity.avatar = identicon(entity);
-  entity.avatarLg = identicon(entity, "large");
-  return entity;
-};
+// genOrgAvatar = function(entity) {
+//   entity.avatar = identicon(entity);
+//   entity.avatarLg = identicon(entity, "large");
+//   return entity;
+// };
 
-genOrgAvatars = function(entities) {
-  return _(entities).map(function(entity) {
-    return genOrgAvatar(entity);
-  });
-};
+// genOrgAvatars = function(entities) {
+//   return _(entities).map(function(entity) {
+//     return genOrgAvatar(entity);
+//   });
+// };
 
 fetchUserAvatars = function(users) {
   return _(users).map(function(user) {
@@ -66,31 +66,31 @@ Store = function() {
       return _this.update(StoreData);
     };
   })(this), 0);
-  Org.all().then((function(_this) {
-    return function(orgs) {
-      orgs = genOrgAvatars(orgs);
-      StoreData.orgs = orgs;
-      return _this.update(StoreData);
-    };
-  })(this))["catch"](function(error) {
-    return c.error("Error: " + error);
-  });
-  User.all().then((function(_this) {
-    return function(users) {
-      users = fetchUserAvatars(users);
-      StoreData.users = users;
-      return _this.update(StoreData);
-    };
-  })(this))["catch"](function(error) {
-    return c.error("Error: " + error);
-  });
-  Empl.all().then((function(_this) {
-    return function(empl) {
-      StoreData.empls = empl;
-      return _this.update(StoreData);
-    };
-  })(this))["catch"](function(error) {
-    return c.error("Error: " + error);
-  });
+  // Org.all().then((function(_this) {
+  //   return function(orgs) {
+  //     orgs = genOrgAvatars(orgs);
+  //     StoreData.orgs = orgs;
+  //     return _this.update(StoreData);
+  //   };
+  // })(this))["catch"](function(error) {
+  //   return c.error("Error: " + error);
+  // });
+  // User.all().then((function(_this) {
+  //   return function(users) {
+  //     users = fetchUserAvatars(users);
+  //     StoreData.users = users;
+  //     return _this.update(StoreData);
+  //   };
+  // })(this))["catch"](function(error) {
+  //   return c.error("Error: " + error);
+  // });
+  // Empl.all().then((function(_this) {
+  //   return function(empl) {
+  //     StoreData.empls = empl;
+  //     return _this.update(StoreData);
+  //   };
+  // })(this))["catch"](function(error) {
+  //   return c.error("Error: " + error);
+  // });
   return this;
 };

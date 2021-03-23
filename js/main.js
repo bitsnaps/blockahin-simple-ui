@@ -10,7 +10,7 @@ riot.router.routes(ROUTES);
 riot.router.start();
 
 console.log("Riot started");
-
+/*
 updateStatus = function(status) {
   StoreData.evt = status;
   return store.update(StoreData);
@@ -57,3 +57,4 @@ socket.onmessage = function(event) {
     }
   }
 };
+*/
