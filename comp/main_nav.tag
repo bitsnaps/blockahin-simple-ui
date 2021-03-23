@@ -25,17 +25,20 @@
         <li class='navigation-item' if="{ dev || prod_host != 'appii1' }">
           <a class='navigation-link' href='#/org'>Organization</a>
         </li>
+        <li class='navigation-item'>
+          <a class='navigation-link' href='#/login'>Login</a>
+        </li>
       </ul>
     </section>
   </nav>
   <script>
     (function() {
       this.dev = location.hostname === "localhost";
-    
+
       this.prod_host = s(location.hostname).strLeft(".").value();
-    
+
       console.log("dev", this.dev, "host", this.prod_host);
-    
+
     }).call(this);
   </script>
 </main-nav>
