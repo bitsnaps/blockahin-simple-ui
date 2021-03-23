@@ -1,15 +1,17 @@
-# APPII UI
+# POC - Blockchain based network
 
-APPII - Blockchain based Professionals Network
+Blockchain based Professionals Network (based on APPII UI project)
 
-## UI
+## Specs
 
-Main targets:
+Targets:
 
-- build reusable web3 enabled web components, to be dropped-in directly other dapps
-- simple UI, remember it's a POC
+- Build a private Blockchain network
+- Simple UI, remember it's a POC
 
 ### Setup
+
+- Install `bower` if not installed.
 
     npm i -g bower
 
@@ -18,14 +20,13 @@ Main targets:
 
 ### View
 
-    python -m SimpleHTTPServer 3000
+    npm install -g http-server
 
-Then connect to <http://localhost:3000>
+    http-server ./
 
-### Develop
+Then connect to <http://localhost:8080>
 
-    gem i bundler
+### TODO:
 
-    bundle
-
-    foreman start
+- Update dependencies
+- Simplify UI (Remove unused dependencies/tools)
